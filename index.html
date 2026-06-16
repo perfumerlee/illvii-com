@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.04 -->
+<!-- ILLVII 향수 주문 페이지 v0.05 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ILLVII 향수 주문하기 · v0.04</title>
+  <title>ILLVII 향수 주문하기 · v0.05</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -792,10 +792,37 @@
     }
 
     .check-field input {
-      width: auto;
-      margin-top: 4px;
-      accent-color: var(--accent-dark);
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      border: 1.7px solid rgba(61, 48, 36, .48);
+      border-radius: 7px;
+      background: #fffdf8;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-grid;
+      place-content: center;
     }
+
+    .check-field input::after {
+      content: "";
+      width: 11px;
+      height: 7px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) scale(0);
+      transform-origin: center;
+      transition: transform .12s ease;
+    }
+
+    .check-field input:checked {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .check-field input:checked::after { transform: rotate(-45deg) scale(1); }
 
     .entrance-code-box {
       display: none;
@@ -821,10 +848,37 @@
     }
 
     .privacy-box input {
-      width: auto;
-      margin-top: 3px;
-      accent-color: var(--accent-dark);
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      border: 1.7px solid rgba(61, 48, 36, .48);
+      border-radius: 7px;
+      background: #fffdf8;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-grid;
+      place-content: center;
     }
+
+    .privacy-box input::after {
+      content: "";
+      width: 11px;
+      height: 7px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) scale(0);
+      transform-origin: center;
+      transition: transform .12s ease;
+    }
+
+    .privacy-box input:checked {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .privacy-box input:checked::after { transform: rotate(-45deg) scale(1); }
 
     .summary {
       position: sticky;
@@ -1021,8 +1075,9 @@
     .payment-total {
       margin-top: 16px;
       border-radius: 20px;
-      background: var(--accent-dark);
-      color: #fff;
+      background: #fff3df;
+      color: var(--ink);
+      border: 1px solid rgba(165, 64, 52, .16);
       padding: 18px;
       display: flex;
       align-items: center;
@@ -1031,12 +1086,13 @@
     }
 
     .payment-total span {
-      opacity: .78;
+      color: var(--muted);
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 700;
     }
 
     .payment-total strong {
+      color: var(--danger);
       font-size: 30px;
       letter-spacing: -0.05em;
       text-align: right;
@@ -1051,6 +1107,77 @@
     }
 
     .modal-actions .btn { min-width: 150px; }
+
+
+    .recommend-notice {
+      display: none;
+      margin-top: 10px;
+      border: 1px solid rgba(47, 111, 78, .18);
+      border-radius: 16px;
+      background: rgba(47, 111, 78, .08);
+      color: #2a5f43;
+      padding: 13px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .recommend-notice.is-active { display: block; }
+
+    .qty-stepper {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) 48px;
+      align-items: stretch;
+      border: 1px solid rgba(33, 28, 24, .16);
+      border-radius: 16px;
+      background: #fffdf8;
+      overflow: hidden;
+      min-height: 52px;
+    }
+
+    .qty-stepper input {
+      border: 0;
+      border-left: 1px solid rgba(33, 28, 24, .10);
+      border-right: 1px solid rgba(33, 28, 24, .10);
+      border-radius: 0;
+      padding: 12px 8px;
+      text-align: center;
+      font-weight: 850;
+      background: #fffdf8;
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    .qty-stepper input::-webkit-outer-spin-button,
+    .qty-stepper input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .qty-btn {
+      border: 0;
+      background: #f3eadf;
+      color: var(--accent-dark);
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:active { transform: scale(.98); }
+
+
+
+    .modal-confirm-btn {
+      background: var(--success);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(47, 111, 78, .22);
+    }
+
+    .modal-confirm-btn:hover { box-shadow: 0 14px 28px rgba(47, 111, 78, .26); }
 
     @media (max-width: 920px) {
       .hero { grid-template-columns: 1fr; }
@@ -1073,9 +1200,15 @@
       .option-list { grid-template-columns: 1fr; }
       .option-body { min-height: 128px; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
+      .qty-stepper { grid-template-columns: 54px minmax(0, 1fr) 54px; min-height: 56px; }
+      .qty-btn { font-size: 26px; }
+      .check-field, .privacy-box { align-items: flex-start; gap: 12px; padding: 15px; }
+      .check-field input, .privacy-box input { width: 24px; height: 24px; border-radius: 8px; }
       .inline-group { flex-direction: column; }
       .cart-item { grid-template-columns: 1fr; }
       .cart-actions { justify-content: flex-end; }
+      .modal-panel { padding: 24px 20px; }
+      .payment-total { align-items: flex-start; flex-direction: column; }
       .summary-total strong { font-size: 24px; }
     }
   </style>
@@ -1085,7 +1218,7 @@
     <div class="header-inner">
       <button type="button" class="brand brand-link" data-scroll-target="top" aria-label="ILLVII home">
         ILLVII
-        <small>Online Order · v0.04</small>
+        <small>Online Order · v0.05</small>
       </button>
       <nav class="header-actions" aria-label="페이지 이동">
         <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
@@ -1107,7 +1240,7 @@
         <strong>주문 접수 안내</strong>
         <p>
           주문 접수 후 내용 확인을 거쳐 입금정보를 안내하고 제작 및 발송 안내를 드립니다.
-          향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 선택하고 주문 갯수를 지정해주세요.
+          향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 선택하고 주문 수량을 지정해주세요.
           그리고 요청사항에 사용 목적과 선호 분위기를 남겨주세요. SOLVIA와 STEMLINE 외의 향수로 추천하여 발송드립니다.
         </p>
       </aside>
@@ -1203,6 +1336,9 @@
               <option value="STEMLINE">STEMLINE</option>
               <option value="향 추천 요청">향 추천 요청</option>
             </select>
+            <div id="recommendNotice" class="recommend-notice" role="note" aria-live="polite">
+              요청사항에 사용목적과 선호 분위기를 꼭 남겨주세요. SOLVIA와 STEMLINE 외의 일비의 향수 목록에서 임의로 추천하여 발송드립니다.
+            </div>
           </div>
         </div>
 
@@ -1246,7 +1382,11 @@
           <div class="form-row" style="margin-top:14px;">
             <div class="field">
               <label for="quantity" class="required">수량</label>
-              <input id="quantity" name="quantity" type="number" min="1" step="1" value="1" required />
+              <div class="qty-stepper" aria-label="주문 수량 조절">
+                <button type="button" class="qty-btn" data-qty-action="decrease" aria-label="수량 줄이기">−</button>
+                <input id="quantity" name="quantity" type="number" min="1" step="1" value="1" inputmode="numeric" required />
+                <button type="button" class="qty-btn" data-qty-action="increase" aria-label="수량 늘리기">+</button>
+              </div>
             </div>
             <div class="field">
               <label>선택 상품 금액</label>
@@ -1383,17 +1523,17 @@
         <strong id="modalTotalAmount">0원</strong>
       </div>
       <div class="modal-actions">
-        <button type="button" class="btn btn-primary" data-modal-close>확인했습니다</button>
+        <button type="button" class="btn modal-confirm-btn" data-modal-close>확인했습니다</button>
       </div>
     </div>
   </div>
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.04
+    // ILLVII 향수 주문 페이지 v0.05
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.04';
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzkXL20aEHoko3OpUjBmhcLlvXdFr9CJyRbG9eVTz0P5UbBBv1MRCBFQz3ZC-o1jy9e/exec';
+    const APP_VERSION = 'v0.05';
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     const SHIPPING_FEE = 4000;
     const FREE_SHIPPING_MIN = 30000;
@@ -1537,6 +1677,22 @@
         }
       });
 
+      toggleRecommendationNotice();
+      updateCurrentPick();
+    }
+
+
+    function toggleRecommendationNotice() {
+      const notice = $('#recommendNotice');
+      if (!notice) return;
+      notice.classList.toggle('is-active', $('#scent').value === '향 추천 요청');
+    }
+
+    function adjustQuantity(delta) {
+      const input = $('#quantity');
+      const current = Math.max(1, Number(input.value || 1));
+      input.value = Math.max(1, current + delta);
+      toggleRecommendationNotice();
       updateCurrentPick();
     }
 
@@ -1776,8 +1932,17 @@
     $('#scent').addEventListener('change', updateOptionAvailability);
 
     $$('#quantity, input[name="productOption"]').forEach((el) => {
-      el.addEventListener('change', updateCurrentPick);
+      el.addEventListener('change', () => {
+        if (el.id === 'quantity' && Number(el.value || 0) < 1) el.value = 1;
+        updateCurrentPick();
+      });
       el.addEventListener('input', updateCurrentPick);
+    });
+
+    $$('[data-qty-action]').forEach((button) => {
+      button.addEventListener('click', () => {
+        adjustQuantity(button.dataset.qtyAction === 'increase' ? 1 : -1);
+      });
     });
 
     $('#addToCartBtn').addEventListener('click', addToCart);
