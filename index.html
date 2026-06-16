@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ILLVII 향수 주문하기</title>
+  <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
+
+  <!-- Kakao 우편번호 서비스 -->
+  <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --paper: #fffaf2;
+      --ink: #211c18;
+      --muted: #73675d;
+      --line: rgba(33, 28, 24, 0.12);
+      --accent: #6f5b45;
+      --accent-dark: #3d3024;
+      --accent-soft: #e9dfd2;
+      --danger: #a54034;
+      --success: #2f6f4e;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(55, 43, 31, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(233, 223, 210, .9), transparent 34rem),
+        linear-gradient(180deg, #f7f3ec 0%, #f4eee5 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 243, 236, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      letter-spacing: 0.08em;
+      font-weight: 750;
+    }
+
+    .brand small {
+      letter-spacing: 0;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ghost-link {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 14px;
+      background: rgba(255, 250, 242, .65);
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 34px 20px 80px;
+    }
+
+    .hero {
+      padding: 54px 0 30px;
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid rgba(111, 91, 69, .12);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 650;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 70px);
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+    }
+
+    .hero-copy {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 600px;
+    }
+
+    .notice-card {
+      background: rgba(255, 250, 242, .72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .notice-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .notice-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: rgba(255, 250, 242, 0.86);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-head h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .panel-head p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-child { border-bottom: 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      display: inline-flex;
+      width: 26px;
+      height: 26px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--accent-dark);
+      font-size: 13px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field { margin-bottom: 14px; }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 680;
+    }
+
+    .required::after {
+      content: " *";
+      color: var(--danger);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(33, 28, 24, .16);
+      background: #fffdf8;
+      color: var(--ink);
+      border-radius: 15px;
+      padding: 13px 14px;
+      outline: none;
+      transition: border .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(111, 91, 69, .55);
+      box-shadow: 0 0 0 4px rgba(111, 91, 69, .11);
+      background: #fff;
+    }
+
+    input[readonly] { background: #f7f1e8; color: #5c5148; }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .option-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .option-card {
+      cursor: pointer;
+      position: relative;
+      display: block;
+    }
+
+    .option-card input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-body {
+      min-height: 104px;
+      border: 1px solid rgba(33, 28, 24, .14);
+      background: #fffdf8;
+      border-radius: 18px;
+      padding: 15px;
+      transition: transform .18s ease, border .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .option-card input:checked + .option-body {
+      border-color: var(--accent);
+      background: #f4eadc;
+      box-shadow: 0 12px 28px rgba(82, 63, 44, .12);
+    }
+
+    .option-card:hover .option-body { transform: translateY(-1px); }
+
+    .option-name {
+      display: block;
+      font-weight: 780;
+      letter-spacing: -0.02em;
+    }
+
+    .option-desc {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .option-price {
+      display: block;
+      margin-top: 10px;
+      color: var(--accent-dark);
+      font-weight: 800;
+    }
+
+    .inline-group {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .inline-group input { flex: 1; }
+
+    .btn {
+      border: 0;
+      border-radius: 16px;
+      padding: 13px 16px;
+      cursor: pointer;
+      font-weight: 780;
+      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: .56; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: var(--accent-dark);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(61, 48, 36, .22);
+    }
+
+    .btn-secondary {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid rgba(111, 91, 69, .16);
+    }
+
+    .postcode-wrap {
+      display: none;
+      position: relative;
+      width: 100%;
+      min-height: 390px;
+      border: 1px solid rgba(33, 28, 24, .16);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      margin: 8px 0 14px;
+    }
+
+    .postcode-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 5;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(33, 28, 24, .82);
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 34px;
+    }
+
+    .help {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .privacy-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 16px;
+      background: #fffdf8;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .privacy-box input {
+      width: auto;
+      margin-top: 3px;
+      accent-color: var(--accent-dark);
+    }
+
+    .summary {
+      position: sticky;
+      top: 82px;
+    }
+
+    .summary-body { padding: 22px; }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(33, 28, 24, .14);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary-line strong {
+      color: var(--ink);
+      font-weight: 750;
+      text-align: right;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      padding-top: 18px;
+      margin-top: 6px;
+    }
+
+    .summary-total span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary-total strong {
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px 18px;
+      font-size: 16px;
+    }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .message.success {
+      display: block;
+      background: rgba(47, 111, 78, .1);
+      color: var(--success);
+      border: 1px solid rgba(47, 111, 78, .18);
+    }
+
+    .message.error {
+      display: block;
+      background: rgba(165, 64, 52, .1);
+      color: var(--danger);
+      border: 1px solid rgba(165, 64, 52, .18);
+    }
+
+    .small-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding-top: 36px; }
+      .grid { grid-template-columns: 1fr; }
+      .summary { position: static; }
+      .option-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .header-inner { padding: 13px 16px; }
+      .header-actions { display: none; }
+      .wrap { padding: 22px 14px 60px; }
+      .hero { gap: 18px; }
+      .notice-card { padding: 18px; }
+      .panel-head, .section { padding: 20px 16px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .inline-group { flex-direction: column; }
+      .btn { width: 100%; }
+      .summary-total strong { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="ILLVII home">
+        ILLVII
+        <small>Online Order</small>
+      </a>
+      <nav class="header-actions" aria-label="페이지 이동">
+        <a class="ghost-link" href="#orderForm">주문하기</a>
+        <a class="ghost-link" href="#guide">주문 안내</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">직접 제조 · 소량 주문 접수</div>
+        <h1>일상에<br />조용히 남는 향</h1>
+        <p class="hero-copy">
+          ILLVII의 향수를 온라인으로 주문할 수 있습니다. 원하는 향과 용량을 선택한 뒤 주문자 정보와 배송지를 남겨주세요.
+        </p>
+      </div>
+      <aside id="guide" class="notice-card">
+        <strong>주문 접수 안내</strong>
+        <p>
+          현재는 소량 운영 단계입니다. 주문 접수 후 내용 확인을 거쳐 제작 및 발송 안내를 드립니다.
+          향 선택이 어렵다면 요청사항에 사용 목적과 선호 분위기를 남겨주세요.
+        </p>
+      </aside>
+    </section>
+
+    <section class="grid" aria-label="ILLVII 향수 주문 폼">
+      <form id="orderForm" class="panel" novalidate>
+        <div class="panel-head">
+          <h2>ILLVII 향수 주문하기</h2>
+          <p>이메일은 받지 않고, 주문 확인은 연락처 기준으로 진행합니다.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">1</span> 향 선택</div>
+          <div class="field">
+            <label for="scent" class="required">주문할 향</label>
+            <select id="scent" name="scent" required>
+              <option value="">향을 선택해주세요</option>
+              <option value="Solvia">Solvia</option>
+              <option value="Golden Haze">Golden Haze</option>
+              <option value="향 추천 요청">향 추천 요청</option>
+            </select>
+            <p class="help">5ml 3개 세트를 서로 다른 향으로 받고 싶다면 요청사항에 구성을 적어주세요.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">2</span> 용량 / 구성 선택</div>
+          <div class="option-list" id="optionList">
+            <label class="option-card">
+              <input type="radio" name="productOption" value="5ml 향수" data-price="5000" data-label="5ml 향수" required />
+              <span class="option-body">
+                <span class="option-name">5ml 향수</span>
+                <span class="option-desc">향 테스트용 / 휴대용</span>
+                <span class="option-price">5,000원</span>
+              </span>
+            </label>
+
+            <label class="option-card">
+              <input type="radio" name="productOption" value="5ml 3개 세트" data-price="15000" data-label="5ml 3개 세트" />
+              <span class="option-body">
+                <span class="option-name">5ml 3개 세트</span>
+                <span class="option-desc">처음 경험해보기 좋은 구성</span>
+                <span class="option-price">15,000원</span>
+              </span>
+            </label>
+
+            <label class="option-card">
+              <input type="radio" name="productOption" value="15ml 향수" data-price="20000" data-label="15ml 향수" />
+              <span class="option-body">
+                <span class="option-name">15ml 향수</span>
+                <span class="option-desc">가볍게 사용하기 좋은 용량</span>
+                <span class="option-price">20,000원</span>
+              </span>
+            </label>
+
+            <label class="option-card">
+              <input type="radio" name="productOption" value="50ml 향수" data-price="29000" data-label="50ml 향수" />
+              <span class="option-body">
+                <span class="option-name">50ml 향수</span>
+                <span class="option-desc">데일리 사용을 위한 본품</span>
+                <span class="option-price">29,000원</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">3</span> 수량 선택</div>
+          <div class="field">
+            <label for="quantity" class="required">수량</label>
+            <input id="quantity" name="quantity" type="number" min="1" max="99" value="1" inputmode="numeric" required />
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">4</span> 주문자 정보</div>
+          <div class="form-row">
+            <div class="field">
+              <label for="customerName" class="required">이름</label>
+              <input id="customerName" name="customerName" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="phone" class="required">연락처</label>
+              <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" autocomplete="tel" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">5</span> 배송지 주소</div>
+
+          <div class="field">
+            <label for="postcode" class="required">우편번호</label>
+            <div class="inline-group">
+              <input id="postcode" name="postcode" type="text" inputmode="numeric" maxlength="5" placeholder="주소 검색으로 입력" readonly required />
+              <button type="button" class="btn btn-secondary" id="addressSearchBtn">주소 검색</button>
+            </div>
+          </div>
+
+          <div id="postcodeWrap" class="postcode-wrap" aria-label="우편번호 검색 영역">
+            <button type="button" class="postcode-close" id="postcodeCloseBtn" aria-label="주소 검색 닫기">×</button>
+          </div>
+
+          <div class="field">
+            <label for="baseAddress" class="required">기본주소</label>
+            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 입력" readonly required />
+          </div>
+
+          <div class="field">
+            <label for="detailAddress" class="required">상세주소</label>
+            <input id="detailAddress" name="detailAddress" type="text" placeholder="동/호수, 건물명, 층수 등" autocomplete="address-line2" required />
+            <p class="help">전체주소는 기본주소 + 상세주소로 저장됩니다. 우편번호는 전체주소에 포함하지 않습니다.</p>
+          </div>
+
+          <div class="field">
+            <label for="deliveryMemo">배송 메모</label>
+            <select id="deliveryMemo" name="deliveryMemo">
+              <option value="">선택 안 함</option>
+              <option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
+              <option value="부재 시 연락 주세요">부재 시 연락 주세요</option>
+              <option value="경비실에 맡겨주세요">경비실에 맡겨주세요</option>
+              <option value="택배함에 넣어주세요">택배함에 넣어주세요</option>
+              <option value="직접 입력">직접 입력</option>
+            </select>
+          </div>
+
+          <div class="field" id="customDeliveryMemoField" style="display:none;">
+            <label for="customDeliveryMemo">배송 메모 직접 입력</label>
+            <input id="customDeliveryMemo" name="customDeliveryMemo" type="text" placeholder="배송 요청사항을 입력해주세요" />
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">6</span> 요청사항</div>
+          <div class="field">
+            <label for="memo">추가 요청사항</label>
+            <textarea id="memo" name="memo" placeholder="예: 5ml 3개 세트는 Solvia 2개, Golden Haze 1개로 받고 싶어요. / 선물용입니다. / 향 추천을 받고 싶어요."></textarea>
+          </div>
+
+          <label class="privacy-box">
+            <input id="privacyAgree" name="privacyAgree" type="checkbox" required />
+            <span>
+              주문 접수와 배송 안내를 위해 이름, 연락처, 주소, 주문 내용을 수집·이용하는 것에 동의합니다.
+            </span>
+          </label>
+        </div>
+      </form>
+
+      <aside class="panel summary" aria-label="주문 요약">
+        <div class="panel-head">
+          <h2>주문 요약</h2>
+          <p>선택한 내용을 확인해주세요.</p>
+        </div>
+        <div class="summary-body">
+          <div class="summary-line"><span>향</span><strong id="summaryScent">-</strong></div>
+          <div class="summary-line"><span>구성</span><strong id="summaryOption">-</strong></div>
+          <div class="summary-line"><span>수량</span><strong id="summaryQty">1개</strong></div>
+          <div class="summary-line"><span>상품금액</span><strong id="summarySubtotal">0원</strong></div>
+          <div class="summary-line"><span>배송비</span><strong id="summaryShipping">0원</strong></div>
+          <div class="summary-total">
+            <span>총 주문금액</span>
+            <strong id="summaryTotal">0원</strong>
+          </div>
+          <button type="submit" form="orderForm" class="btn btn-primary submit-btn" id="submitBtn">주문 접수하기</button>
+          <div id="resultMessage" class="message" role="status" aria-live="polite"></div>
+          <p class="small-note">
+            15,000원 이상 주문 시 무료배송으로 계산됩니다. 15,000원 미만 주문은 배송비 4,000원이 적용됩니다.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // 1) Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwK_I8xra29eGS4QEVvB00Bk_PfXlcfGZBCOeacI6kpu2DQT8mbnPJGt434ZaBjiye8/exec';
+
+    // 2) 배송비 정책
+    const SHIPPING_FEE = 4000;
+    const FREE_SHIPPING_MIN = 15000;
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    const form = $('#orderForm');
+    const resultMessage = $('#resultMessage');
+    const submitBtn = $('#submitBtn');
+    const postcodeWrap = $('#postcodeWrap');
+
+    function formatKRW(value) {
+      return Number(value || 0).toLocaleString('ko-KR') + '원';
+    }
+
+    function onlyNumbers(value) {
+      return String(value || '').replace(/\D/g, '');
+    }
+
+    function formatPhone(value) {
+      const nums = onlyNumbers(value).slice(0, 11);
+      if (nums.length <= 3) return nums;
+      if (nums.length <= 7) return nums.replace(/(\d{3})(\d+)/, '$1-$2');
+      return nums.replace(/(\d{3})(\d{4})(\d+)/, '$1-$2-$3');
+    }
+
+    function getSelectedOption() {
+      return $('input[name="productOption"]:checked');
+    }
+
+    function getOrderPrice() {
+      const selected = getSelectedOption();
+      const unitPrice = selected ? Number(selected.dataset.price) : 0;
+      const quantity = Math.max(1, Number($('#quantity').value || 1));
+      const subtotal = unitPrice * quantity;
+      const shippingFee = subtotal >= FREE_SHIPPING_MIN || subtotal === 0 ? 0 : SHIPPING_FEE;
+      const total = subtotal + shippingFee;
+
+      return { unitPrice, quantity, subtotal, shippingFee, total };
+    }
+
+    function getDeliveryMemo() {
+      const value = $('#deliveryMemo').value;
+      if (value === '직접 입력') return $('#customDeliveryMemo').value.trim();
+      return value;
+    }
+
+    function getFullAddress() {
+      const baseAddress = $('#baseAddress').value.trim();
+      const detailAddress = $('#detailAddress').value.trim();
+      return `${baseAddress} ${detailAddress}`.trim();
+    }
+
+    function updateSummary() {
+      const selected = getSelectedOption();
+      const { quantity, subtotal, shippingFee, total } = getOrderPrice();
+
+      $('#summaryScent').textContent = $('#scent').value || '-';
+      $('#summaryOption').textContent = selected ? selected.dataset.label : '-';
+      $('#summaryQty').textContent = `${quantity}개`;
+      $('#summarySubtotal').textContent = formatKRW(subtotal);
+      $('#summaryShipping').textContent = subtotal >= FREE_SHIPPING_MIN || subtotal === 0 ? '무료' : formatKRW(shippingFee);
+      $('#summaryTotal').textContent = formatKRW(total);
+    }
+
+    function showMessage(type, text) {
+      resultMessage.className = `message ${type}`;
+      resultMessage.textContent = text;
+    }
+
+    function validateForm() {
+      const selected = getSelectedOption();
+      const phone = onlyNumbers($('#phone').value);
+      const postcode = $('#postcode').value.trim();
+      const baseAddress = $('#baseAddress').value.trim();
+      const detailAddress = $('#detailAddress').value.trim();
+
+      if (!$('#scent').value) return '향을 선택해주세요.';
+      if (!selected) return '용량/구성을 선택해주세요.';
+      if (!$('#quantity').value || Number($('#quantity').value) < 1) return '수량을 확인해주세요.';
+      if (!$('#customerName').value.trim()) return '주문자 이름을 입력해주세요.';
+      if (phone.length < 10) return '연락처를 정확히 입력해주세요.';
+      if (!postcode || !baseAddress) return '주소 검색으로 배송지를 입력해주세요.';
+      if (!detailAddress) return '상세주소를 입력해주세요.';
+      if (!$('#privacyAgree').checked) return '개인정보 수집·이용 동의가 필요합니다.';
+      if (ORDER_WEB_APP_URL.includes('여기에_')) return 'Apps Script 웹 앱 URL을 먼저 입력해주세요.';
+      return '';
+    }
+
+    function buildPayload() {
+      const selected = getSelectedOption();
+      const { unitPrice, quantity, subtotal, shippingFee, total } = getOrderPrice();
+      const postcode = String($('#postcode').value || '').padStart(5, '0');
+      const baseAddress = $('#baseAddress').value.trim();
+      const detailAddress = $('#detailAddress').value.trim();
+      const fullAddress = getFullAddress(); // 우편번호 제외
+
+      return {
+        orderStatus: '접수',
+        customerName: $('#customerName').value.trim(),
+        phone: $('#phone').value.trim(),
+        postcode,
+        baseAddress,
+        detailAddress,
+        fullAddress,
+        deliveryMemo: getDeliveryMemo(),
+        scent: $('#scent').value,
+        productOption: selected ? selected.value : '',
+        productLabel: selected ? selected.dataset.label : '',
+        unitPrice,
+        quantity,
+        subtotal,
+        shippingFee,
+        total,
+        memo: $('#memo').value.trim(),
+        privacyAgree: $('#privacyAgree').checked ? '동의' : '미동의',
+        userAgent: navigator.userAgent,
+        pageUrl: location.href
+      };
+    }
+
+    function foldPostcode() {
+      postcodeWrap.style.display = 'none';
+      postcodeWrap.innerHTML = '<button type="button" class="postcode-close" id="postcodeCloseBtn" aria-label="주소 검색 닫기">×</button>';
+      $('#postcodeCloseBtn').addEventListener('click', foldPostcode);
+    }
+
+    function openPostcode() {
+      const Postcode = window.kakao?.Postcode || window.daum?.Postcode;
+      if (!Postcode) {
+        alert('주소 검색 스크립트를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+        return;
+      }
+
+      postcodeWrap.style.display = 'block';
+
+      new Postcode({
+        oncomplete: function(data) {
+          let addr = '';
+          let extraAddr = '';
+
+          if (data.userSelectedType === 'R') {
+            addr = data.roadAddress;
+
+            if (data.bname && /[동로가]$/.test(data.bname)) {
+              extraAddr += data.bname;
+            }
+
+            if (data.buildingName && data.apartment === 'Y') {
+              extraAddr += extraAddr ? `, ${data.buildingName}` : data.buildingName;
+            }
+
+            if (extraAddr) {
+              addr += ` (${extraAddr})`;
+            }
+          } else {
+            addr = data.jibunAddress;
+          }
+
+          const zonecode = String(data.zonecode || '').padStart(5, '0');
+          $('#postcode').value = zonecode;
+          $('#baseAddress').value = addr;
+          $('#detailAddress').focus();
+          foldPostcode();
+          updateSummary();
+        },
+        onresize: function(size) {
+          postcodeWrap.style.height = `${size.height}px`;
+        },
+        width: '100%',
+        height: '100%'
+      }).embed(postcodeWrap);
+    }
+
+    $('#addressSearchBtn').addEventListener('click', openPostcode);
+    $('#postcodeCloseBtn').addEventListener('click', foldPostcode);
+
+    $('#phone').addEventListener('input', (e) => {
+      e.target.value = formatPhone(e.target.value);
+    });
+
+    $('#deliveryMemo').addEventListener('change', (e) => {
+      $('#customDeliveryMemoField').style.display = e.target.value === '직접 입력' ? 'block' : 'none';
+      if (e.target.value !== '직접 입력') $('#customDeliveryMemo').value = '';
+    });
+
+    $$('#scent, #quantity, input[name="productOption"]').forEach((el) => {
+      el.addEventListener('change', updateSummary);
+      el.addEventListener('input', updateSummary);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      resultMessage.className = 'message';
+      resultMessage.textContent = '';
+
+      const error = validateForm();
+      if (error) {
+        showMessage('error', error);
+        return;
+      }
+
+      const payload = buildPayload();
+      submitBtn.disabled = true;
+      submitBtn.textContent = '접수 중입니다...';
+
+      try {
+        // Apps Script Web App은 CORS 응답 환경에 따라 일반 fetch 응답 읽기가 막힐 수 있어 no-cors 방식으로 전송합니다.
+        await fetch(ORDER_WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        showMessage('success', '주문이 접수되었습니다. 입력하신 연락처로 주문 확인 안내를 드리겠습니다.');
+        form.reset();
+        foldPostcode();
+        updateSummary();
+      } catch (err) {
+        console.error(err);
+        showMessage('error', '주문 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '주문 접수하기';
+      }
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>
