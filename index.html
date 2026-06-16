@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.01 -->
+<!-- ILLVII 향수 주문 페이지 v0.03 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ILLVII 향수 주문하기 · v0.01</title>
+  <title>ILLVII 향수 주문하기 · v0.03</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -76,19 +76,19 @@
       font-weight: 500;
     }
 
-    .version-chip {
-      display: inline-flex;
-      width: fit-content;
-      margin-top: 4px;
-      border: 1px solid rgba(111, 91, 69, .18);
-      border-radius: 999px;
-      padding: 3px 8px;
-      background: rgba(255, 250, 242, .72);
-      color: var(--accent-dark);
-      font-size: 11px;
-      font-weight: 760;
-      letter-spacing: 0;
+    .brand-link {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
     }
+
+    .brand-link:hover small { color: var(--accent-dark); }
+
 
     .header-actions {
       display: flex;
@@ -102,12 +102,18 @@
       padding: 9px 14px;
       font-size: 14px;
       background: rgba(255, 250, 242, .65);
+      color: inherit;
+      cursor: pointer;
     }
 
     .wrap {
       max-width: 1080px;
       margin: 0 auto;
       padding: 34px 20px 80px;
+    }
+
+    #top, #products, #orderForm, #guide {
+      scroll-margin-top: 96px;
     }
 
     .hero {
@@ -342,6 +348,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      border: 0;
       border-radius: 999px;
       padding: 10px 14px;
       background: var(--accent-dark);
@@ -349,6 +356,7 @@
       font-size: 13px;
       font-weight: 780;
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .grid {
@@ -742,6 +750,36 @@
       font-size: 13px;
     }
 
+    .check-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 4px 0 10px;
+      padding: 14px;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 16px;
+      background: rgba(255, 253, 248, .72);
+      color: var(--accent-dark);
+      cursor: pointer;
+    }
+
+    .check-field input {
+      width: auto;
+      margin-top: 4px;
+      accent-color: var(--accent-dark);
+    }
+
+    .entrance-code-box {
+      display: none;
+      margin-top: 10px;
+      padding: 14px;
+      border: 1px solid rgba(111, 91, 69, .16);
+      border-radius: 16px;
+      background: rgba(244, 234, 220, .42);
+    }
+
+    .entrance-code-box.is-active { display: block; }
+
     .privacy-box {
       display: flex;
       align-items: flex-start;
@@ -894,15 +932,14 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#top" aria-label="ILLVII home">
+      <button type="button" class="brand brand-link" data-scroll-target="top" aria-label="ILLVII home">
         ILLVII
-        <small>Online Order · v0.01</small>
-        <span class="version-chip" aria-label="현재 작업 버전">v0.01</span>
-      </a>
+        <small>Online Order · v0.03</small>
+      </button>
       <nav class="header-actions" aria-label="페이지 이동">
-        <a class="ghost-link" href="#products">제품 소개</a>
-        <a class="ghost-link" href="#orderForm">주문하기</a>
-        <a class="ghost-link" href="#guide">주문 안내</a>
+        <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
+        <button type="button" class="ghost-link" data-scroll-target="orderForm">주문하기</button>
+        <button type="button" class="ghost-link" data-scroll-target="guide">주문 안내</button>
       </nav>
     </div>
   </header>
@@ -962,7 +999,7 @@
           </div>
           <div class="product-actions">
             <small>5ml / 50ml 주문 가능</small>
-            <a class="product-order-link" href="#orderForm" data-scent-target="Solvia">SOLVIA 주문 선택</a>
+            <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="Solvia">SOLVIA 주문 선택</button>
           </div>
         </article>
 
@@ -992,7 +1029,7 @@
           </div>
           <div class="product-actions">
             <small>5ml / 50ml 주문 가능</small>
-            <a class="product-order-link" href="#orderForm" data-scent-target="STEMLINE">STEMLINE 주문 선택</a>
+            <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="STEMLINE">STEMLINE 주문 선택</button>
           </div>
         </article>
       </div>
@@ -1127,6 +1164,17 @@
             <label for="customDeliveryMemo">배송메모 직접 입력</label>
             <input id="customDeliveryMemo" type="text" placeholder="배송 요청사항을 입력해주세요" />
           </div>
+          <div class="field entrance-field">
+            <label class="check-field" for="hasEntranceCode">
+              <input id="hasEntranceCode" name="hasEntranceCode" type="checkbox" />
+              <span>공동현관 출입번호가 있어요</span>
+            </label>
+            <div class="entrance-code-box" id="entranceCodeField">
+              <label for="entranceCode" class="required">공동현관 출입번호</label>
+              <input id="entranceCode" name="entranceCode" type="text" placeholder="예: #1234* / 호출 0000" autocomplete="off" />
+              <p class="help">입력한 내용은 요청사항 맨 앞에 자동 반영됩니다.</p>
+            </div>
+          </div>
         </div>
 
         <div class="section">
@@ -1169,10 +1217,10 @@
   </main>
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.01
+    // ILLVII 향수 주문 페이지 v0.03
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.01';
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxNo7sLeojDBcMmf2Ry4qA5d58LZzZevdBNp-w7Wpplcroti0FuzutX7do14pM6aFuJ/exec';
+    const APP_VERSION = 'v0.03';
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyyLZiXK3jLHIK_2uVB3m8ehFqMxYmmxheqI96lrngjYfrR0RZAJ3yTpLkTmViMDNI6/exec';
 
     const SHIPPING_FEE = 4000;
     const FREE_SHIPPING_MIN = 30000;
@@ -1243,6 +1291,53 @@
     function makeOrderSummary() {
       if (!cart.length) return '';
       return cart.map((item) => `${item.scent || '향 미선택'} / ${item.productLabel || item.productOption} x ${item.quantity}`).join('\n');
+    }
+
+    function removeEntranceMemoPrefix(value) {
+      return String(value || '').replace(/^공동현관 출입번호:\s*.*(?:\n|$)/, '').replace(/^\n+/, '');
+    }
+
+    function getEntranceMemoText() {
+      if (!$('#hasEntranceCode').checked) return '';
+      const code = $('#entranceCode').value.trim();
+      return code ? `공동현관 출입번호: ${code}` : '';
+    }
+
+    function syncEntranceMemo() {
+      const memoEl = $('#memo');
+      const manualMemo = removeEntranceMemoPrefix(memoEl.value);
+      const entranceMemo = getEntranceMemoText();
+      memoEl.value = entranceMemo ? `${entranceMemo}${manualMemo ? '\n' + manualMemo : ''}` : manualMemo;
+    }
+
+    function toggleEntranceCodeField() {
+      const checked = $('#hasEntranceCode').checked;
+      const field = $('#entranceCodeField');
+      const input = $('#entranceCode');
+      field.classList.toggle('is-active', checked);
+      input.required = checked;
+      if (!checked) input.value = '';
+      syncEntranceMemo();
+      if (checked) input.focus();
+    }
+
+    function getScrollOffset() {
+      const header = document.querySelector('.site-header');
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      return Math.ceil(headerHeight + 22);
+    }
+
+    function scrollToTarget(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      const nextTop = Math.max(0, targetTop - getScrollOffset());
+
+      window.scrollTo({
+        top: nextTop,
+        behavior: 'smooth'
+      });
     }
 
     function updateCurrentPick() {
@@ -1353,12 +1448,14 @@
       if (phone.length < 10) return '연락처를 정확히 입력해주세요.';
       if (!postcode || !baseAddress) return '주소 검색으로 배송지를 입력해주세요.';
       if (!detailAddress) return '상세주소를 입력해주세요.';
+      if ($('#hasEntranceCode').checked && !$('#entranceCode').value.trim()) return '공동현관 출입번호를 입력해주세요.';
       if (!$('#privacyAgree').checked) return '개인정보 수집·이용 동의가 필요합니다.';
       if (ORDER_WEB_APP_URL.includes('여기에_')) return 'Apps Script 웹 앱 URL을 먼저 입력해주세요.';
       return '';
     }
 
     function buildPayload() {
+      syncEntranceMemo();
       const totals = getCartTotals();
       const postcode = String($('#postcode').value || '').padStart(5, '0');
       const baseAddress = $('#baseAddress').value.trim();
@@ -1386,6 +1483,8 @@
         total: totals.total,
         items: cart.map((item) => ({ ...item })),
         memo: $('#memo').value.trim(),
+        hasEntranceCode: $('#hasEntranceCode').checked ? '예' : '아니오',
+        entranceCode: $('#entranceCode').value.trim(),
         privacyAgree: $('#privacyAgree').checked ? '동의' : '미동의',
         userAgent: navigator.userAgent,
         pageUrl: location.href
@@ -1452,6 +1551,9 @@
       if (e.target.value !== '직접 입력') $('#customDeliveryMemo').value = '';
     });
 
+    $('#hasEntranceCode').addEventListener('change', toggleEntranceCodeField);
+    $('#entranceCode').addEventListener('input', syncEntranceMemo);
+
     $$('#scent, #quantity, input[name="productOption"]').forEach((el) => {
       el.addEventListener('change', updateCurrentPick);
       el.addEventListener('input', updateCurrentPick);
@@ -1484,6 +1586,10 @@
       }
 
       updateCart();
+    });
+
+    $$('[data-scroll-target]').forEach((el) => {
+      el.addEventListener('click', () => scrollToTarget(el.dataset.scrollTarget));
     });
 
     $$('.product-order-link').forEach((link) => {
@@ -1522,6 +1628,7 @@
         showMessage('success', '주문이 접수되었습니다. 입력하신 연락처로 주문 확인 안내를 드리겠습니다.');
         form.reset();
         cart.splice(0, cart.length);
+        toggleEntranceCodeField();
         foldPostcode();
         updateCart();
       } catch (err) {
