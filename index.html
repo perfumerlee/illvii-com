@@ -8,7 +8,2039 @@
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
+  <script src="//t1.kakaocdn.net/mapjsapi/bundle/postc<!doctype html>
+<!-- ILLVII 향수 주문 페이지 v0.06 -->
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ILLVII 향수 주문하기 · v0.06</title>
+  <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
+
+  <!-- Kakao 우편번호 서비스 -->
   <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --paper: #fffaf2;
+      --ink: #211c18;
+      --muted: #73675d;
+      --line: rgba(33, 28, 24, 0.12);
+      --accent: #6f5b45;
+      --accent-dark: #3d3024;
+      --accent-soft: #e9dfd2;
+      --danger: #a54034;
+      --success: #2f6f4e;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(55, 43, 31, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(233, 223, 210, .9), transparent 34rem),
+        linear-gradient(180deg, #f7f3ec 0%, #f4eee5 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 243, 236, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      letter-spacing: 0.08em;
+      font-weight: 750;
+    }
+
+    .brand small {
+      letter-spacing: 0;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .brand-link {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .brand-link:hover small { color: var(--accent-dark); }
+
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ghost-link {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 14px;
+      background: rgba(255, 250, 242, .65);
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 34px 20px 80px;
+    }
+
+    #top, #products, #orderForm, #guide {
+      scroll-margin-top: 96px;
+    }
+
+    .hero {
+      padding: 54px 0 30px;
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid rgba(111, 91, 69, .12);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 650;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 70px);
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+    }
+
+    .hero-copy {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 600px;
+    }
+
+    .notice-card {
+      background: rgba(255, 250, 242, .72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .notice-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .notice-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .product-showcase {
+      margin: 6px 0 28px;
+      background: rgba(255, 250, 242, 0.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .showcase-head {
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .showcase-kicker {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid rgba(111, 91, 69, .14);
+      font-size: 12px;
+      font-weight: 760;
+      margin-bottom: 12px;
+    }
+
+    .showcase-head h2 {
+      margin: 0;
+      font-size: clamp(26px, 3.8vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    .showcase-head p {
+      margin: 12px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .product-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-card {
+      padding: 26px 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .product-card:last-child { border-right: 0; }
+
+    .product-topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--accent-dark);
+      background: rgba(233, 223, 210, .72);
+      border: 1px solid rgba(111, 91, 69, .13);
+      font-size: 11px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .kr-name {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .product-copy {
+      margin: 16px 0 0;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 18px;
+    }
+
+    .keyword-row span {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #fffdf8;
+      border: 1px solid rgba(33, 28, 24, .12);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .note-list {
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .note-list div {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(33, 28, 24, .14);
+    }
+
+    .note-list dt {
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .note-list dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .flow-box {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(233, 223, 210, .42);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .product-actions small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product-order-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--accent-dark);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 780;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: rgba(255, 250, 242, 0.86);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-head h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .panel-head p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-child { border-bottom: 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .num {
+      display: inline-flex;
+      width: 26px;
+      height: 26px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--accent-dark);
+      font-size: 13px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field { margin-bottom: 14px; }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 680;
+    }
+
+    .required::after {
+      content: " *";
+      color: var(--danger);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(33, 28, 24, .16);
+      background: #fffdf8;
+      color: var(--ink);
+      border-radius: 15px;
+      padding: 13px 14px;
+      outline: none;
+      transition: border .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(111, 91, 69, .55);
+      box-shadow: 0 0 0 4px rgba(111, 91, 69, .11);
+      background: #fff;
+    }
+
+    input[readonly] { background: #f7f1e8; color: #5c5148; }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .option-focus {
+      margin: 0 14px;
+      border: 1px solid rgba(111, 91, 69, .18);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(111, 91, 69, .10), transparent 18rem),
+        linear-gradient(180deg, rgba(255, 250, 242, .96), rgba(244, 234, 220, .62));
+      box-shadow: 0 18px 42px rgba(82, 63, 44, .10);
+    }
+
+    .option-focus .section-title {
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .option-focus .num {
+      background: var(--accent);
+      box-shadow: 0 8px 18px rgba(111, 91, 69, .22);
+    }
+
+    .option-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .option-card {
+      cursor: pointer;
+      position: relative;
+      display: block;
+      min-width: 0;
+      height: 100%;
+      margin: 0;
+    }
+
+    .option-card input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 152px;
+      height: 100%;
+      border: 1.5px solid rgba(33, 28, 24, .16);
+      background: linear-gradient(180deg, #fffdf8 0%, #fbf4ea 100%);
+      border-radius: 20px;
+      padding: 18px;
+      overflow: hidden;
+      transition: transform .18s ease, border .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .option-body::after {
+      content: "";
+      position: absolute;
+      inset: auto 16px 14px auto;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(111, 91, 69, .22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .46);
+    }
+
+    .option-card input:checked + .option-body {
+      border-color: var(--accent-dark);
+      background: linear-gradient(180deg, #f5eadc 0%, #ead8c3 100%);
+      box-shadow: 0 18px 38px rgba(82, 63, 44, .18);
+      transform: translateY(-2px);
+    }
+
+    .option-card input:checked + .option-body::after {
+      content: "✓";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-dark);
+      color: #fff;
+      border-color: var(--accent-dark);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .option-card input:focus-visible + .option-body {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(111, 91, 69, .12);
+    }
+
+    .option-card:hover .option-body { transform: translateY(-2px); }
+
+    .option-card.is-disabled {
+      cursor: not-allowed;
+    }
+
+    .option-card.is-disabled .option-body {
+      opacity: .48;
+      background: #f1ebe3;
+      border-style: dashed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .option-card.is-disabled:hover .option-body { transform: none; }
+
+    .option-card.is-disabled .option-body::before {
+      content: "STEMLINE 구매불가";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #fff;
+      background: rgba(165, 64, 52, .92);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .option-name {
+      display: block;
+      font-size: 16px;
+      font-weight: 820;
+      letter-spacing: -0.025em;
+      word-break: keep-all;
+    }
+
+    .option-desc {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      word-break: keep-all;
+    }
+
+    .option-price {
+      display: block;
+      margin-top: 14px;
+      padding-right: 34px;
+      color: var(--accent-dark);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.045em;
+    }
+
+    .inline-group {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .inline-group input { flex: 1; }
+
+    .btn {
+      border: 0;
+      border-radius: 16px;
+      padding: 13px 16px;
+      cursor: pointer;
+      font-weight: 780;
+      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: .56; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: var(--accent-dark);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(61, 48, 36, .22);
+    }
+
+    .btn-secondary {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid rgba(111, 91, 69, .16);
+    }
+
+    .btn-outline {
+      background: #fffdf8;
+      color: var(--accent-dark);
+      border: 1px solid rgba(111, 91, 69, .22);
+    }
+
+    .add-cart-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(33, 28, 24, .16);
+    }
+
+    .current-pick {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .cart-empty {
+      margin: 0;
+      padding: 16px;
+      border: 1px dashed rgba(33, 28, 24, .18);
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(255, 253, 248, .7);
+      font-size: 14px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 16px;
+      background: #fffdf8;
+    }
+
+    .cart-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .cart-title small {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .cart-meta {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(33, 28, 24, .14);
+      border-radius: 999px;
+      background: #fffaf2;
+      color: var(--accent-dark);
+      cursor: pointer;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .remove-btn {
+      border: 0;
+      background: transparent;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 750;
+      padding: 8px 4px;
+    }
+
+    .postcode-wrap {
+      display: none;
+      position: relative;
+      width: 100%;
+      min-height: 390px;
+      border: 1px solid rgba(33, 28, 24, .16);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      margin: 8px 0 14px;
+    }
+
+    .postcode-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 5;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(33, 28, 24, .82);
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 34px;
+    }
+
+    .help {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .check-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 4px 0 10px;
+      padding: 14px;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 16px;
+      background: rgba(255, 253, 248, .72);
+      color: var(--accent-dark);
+      cursor: pointer;
+    }
+
+    .check-field input {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      border: 1.7px solid rgba(61, 48, 36, .48);
+      border-radius: 7px;
+      background: #fffdf8;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-grid;
+      place-content: center;
+    }
+
+    .check-field input::after {
+      content: "";
+      width: 11px;
+      height: 7px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) scale(0);
+      transform-origin: center;
+      transition: transform .12s ease;
+    }
+
+    .check-field input:checked {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .check-field input:checked::after { transform: rotate(-45deg) scale(1); }
+
+    .entrance-code-box {
+      display: none;
+      margin-top: 10px;
+      padding: 14px;
+      border: 1px solid rgba(111, 91, 69, .16);
+      border-radius: 16px;
+      background: rgba(244, 234, 220, .42);
+    }
+
+    .entrance-code-box.is-active { display: block; }
+
+    .privacy-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 16px;
+      background: #fffdf8;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .privacy-box input {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      border: 1.7px solid rgba(61, 48, 36, .48);
+      border-radius: 7px;
+      background: #fffdf8;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-grid;
+      place-content: center;
+    }
+
+    .privacy-box input::after {
+      content: "";
+      width: 11px;
+      height: 7px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) scale(0);
+      transform-origin: center;
+      transition: transform .12s ease;
+    }
+
+    .privacy-box input:checked {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .privacy-box input:checked::after { transform: rotate(-45deg) scale(1); }
+
+    .summary {
+      position: sticky;
+      top: 82px;
+    }
+
+    .summary-body { padding: 22px; }
+
+    .summary-items {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .summary-item {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(33, 28, 24, .14);
+    }
+
+    .summary-item strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .summary-item span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(33, 28, 24, .14);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary-line strong {
+      color: var(--ink);
+      font-weight: 750;
+      text-align: right;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      padding-top: 18px;
+      margin-top: 6px;
+    }
+
+    .summary-total span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary-total strong {
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px 18px;
+      font-size: 16px;
+    }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .message.success {
+      display: block;
+      background: rgba(47, 111, 78, .1);
+      color: var(--success);
+      border: 1px solid rgba(47, 111, 78, .18);
+    }
+
+    .message.error {
+      display: block;
+      background: rgba(165, 64, 52, .1);
+      color: var(--danger);
+      border: 1px solid rgba(165, 64, 52, .18);
+    }
+
+    .small-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+
+    .order-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .order-modal.is-open { display: flex; }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(25, 20, 16, .48);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-panel {
+      position: relative;
+      width: min(100%, 520px);
+      border-radius: 26px;
+      background: #fffaf2;
+      border: 1px solid rgba(255, 255, 255, .55);
+      box-shadow: 0 30px 90px rgba(20, 16, 12, .28);
+      padding: 28px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--muted);
+    }
+
+    .modal-kicker {
+      margin: 0 0 8px;
+      color: var(--success);
+      font-size: 13px;
+      font-weight: 820;
+    }
+
+    .modal-panel h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.055em;
+      line-height: 1.18;
+    }
+
+    .modal-copy {
+      margin: 10px 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .account-box {
+      border: 1px solid rgba(111, 91, 69, .18);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #fffdf8 0%, #f7efe4 100%);
+      padding: 18px;
+    }
+
+    .account-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .account-number {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      word-break: keep-all;
+    }
+
+    .payment-total {
+      margin-top: 16px;
+      border-radius: 20px;
+      background: #fff3df;
+      color: var(--ink);
+      border: 1px solid rgba(165, 64, 52, .16);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .payment-total span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .payment-total strong {
+      color: var(--danger);
+      font-size: 30px;
+      letter-spacing: -0.05em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .modal-actions .btn { min-width: 150px; }
+
+
+    .recommend-notice {
+      display: none;
+      margin-top: 10px;
+      border: 1px solid rgba(47, 111, 78, .18);
+      border-radius: 16px;
+      background: rgba(47, 111, 78, .08);
+      color: #2a5f43;
+      padding: 13px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .recommend-notice.is-active { display: block; }
+
+    .qty-stepper {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) 48px;
+      align-items: stretch;
+      border: 1px solid rgba(33, 28, 24, .16);
+      border-radius: 16px;
+      background: #fffdf8;
+      overflow: hidden;
+      min-height: 52px;
+    }
+
+    .qty-stepper input {
+      border: 0;
+      border-left: 1px solid rgba(33, 28, 24, .10);
+      border-right: 1px solid rgba(33, 28, 24, .10);
+      border-radius: 0;
+      padding: 12px 8px;
+      text-align: center;
+      font-weight: 850;
+      background: #fffdf8;
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    .qty-stepper input::-webkit-outer-spin-button,
+    .qty-stepper input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .qty-btn {
+      border: 0;
+      background: #f3eadf;
+      color: var(--accent-dark);
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:active { transform: scale(.98); }
+
+
+
+    .modal-confirm-btn {
+      background: var(--success);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(47, 111, 78, .22);
+    }
+
+    .modal-confirm-btn:hover { box-shadow: 0 14px 28px rgba(47, 111, 78, .26); }
+
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .summary { position: static; }
+      .option-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner { align-items: flex-start; }
+      .header-actions { display: none; }
+      .wrap { padding: 22px 14px 60px; }
+      .hero { padding-top: 30px; gap: 18px; }
+      .product-cards { grid-template-columns: 1fr; }
+      .product-card { border-right: 0; border-bottom: 1px solid var(--line); padding: 22px; }
+      .product-card:last-child { border-bottom: 0; }
+      .product-actions { align-items: flex-start; flex-direction: column; }
+      .section, .panel-head, .summary-body { padding: 20px; }
+      .option-focus { margin: 0 10px; }
+      .option-list { grid-template-columns: 1fr; }
+      .option-body { min-height: 128px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .inline-group { flex-direction: column; }
+      .cart-item { grid-template-columns: 1fr; }
+      .cart-actions { justify-content: flex-end; }
+      .summary-total strong { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button type="button" class="brand brand-link" data-scroll-target="top" aria-label="ILLVII home">
+        ILLVII
+        <small>Online Order · v0.06</small>
+      </button>
+      <nav class="header-actions" aria-label="페이지 이동">
+        <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
+        <button type="button" class="ghost-link" data-scroll-target="orderForm">주문하기</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">직접 제조 · 소량 주문 접수</div>
+        <h1>일상에<br />조용히 남는 향</h1>
+        <p class="hero-copy">
+          ILLVII의 향수를 온라인으로 주문할 수 있습니다. 원하는 향과 용량을 선택해 장바구니에 담고, 주문자 정보와 배송지를 남겨주세요.
+        </p>
+      </div>
+      <aside id="guide" class="notice-card">
+        <strong>주문 접수 안내</strong>
+        <p>
+          주문 접수 후 내용 확인을 거쳐 입금정보를 안내하고 제작 및 발송 안내를 드립니다.
+          향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 선택하고 주문 수량을 지정해주세요.
+          그리고 요청사항에 사용 목적과 선호 분위기를 남겨주세요. SOLVIA와 STEMLINE 외의 향수로 추천하여 발송드립니다.
+        </p>
+      </aside>
+    </section>
+
+    <section id="products" class="product-showcase" aria-label="ILLVII 향수 소개">
+      <div class="showcase-head">
+        <div class="showcase-kicker">Signature Perfume</div>
+        <h2>주문 가능한 ILLVII의 향</h2>
+        <p>
+          SOLVIA와 STEMLINE은 모두 활동 후 가볍게 뿌려 첫인상을 다시 정돈하는 데 초점을 둔 향입니다.<br />
+          가방이나 주머니에 넣고 일상 속에서 부담 없이 사용할 수 있는 5ml 구성을 중심으로 안내하며, 50ml 본품은 현재 SOLVIA만 주문 가능합니다.
+        </p>
+      </div>
+
+      <div class="product-cards">
+        <article class="product-card">
+          <div class="product-topline">
+            ILLVII · Perfumer YDO
+            <span class="product-badge">Citrus Clean</span>
+          </div>
+          <h3>SOLVIA <span class="kr-name">솔비아</span></h3>
+          <p class="product-copy">
+            햇살을 받은 과일처럼 상큼하고 깨끗한 인상을 남기는 향입니다.
+            시트러스의 산뜻함으로 시작해 플로럴 무드와 부드러운 우디 잔향으로 이어집니다.
+          </p>
+          <div class="keyword-row" aria-label="SOLVIA 키워드">
+            <span>시트러스 프루티</span>
+            <span>클린 플로럴</span>
+            <span>첫인상 리셋</span>
+            <span>포켓 사이즈</span>
+          </div>
+          <dl class="note-list">
+            <div><dt>Top</dt><dd>Lemon, Lime, Apple</dd></div>
+            <div><dt>Middle</dt><dd>Rose, Jasmine, Lavender</dd></div>
+            <div><dt>Base</dt><dd>Cedar, Amber</dd></div>
+          </dl>
+          <div class="flow-box">
+            강한 시트러스 톤으로 시작해 산뜻한 플로럴/프루티 느낌을 유지하고, 우디 계열의 잔향으로 부드럽게 마무리됩니다.
+          </div>
+          <div class="product-actions">
+            <small>5ml / 50ml 주문 가능</small>
+            <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="Solvia">SOLVIA 주문 선택</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-topline">
+            ILLVII · Perfumer YDO
+            <span class="product-badge">Green Woody</span>
+          </div>
+          <h3>STEMLINE <span class="kr-name">스템라인</span></h3>
+          <p class="product-copy">
+            열매, 줄기, 뿌리, 흙의 이미지를 하나의 나무처럼 연결한 향입니다.
+            전반적으로 푸릇하고 싱그러운 색감이 떠오르며, 시트러스 그린 톤 뒤로 우디한 안정감이 남습니다.
+          </p>
+          <div class="keyword-row" aria-label="STEMLINE 키워드">
+            <span>그린 시트러스</span>
+            <span>니치한 자연감</span>
+            <span>우디 잔향</span>
+            <span>기분 전환</span>
+          </div>
+          <dl class="note-list">
+            <div><dt>Top</dt><dd>Grapefruit, Bergamote, Petitgrain</dd></div>
+            <div><dt>Middle</dt><dd>Rose, Lily-of-the-valley, Patchouli</dd></div>
+            <div><dt>Base</dt><dd>Vetiver, Cedar, Sandalwood</dd></div>
+          </dl>
+          <div class="flow-box">
+            선명한 시트러스가 첫 느낌을 정돈하고, 플로럴/그린 톤을 지나 베티버·시더·샌달우드의 잔향으로 차분하게 이어집니다.
+          </div>
+          <div class="product-actions">
+            <small>5ml 주문 가능 · 50ml 구매불가</small>
+            <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="STEMLINE">STEMLINE 주문 선택</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="ILLVII 향수 주문 폼">
+      <form id="orderForm" class="panel" novalidate>
+        <div class="panel-head">
+          <h2>ILLVII 향수 주문하기</h2>
+          <p>원하는 제품을 하나씩 장바구니에 담은 뒤 한 번에 주문할 수 있습니다. 이메일은 받지 않고, 주문 확인은 연락처 기준으로 진행합니다.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">1</span> 향 선택</div>
+          <div class="field">
+            <label for="scent" class="required">주문할 향</label>
+            <select id="scent" name="scent" required>
+              <option value="">향을 선택해주세요</option>
+              <option value="Solvia">Solvia</option>
+              <option value="STEMLINE">STEMLINE</option>
+              <option value="향 추천 요청">향 추천 요청</option>
+            </select>
+            <div id="recommendNotice" class="recommend-notice" role="note" aria-live="polite">
+              요청사항에 사용목적과 선호 분위기를 꼭 남겨주세요. SOLVIA와 STEMLINE 외의 일비의 향수 목록에서 임의로 추천하여 발송드립니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="section option-focus">
+          <div class="section-title"><span class="num">2</span> 용량 / 구성 선택</div>
+          <div class="option-list" id="optionList">
+            <label class="option-card">
+              <input type="radio" name="productOption" value="5ml 향수" data-price="2000" data-label="5ml 향수" required />
+              <span class="option-body">
+                <span>
+                  <span class="option-name">5ml 향수</span>
+                  <span class="option-desc">향 테스트용 / 휴대용</span>
+                </span>
+                <span class="option-price">2,000원</span>
+              </span>
+            </label>
+
+            <label class="option-card">
+              <input type="radio" name="productOption" value="5ml 3개 세트" data-price="5000" data-label="5ml 3개 세트" />
+              <span class="option-body">
+                <span>
+                  <span class="option-name">5ml 3개 세트</span>
+                  <span class="option-desc">여러 향을 함께 경험하기 좋은 구성</span>
+                </span>
+                <span class="option-price">5,000원</span>
+              </span>
+            </label>
+
+            <label class="option-card" data-unavailable-for="STEMLINE">
+              <input type="radio" name="productOption" value="50ml 향수" data-price="20000" data-label="50ml 향수" />
+              <span class="option-body">
+                <span>
+                  <span class="option-name">50ml 향수</span>
+                  <span class="option-desc">데일리 사용을 위한 본품</span>
+                </span>
+                <span class="option-price">20,000원</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="form-row" style="margin-top:14px;">
+            <div class="field">
+              <label for="quantity" class="required">수량</label>
+              <div class="qty-stepper" aria-label="주문 수량 조절">
+                <button type="button" class="qty-btn" data-qty-action="decrease" aria-label="수량 줄이기">−</button>
+                <input id="quantity" name="quantity" type="number" min="1" step="1" value="1" inputmode="numeric" required />
+                <button type="button" class="qty-btn" data-qty-action="increase" aria-label="수량 늘리기">+</button>
+              </div>
+            </div>
+            <div class="field">
+              <label>선택 상품 금액</label>
+              <input id="currentItemPrice" type="text" value="0원" readonly />
+            </div>
+          </div>
+
+          <div class="add-cart-row">
+            <div class="current-pick" id="currentPickText">향과 구성을 선택한 뒤 장바구니에 담아주세요.</div>
+            <button type="button" class="btn btn-secondary" id="addToCartBtn">장바구니 담기</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">3</span> 장바구니</div>
+          <div id="cartList" class="cart-list" aria-live="polite"></div>
+          <p class="help">같은 향과 같은 구성은 장바구니에서 수량이 합산됩니다.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">4</span> 주문자 정보</div>
+          <div class="form-row">
+            <div class="field">
+              <label for="customerName" class="required">이름</label>
+              <input id="customerName" name="customerName" type="text" autocomplete="name" placeholder="주문자 이름" required />
+            </div>
+            <div class="field">
+              <label for="phone" class="required">연락처</label>
+              <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">5</span> 배송지 정보</div>
+          <div class="field">
+            <label for="postcode" class="required">우편번호</label>
+            <div class="inline-group">
+              <input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="주소 검색으로 입력" readonly required />
+              <button type="button" class="btn btn-secondary" id="addressSearchBtn">주소 검색</button>
+            </div>
+          </div>
+          <div id="postcodeWrap" class="postcode-wrap">
+            <button type="button" class="postcode-close" id="postcodeCloseBtn" aria-label="주소 검색 닫기">×</button>
+          </div>
+          <div class="field">
+            <label for="baseAddress" class="required">기본주소</label>
+            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 자동 입력" readonly required />
+          </div>
+          <div class="field">
+            <label for="detailAddress" class="required">상세주소</label>
+            <input id="detailAddress" name="detailAddress" type="text" autocomplete="address-line2" placeholder="동/호수, 층, 상세 위치" required />
+            <p class="help">전체주소에는 우편번호를 포함하지 않고, 기본주소와 상세주소만 저장합니다.</p>
+          </div>
+          <div class="field">
+            <label for="deliveryMemo">배송메모</label>
+            <select id="deliveryMemo" name="deliveryMemo">
+              <option value="">선택 안 함</option>
+              <option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
+              <option value="부재 시 연락주세요">부재 시 연락주세요</option>
+              <option value="배송 전 연락주세요">배송 전 연락주세요</option>
+              <option value="직접 입력">직접 입력</option>
+            </select>
+          </div>
+          <div class="field" id="customDeliveryMemoField" style="display:none;">
+            <label for="customDeliveryMemo">배송메모 직접 입력</label>
+            <input id="customDeliveryMemo" type="text" placeholder="배송 요청사항을 입력해주세요" />
+          </div>
+          <div class="field entrance-field">
+            <label class="check-field" for="hasEntranceCode">
+              <input id="hasEntranceCode" name="hasEntranceCode" type="checkbox" />
+              <span>공동현관 출입번호가 있어요</span>
+            </label>
+            <div class="entrance-code-box" id="entranceCodeField">
+              <label for="entranceCode" class="required">공동현관 출입번호</label>
+              <input id="entranceCode" name="entranceCode" type="text" placeholder="예: #1234* / 호출 0000" autocomplete="off" />
+              <p class="help">입력한 내용은 요청사항 맨 앞에 자동 반영됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span class="num">6</span> 요청사항</div>
+          <div class="field">
+            <label for="memo">추가 요청사항</label>
+            <textarea id="memo" name="memo" placeholder="선물용 여부, 향 추천 요청, 배송 관련 요청사항 등을 남겨주세요."></textarea>
+          </div>
+          <label class="privacy-box">
+            <input id="privacyAgree" name="privacyAgree" type="checkbox" required />
+            <span>
+              주문 접수와 배송 안내를 위해 이름, 연락처, 주소, 주문 내용을 수집·이용하는 것에 동의합니다.
+            </span>
+          </label>
+        </div>
+      </form>
+
+      <aside class="panel summary" aria-label="주문 요약">
+        <div class="panel-head">
+          <h2>주문 요약</h2>
+          <p>장바구니에 담긴 내용을 확인해주세요.</p>
+        </div>
+        <div class="summary-body">
+          <div id="summaryItems" class="summary-items"></div>
+          <div class="summary-line"><span>상품 수량</span><strong id="summaryQty">0개</strong></div>
+          <div class="summary-line"><span>상품금액</span><strong id="summarySubtotal">0원</strong></div>
+          <div class="summary-line"><span>배송비</span><strong id="summaryShipping">0원</strong></div>
+          <div class="summary-total">
+            <span>총 주문금액</span>
+            <strong id="summaryTotal">0원</strong>
+          </div>
+          <button type="submit" form="orderForm" class="btn btn-primary submit-btn" id="submitBtn">주문 접수하기</button>
+          <div id="resultMessage" class="message" role="status" aria-live="polite"></div>
+          <p class="small-note">
+            장바구니 상품금액 기준 30,000원 이상이면 배송비가 무료로 계산됩니다. 30,000원 미만은 배송비 4,000원이 적용됩니다.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="order-modal" id="orderCompleteModal" role="dialog" aria-modal="true" aria-labelledby="orderCompleteTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel" role="document">
+      <button type="button" class="modal-close" data-modal-close aria-label="입금 안내 닫기">×</button>
+      <p class="modal-kicker">주문 접수 완료</p>
+      <h2 id="orderCompleteTitle">입금 정보를 확인해주세요.</h2>
+      <p class="modal-copy">주문 내용 확인 후 문자메시지로 다시 안내드릴 수 있습니다. 바로 입금하실 경우 아래 계좌와 총 결제금액을 확인해주세요.</p>
+      <div class="account-box">
+        <span>입금 계좌</span>
+        <p class="account-number">국민은행 834701-04-100182<br />이태하(일비)</p>
+      </div>
+      <div class="payment-total">
+        <span>총 결제금액</span>
+        <strong id="modalTotalAmount">0원</strong>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn modal-confirm-btn" data-modal-close>확인했습니다</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // ILLVII 향수 주문 페이지 v0.06
+    // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
+    const APP_VERSION = 'v0.06';
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
+
+    const SHIPPING_FEE = 4000;
+    const FREE_SHIPPING_MIN = 30000;
+    const PRODUCT_UNAVAILABLE = {
+      STEMLINE: ['50ml 향수']
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    const form = $('#orderForm');
+    const resultMessage = $('#resultMessage');
+    const submitBtn = $('#submitBtn');
+    const postcodeWrap = $('#postcodeWrap');
+    const orderCompleteModal = $('#orderCompleteModal');
+    const cart = [];
+
+    function formatKRW(value) {
+      return Number(value || 0).toLocaleString('ko-KR') + '원';
+    }
+
+    function onlyNumbers(value) {
+      return String(value || '').replace(/\D/g, '');
+    }
+
+    function formatPhone(value) {
+      const nums = onlyNumbers(value).slice(0, 11);
+      if (nums.length <= 3) return nums;
+      if (nums.length <= 7) return nums.replace(/(\d{3})(\d+)/, '$1-$2');
+      return nums.replace(/(\d{3})(\d{4})(\d+)/, '$1-$2-$3');
+    }
+
+    function getSelectedOption() {
+      return $('input[name="productOption"]:checked');
+    }
+
+    function getCurrentItem() {
+      const selected = getSelectedOption();
+      const quantity = Math.max(1, Number($('#quantity').value || 1));
+      const unitPrice = selected ? Number(selected.dataset.price || 0) : 0;
+      return {
+        scent: $('#scent').value,
+        productOption: selected ? selected.value : '',
+        productLabel: selected ? selected.dataset.label : '',
+        unitPrice,
+        quantity,
+        subtotal: unitPrice * quantity
+      };
+    }
+
+    function getCartTotals() {
+      const subtotal = cart.reduce((sum, item) => sum + Number(item.subtotal || 0), 0);
+      const quantity = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+      const freeShippingBase = subtotal; // 장바구니 상품금액 기준
+      const shippingFee = freeShippingBase >= FREE_SHIPPING_MIN || subtotal === 0 ? 0 : SHIPPING_FEE;
+      const total = subtotal + shippingFee;
+      return { subtotal, quantity, shippingFee, total, freeShippingBase };
+    }
+
+    function getDeliveryMemo() {
+      const value = $('#deliveryMemo').value;
+      if (value === '직접 입력') return $('#customDeliveryMemo').value.trim();
+      return value;
+    }
+
+    function getFullAddress() {
+      const baseAddress = $('#baseAddress').value.trim();
+      const detailAddress = $('#detailAddress').value.trim();
+      return `${baseAddress} ${detailAddress}`.trim();
+    }
+
+    function makeOrderSummary() {
+      if (!cart.length) return '';
+      return cart.map((item) => `${item.scent || '향 미선택'} / ${item.productLabel || item.productOption} x ${item.quantity}`).join('\n');
+    }
+
+    function removeEntranceMemoPrefix(value) {
+      return String(value || '').replace(/^공동현관 출입번호:\s*.*(?:\n|$)/, '').replace(/^\n+/, '');
+    }
+
+    function getEntranceMemoText() {
+      if (!$('#hasEntranceCode').checked) return '';
+      const code = $('#entranceCode').value.trim();
+      return code ? `공동현관 출입번호: ${code}` : '';
+    }
+
+    function syncEntranceMemo() {
+      const memoEl = $('#memo');
+      const manualMemo = removeEntranceMemoPrefix(memoEl.value);
+      const entranceMemo = getEntranceMemoText();
+      memoEl.value = entranceMemo ? `${entranceMemo}${manualMemo ? '\n' + manualMemo : ''}` : manualMemo;
+    }
+
+    function toggleEntranceCodeField() {
+      const checked = $('#hasEntranceCode').checked;
+      const field = $('#entranceCodeField');
+      const input = $('#entranceCode');
+      field.classList.toggle('is-active', checked);
+      input.required = checked;
+      if (!checked) input.value = '';
+      syncEntranceMemo();
+      if (checked) input.focus();
+    }
+
+    function getScrollOffset() {
+      const header = document.querySelector('.site-header');
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      return Math.ceil(headerHeight + 22);
+    }
+
+    function scrollToTarget(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      const nextTop = Math.max(0, targetTop - getScrollOffset());
+
+      window.scrollTo({
+        top: nextTop,
+        behavior: 'smooth'
+      });
+    }
+
+    function isOptionUnavailable(scent, optionValue) {
+      const unavailable = PRODUCT_UNAVAILABLE[scent] || [];
+      return unavailable.includes(optionValue);
+    }
+
+    function updateOptionAvailability() {
+      const scent = $('#scent').value;
+      $$('.option-card').forEach((card) => {
+        const input = card.querySelector('input[name="productOption"]');
+        if (!input) return;
+
+        const disabled = isOptionUnavailable(scent, input.value);
+        input.disabled = disabled;
+        card.classList.toggle('is-disabled', disabled);
+
+        if (disabled && input.checked) {
+          input.checked = false;
+        }
+      });
+
+      updateCurrentPick();
+    }
+
+
+    function toggleRecommendationNotice() {
+      const notice = $('#recommendNotice');
+      if (!notice) return;
+      notice.classList.toggle('is-active', $('#scent').value === '향 추천 요청');
+    }
+
+    function adjustQuantity(delta) {
+      const input = $('#quantity');
+      const current = Math.max(1, Number(input.value || 1));
+      input.value = Math.max(1, current + delta);
+      toggleRecommendationNotice();
+      updateCurrentPick();
+    }
+
+    function openOrderCompleteModal(total) {
+      if (!orderCompleteModal) return;
+      $('#modalTotalAmount').textContent = formatKRW(total);
+      orderCompleteModal.classList.add('is-open');
+      orderCompleteModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOrderCompleteModal() {
+      if (!orderCompleteModal) return;
+      orderCompleteModal.classList.remove('is-open');
+      orderCompleteModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function updateCurrentPick() {
+      const item = getCurrentItem();
+      if (!item.scent && !item.productOption) {
+        $('#currentPickText').textContent = '향과 구성을 선택한 뒤 장바구니에 담아주세요.';
+        $('#currentItemPrice').value = '0원';
+        return;
+      }
+
+      const scent = item.scent || '향 미선택';
+      const option = item.productLabel || item.productOption || '구성 미선택';
+      $('#currentPickText').textContent = `${scent} / ${option} / ${item.quantity}개`;
+      $('#currentItemPrice').value = formatKRW(item.subtotal);
+    }
+
+    function updateCart() {
+      const cartList = $('#cartList');
+      const summaryItems = $('#summaryItems');
+      const totals = getCartTotals();
+
+      if (!cart.length) {
+        cartList.innerHTML = '<p class="cart-empty">아직 장바구니에 담긴 제품이 없습니다.</p>';
+        summaryItems.innerHTML = '<div class="summary-item"><strong>장바구니가 비어 있습니다.</strong><span>제품을 선택한 뒤 장바구니에 담아주세요.</span></div>';
+      } else {
+        cartList.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div>
+              <div class="cart-title">${escapeHTML(item.scent)} <small>${escapeHTML(item.productLabel || item.productOption)}</small></div>
+              <div class="cart-meta">${formatKRW(item.unitPrice)} × ${item.quantity}개 = ${formatKRW(item.subtotal)}</div>
+            </div>
+            <div class="cart-actions">
+              <button type="button" class="icon-btn" data-cart-action="decrease" data-index="${index}" aria-label="수량 줄이기">−</button>
+              <button type="button" class="icon-btn" data-cart-action="increase" data-index="${index}" aria-label="수량 늘리기">+</button>
+              <button type="button" class="remove-btn" data-cart-action="remove" data-index="${index}">삭제</button>
+            </div>
+          </div>
+        `).join('');
+
+        summaryItems.innerHTML = cart.map((item) => `
+          <div class="summary-item">
+            <strong>${escapeHTML(item.scent)} / ${escapeHTML(item.productLabel || item.productOption)}</strong>
+            <span>${item.quantity}개 · ${formatKRW(item.subtotal)}</span>
+          </div>
+        `).join('');
+      }
+
+      $('#summaryQty').textContent = `${totals.quantity}개`;
+      $('#summarySubtotal').textContent = formatKRW(totals.subtotal);
+      $('#summaryShipping').textContent = totals.shippingFee === 0 ? '무료' : formatKRW(totals.shippingFee);
+      $('#summaryTotal').textContent = formatKRW(totals.total);
+      updateCurrentPick();
+    }
+
+    function escapeHTML(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function showMessage(type, text) {
+      resultMessage.className = `message ${type}`;
+      resultMessage.textContent = text;
+    }
+
+    function addToCart() {
+      const item = getCurrentItem();
+      if (!item.scent) {
+        showMessage('error', '장바구니에 담을 향을 선택해주세요.');
+        return;
+      }
+      if (!item.productOption) {
+        showMessage('error', '장바구니에 담을 용량/구성을 선택해주세요.');
+        return;
+      }
+      if (isOptionUnavailable(item.scent, item.productOption)) {
+        showMessage('error', 'STEMLINE은 현재 50ml 구매가 불가합니다. 5ml 구성을 선택해주세요.');
+        return;
+      }
+      if (!item.quantity || item.quantity < 1) {
+        showMessage('error', '수량을 확인해주세요.');
+        return;
+      }
+
+      resultMessage.className = 'message';
+      resultMessage.textContent = '';
+
+      const key = `${item.scent}__${item.productOption}`;
+      const existing = cart.find((cartItem) => `${cartItem.scent}__${cartItem.productOption}` === key);
+      if (existing) {
+        existing.quantity += item.quantity;
+        existing.subtotal = existing.unitPrice * existing.quantity;
+      } else {
+        cart.push(item);
+      }
+
+      $('#quantity').value = 1;
+      updateCart();
+    }
+
+    function validateForm() {
+      const phone = onlyNumbers($('#phone').value);
+      const postcode = $('#postcode').value.trim();
+      const baseAddress = $('#baseAddress').value.trim();
+      const detailAddress = $('#detailAddress').value.trim();
+
+      if (!cart.length) return '장바구니에 제품을 1개 이상 담아주세요.';
+      if (!$('#customerName').value.trim()) return '주문자 이름을 입력해주세요.';
+      if (phone.length < 10) return '연락처를 정확히 입력해주세요.';
+      if (!postcode || !baseAddress) return '주소 검색으로 배송지를 입력해주세요.';
+      if (!detailAddress) return '상세주소를 입력해주세요.';
+      if ($('#hasEntranceCode').checked && !$('#entranceCode').value.trim()) return '공동현관 출입번호를 입력해주세요.';
+      if (!$('#privacyAgree').checked) return '개인정보 수집·이용 동의가 필요합니다.';
+      if (ORDER_WEB_APP_URL.includes('여기에_')) return 'Apps Script 웹 앱 URL을 먼저 입력해주세요.';
+      return '';
+    }
+
+    function buildPayload() {
+      syncEntranceMemo();
+      const totals = getCartTotals();
+      const postcode = String($('#postcode').value || '').padStart(5, '0');
+      const baseAddress = $('#baseAddress').value.trim();
+      const detailAddress = $('#detailAddress').value.trim();
+      const fullAddress = getFullAddress(); // 우편번호 제외
+      const firstItem = cart[0] || {};
+
+      return {
+        orderStatus: '접수',
+        orderSummary: makeOrderSummary(),
+        customerName: $('#customerName').value.trim(),
+        phone: $('#phone').value.trim(),
+        postcode,
+        baseAddress,
+        detailAddress,
+        fullAddress,
+        deliveryMemo: getDeliveryMemo(),
+        scent: firstItem.scent || '',
+        productOption: firstItem.productOption || '',
+        productLabel: firstItem.productLabel || '',
+        unitPrice: firstItem.unitPrice || 0,
+        quantity: firstItem.quantity || 0,
+        subtotal: totals.subtotal,
+        shippingFee: totals.shippingFee,
+        total: totals.total,
+        items: cart.map((item) => ({ ...item })),
+        memo: $('#memo').value.trim(),
+        hasEntranceCode: $('#hasEntranceCode').checked ? '예' : '아니오',
+        entranceCode: $('#entranceCode').value.trim(),
+        privacyAgree: $('#privacyAgree').checked ? '동의' : '미동의',
+        userAgent: navigator.userAgent,
+        pageUrl: location.href
+      };
+    }
+
+    function foldPostcode() {
+      postcodeWrap.style.display = 'none';
+      postcodeWrap.style.height = '';
+      postcodeWrap.innerHTML = '<button type="button" class="postcode-close" id="postcodeCloseBtn" aria-label="주소 검색 닫기">×</button>';
+      $('#postcodeCloseBtn').addEventListener('click', foldPostcode);
+    }
+
+    function openPostcode() {
+      const Postcode = window.kakao?.Postcode || window.daum?.Postcode;
+      if (!Postcode) {
+        alert('주소 검색 스크립트를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+        return;
+      }
+
+      postcodeWrap.style.display = 'block';
+
+      new Postcode({
+        oncomplete: function(data) {
+          let addr = '';
+          let extraAddr = '';
+
+          if (data.userSelectedType === 'R') {
+            addr = data.roadAddress;
+
+            if (data.bname && /[동로가]$/.test(data.bname)) {
+              extraAddr += data.bname;
+            }
+
+            if (data.buildingName && data.apartment === 'Y') {
+              extraAddr += extraAddr ? `, ${data.buildingName}` : data.buildingName;
+            }
+
+            if (extraAddr) addr += ` (${extraAddr})`;
+          } else {
+            addr = data.jibunAddress;
+          }
+
+          const zonecode = String(data.zonecode || '').padStart(5, '0');
+          $('#postcode').value = zonecode;
+          $('#baseAddress').value = addr;
+          $('#detailAddress').focus();
+          foldPostcode();
+        },
+        onresize: function(size) {
+          postcodeWrap.style.height = `${size.height}px`;
+        },
+        width: '100%',
+        height: '100%'
+      }).embed(postcodeWrap);
+    }
+
+    $('#addressSearchBtn').addEventListener('click', openPostcode);
+    $('#postcodeCloseBtn').addEventListener('click', foldPostcode);
+    $('#phone').addEventListener('input', (e) => { e.target.value = formatPhone(e.target.value); });
+
+    $('#deliveryMemo').addEventListener('change', (e) => {
+      $('#customDeliveryMemoField').style.display = e.target.value === '직접 입력' ? 'block' : 'none';
+      if (e.target.value !== '직접 입력') $('#customDeliveryMemo').value = '';
+    });
+
+    $('#hasEntranceCode').addEventListener('change', toggleEntranceCodeField);
+    $('#entranceCode').addEventListener('input', syncEntranceMemo);
+
+    $('#scent').addEventListener('change', updateOptionAvailability);
+
+    $$('#quantity, input[name="productOption"]').forEach((el) => {
+      el.addEventListener('change', updateCurrentPick);
+      el.addEventListener('input', updateCurrentPick);
+    });
+
+    $$('[data-qty-action]').forEach((button) => {
+      button.addEventListener('click', () => {
+        adjustQuantity(button.dataset.qtyAction === 'increase' ? 1 : -1);
+      });
+    });
+
+    $('#addToCartBtn').addEventListener('click', addToCart);
+
+    $('#cartList').addEventListener('click', (e) => {
+      const button = e.target.closest('[data-cart-action]');
+      if (!button) return;
+
+      const index = Number(button.dataset.index);
+      const action = button.dataset.cartAction;
+      const item = cart[index];
+      if (!item) return;
+
+      if (action === 'increase') {
+        item.quantity += 1;
+        item.subtotal = item.unitPrice * item.quantity;
+      }
+
+      if (action === 'decrease') {
+        item.quantity -= 1;
+        if (item.quantity <= 0) cart.splice(index, 1);
+        else item.subtotal = item.unitPrice * item.quantity;
+      }
+
+      if (action === 'remove') {
+        cart.splice(index, 1);
+      }
+
+      updateCart();
+    });
+
+    $$('[data-scroll-target]').forEach((el) => {
+      el.addEventListener('click', () => scrollToTarget(el.dataset.scrollTarget));
+    });
+
+    $$('[data-modal-close]').forEach((el) => {
+      el.addEventListener('click', closeOrderCompleteModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeOrderCompleteModal();
+    });
+
+    $$('.product-order-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        const target = link.dataset.scentTarget;
+        if (target && $('#scent')) {
+          $('#scent').value = target;
+          updateOptionAvailability();
+        }
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      resultMessage.className = 'message';
+      resultMessage.textContent = '';
+
+      const error = validateForm();
+      if (error) {
+        showMessage('error', error);
+        return;
+      }
+
+      const payload = buildPayload();
+      submitBtn.disabled = true;
+      submitBtn.textContent = '접수 중입니다...';
+
+      try {
+        await fetch(ORDER_WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        showMessage('success', '주문이 접수되었습니다. 입력하신 연락처로 주문 확인 안내를 드리겠습니다.');
+        openOrderCompleteModal(payload.total);
+        form.reset();
+        cart.splice(0, cart.length);
+        toggleEntranceCodeField();
+        foldPostcode();
+        updateOptionAvailability();
+        updateCart();
+      } catch (err) {
+        console.error(err);
+        showMessage('error', '주문 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '주문 접수하기';
+      }
+    });
+
+    updateOptionAvailability();
+    updateCart();
+  </script>
+</body>
+</html>ode/prod/postcode.v2.js"></script>
 
   <style>
     :root {
