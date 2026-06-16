@@ -1,9 +1,10 @@
 <!doctype html>
+<!-- ILLVII 향수 주문 페이지 v0.01 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ILLVII 향수 주문하기</title>
+  <title>ILLVII 향수 주문하기 · v0.01</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -73,6 +74,20 @@
       font-size: 12px;
       color: var(--muted);
       font-weight: 500;
+    }
+
+    .version-chip {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 4px;
+      border: 1px solid rgba(111, 91, 69, .18);
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: rgba(255, 250, 242, .72);
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: 0;
     }
 
     .header-actions {
@@ -441,10 +456,30 @@
       resize: vertical;
     }
 
+    .option-focus {
+      margin: 0 14px;
+      border: 1px solid rgba(111, 91, 69, .18);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(111, 91, 69, .10), transparent 18rem),
+        linear-gradient(180deg, rgba(255, 250, 242, .96), rgba(244, 234, 220, .62));
+      box-shadow: 0 18px 42px rgba(82, 63, 44, .10);
+    }
+
+    .option-focus .section-title {
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .option-focus .num {
+      background: var(--accent);
+      box-shadow: 0 8px 18px rgba(111, 91, 69, .22);
+    }
+
     .option-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      gap: 14px;
     }
 
     .option-card {
@@ -465,23 +500,49 @@
     }
 
     .option-body {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 8px;
-      min-height: 132px;
+      gap: 12px;
+      min-height: 152px;
       height: 100%;
-      border: 1px solid rgba(33, 28, 24, .14);
-      background: #fffdf8;
-      border-radius: 18px;
-      padding: 16px;
+      border: 1.5px solid rgba(33, 28, 24, .16);
+      background: linear-gradient(180deg, #fffdf8 0%, #fbf4ea 100%);
+      border-radius: 20px;
+      padding: 18px;
+      overflow: hidden;
       transition: transform .18s ease, border .18s ease, box-shadow .18s ease, background .18s ease;
     }
 
+    .option-body::after {
+      content: "";
+      position: absolute;
+      inset: auto 16px 14px auto;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(111, 91, 69, .22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .46);
+    }
+
     .option-card input:checked + .option-body {
-      border-color: var(--accent);
-      background: #f4eadc;
-      box-shadow: 0 12px 28px rgba(82, 63, 44, .12);
+      border-color: var(--accent-dark);
+      background: linear-gradient(180deg, #f5eadc 0%, #ead8c3 100%);
+      box-shadow: 0 18px 38px rgba(82, 63, 44, .18);
+      transform: translateY(-2px);
+    }
+
+    .option-card input:checked + .option-body::after {
+      content: "✓";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-dark);
+      color: #fff;
+      border-color: var(--accent-dark);
+      font-size: 15px;
+      font-weight: 900;
     }
 
     .option-card input:focus-visible + .option-body {
@@ -489,18 +550,19 @@
       box-shadow: 0 0 0 4px rgba(111, 91, 69, .12);
     }
 
-    .option-card:hover .option-body { transform: translateY(-1px); }
+    .option-card:hover .option-body { transform: translateY(-2px); }
 
     .option-name {
       display: block;
-      font-weight: 780;
-      letter-spacing: -0.02em;
+      font-size: 16px;
+      font-weight: 820;
+      letter-spacing: -0.025em;
       word-break: keep-all;
     }
 
     .option-desc {
       display: block;
-      margin-top: 4px;
+      margin-top: 5px;
       color: var(--muted);
       font-size: 13px;
       word-break: keep-all;
@@ -508,10 +570,12 @@
 
     .option-price {
       display: block;
-      margin-top: 12px;
+      margin-top: 14px;
+      padding-right: 34px;
       color: var(--accent-dark);
-      font-weight: 850;
-      letter-spacing: -0.02em;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.045em;
     }
 
     .inline-group {
@@ -816,8 +880,9 @@
       .product-card:last-child { border-bottom: 0; }
       .product-actions { align-items: flex-start; flex-direction: column; }
       .section, .panel-head, .summary-body { padding: 20px; }
+      .option-focus { margin: 0 10px; }
       .option-list { grid-template-columns: 1fr; }
-      .option-body { min-height: auto; }
+      .option-body { min-height: 128px; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
       .inline-group { flex-direction: column; }
       .cart-item { grid-template-columns: 1fr; }
@@ -831,7 +896,8 @@
     <div class="header-inner">
       <a class="brand" href="#top" aria-label="ILLVII home">
         ILLVII
-        <small>Online Order</small>
+        <small>Online Order · v0.01</small>
+        <span class="version-chip" aria-label="현재 작업 버전">v0.01</span>
       </a>
       <nav class="header-actions" aria-label="페이지 이동">
         <a class="ghost-link" href="#products">제품 소개</a>
@@ -873,7 +939,7 @@
         <article class="product-card">
           <div class="product-topline">
             ILLVII · Perfumer YDO
-            <span class="product-badge">첫 향수</span>
+            <span class="product-badge">Citrus Clean</span>
           </div>
           <h3>SOLVIA <span class="kr-name">솔비아</span></h3>
           <p class="product-copy">
@@ -952,7 +1018,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="section option-focus">
           <div class="section-title"><span class="num">2</span> 용량 / 구성 선택</div>
           <div class="option-list" id="optionList">
             <label class="option-card">
@@ -1095,7 +1161,7 @@
           <button type="submit" form="orderForm" class="btn btn-primary submit-btn" id="submitBtn">주문 접수하기</button>
           <div id="resultMessage" class="message" role="status" aria-live="polite"></div>
           <p class="small-note">
-            30,000원 이상 주문 시 무료배송으로 계산됩니다. 30,000원 미만 주문은 배송비 4,000원이 적용됩니다.
+            장바구니 상품금액 기준 30,000원 이상이면 배송비가 무료로 계산됩니다. 30,000원 미만은 배송비 4,000원이 적용됩니다.
           </p>
         </div>
       </aside>
@@ -1103,8 +1169,10 @@
   </main>
 
   <script>
+    // ILLVII 향수 주문 페이지 v0.01
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxQ_p6JKS-4w3alNrMdcZ05MZMZDe5_cCXRAhM96IaXN3OWDpXLVyzDQ30YgRRtfzFX/exec';
+    const APP_VERSION = 'v0.01';
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxNo7sLeojDBcMmf2Ry4qA5d58LZzZevdBNp-w7Wpplcroti0FuzutX7do14pM6aFuJ/exec';
 
     const SHIPPING_FEE = 4000;
     const FREE_SHIPPING_MIN = 30000;
@@ -1154,9 +1222,10 @@
     function getCartTotals() {
       const subtotal = cart.reduce((sum, item) => sum + Number(item.subtotal || 0), 0);
       const quantity = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
-      const shippingFee = subtotal >= FREE_SHIPPING_MIN || subtotal === 0 ? 0 : SHIPPING_FEE;
+      const freeShippingBase = subtotal; // 장바구니 상품금액 기준
+      const shippingFee = freeShippingBase >= FREE_SHIPPING_MIN || subtotal === 0 ? 0 : SHIPPING_FEE;
       const total = subtotal + shippingFee;
-      return { subtotal, quantity, shippingFee, total };
+      return { subtotal, quantity, shippingFee, total, freeShippingBase };
     }
 
     function getDeliveryMemo() {
