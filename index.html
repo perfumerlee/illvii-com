@@ -268,21 +268,49 @@
       cursor: pointer;
       position: relative;
       display: block;
+      min-width: 0;
+      margin: 0;
+      color: inherit;
     }
 
-    .option-card input {
+    .option-card input[type="radio"] {
       position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+      padding: 0;
+      border: 0;
       opacity: 0;
       pointer-events: none;
+      appearance: none;
     }
 
     .option-body {
-      min-height: 104px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 128px;
       border: 1px solid rgba(33, 28, 24, .14);
       background: #fffdf8;
       border-radius: 18px;
-      padding: 15px;
+      padding: 18px;
+      overflow: hidden;
       transition: transform .18s ease, border .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .option-body::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(33, 28, 24, .18);
+      background: #fffdf8;
+      transition: background .18s ease, border .18s ease, box-shadow .18s ease;
     }
 
     .option-card input:checked + .option-body {
@@ -291,26 +319,42 @@
       box-shadow: 0 12px 28px rgba(82, 63, 44, .12);
     }
 
+    .option-card input:checked + .option-body::after {
+      border-color: var(--accent-dark);
+      background: var(--accent-dark);
+      box-shadow: inset 0 0 0 5px #f4eadc;
+    }
+
+    .option-card input:focus-visible + .option-body {
+      border-color: rgba(111, 91, 69, .65);
+      box-shadow: 0 0 0 4px rgba(111, 91, 69, .11);
+    }
+
     .option-card:hover .option-body { transform: translateY(-1px); }
 
     .option-name {
       display: block;
+      padding-right: 34px;
       font-weight: 780;
       letter-spacing: -0.02em;
+      line-height: 1.4;
     }
 
     .option-desc {
       display: block;
-      margin-top: 4px;
+      margin-top: 5px;
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.45;
     }
 
     .option-price {
       display: block;
-      margin-top: 10px;
+      margin-top: 14px;
       color: var(--accent-dark);
       font-weight: 800;
+      font-size: 17px;
+      line-height: 1.35;
     }
 
     .inline-group {
@@ -700,7 +744,7 @@
 
   <script>
     // 1) Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwK_I8xra29eGS4QEVvB00Bk_PfXlcfGZBCOeacI6kpu2DQT8mbnPJGt434ZaBjiye8/exec';
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby8gRVygaoiTBRZ1zts5dEai8MQ3iVxOBBj7oaOqbpE-2oq37Uea38RZK76TLifqFc8/exec';
 
     // 2) 배송비 정책
     const SHIPPING_FEE = 4000;
