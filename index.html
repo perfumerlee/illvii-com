@@ -26,7 +26,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -40,7 +39,6 @@
     }
 
     button, input, select, textarea { font: inherit; }
-
     a { color: inherit; text-decoration: none; }
 
     .site-header {
@@ -153,9 +151,194 @@
       font-size: 14px;
     }
 
+    .product-showcase {
+      margin: 6px 0 28px;
+      background: rgba(255, 250, 242, 0.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .showcase-head {
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .showcase-kicker {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid rgba(111, 91, 69, .14);
+      font-size: 12px;
+      font-weight: 760;
+      margin-bottom: 12px;
+    }
+
+    .showcase-head h2 {
+      margin: 0;
+      font-size: clamp(26px, 3.8vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    .showcase-head p {
+      margin: 12px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .product-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-card {
+      padding: 26px 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .product-card:last-child { border-right: 0; }
+
+    .product-topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--accent-dark);
+      background: rgba(233, 223, 210, .72);
+      border: 1px solid rgba(111, 91, 69, .13);
+      font-size: 11px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .kr-name {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .product-copy {
+      margin: 16px 0 0;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 18px;
+    }
+
+    .keyword-row span {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #fffdf8;
+      border: 1px solid rgba(33, 28, 24, .12);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .note-list {
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .note-list div {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(33, 28, 24, .14);
+    }
+
+    .note-list dt {
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .note-list dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .flow-box {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(233, 223, 210, .42);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .product-actions small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product-order-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--accent-dark);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 780;
+      white-space: nowrap;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
+      grid-template-columns: minmax(0, 1fr) 380px;
       gap: 24px;
       align-items: start;
     }
@@ -260,7 +443,7 @@
 
     .option-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -268,20 +451,30 @@
       cursor: pointer;
       position: relative;
       display: block;
+      min-width: 0;
+      height: 100%;
+      margin: 0;
     }
 
     .option-card input {
       position: absolute;
+      width: 1px;
+      height: 1px;
       opacity: 0;
       pointer-events: none;
     }
 
     .option-body {
-      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 132px;
+      height: 100%;
       border: 1px solid rgba(33, 28, 24, .14);
       background: #fffdf8;
       border-radius: 18px;
-      padding: 15px;
+      padding: 16px;
       transition: transform .18s ease, border .18s ease, box-shadow .18s ease, background .18s ease;
     }
 
@@ -291,12 +484,18 @@
       box-shadow: 0 12px 28px rgba(82, 63, 44, .12);
     }
 
+    .option-card input:focus-visible + .option-body {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(111, 91, 69, .12);
+    }
+
     .option-card:hover .option-body { transform: translateY(-1px); }
 
     .option-name {
       display: block;
       font-weight: 780;
       letter-spacing: -0.02em;
+      word-break: keep-all;
     }
 
     .option-desc {
@@ -304,13 +503,15 @@
       margin-top: 4px;
       color: var(--muted);
       font-size: 13px;
+      word-break: keep-all;
     }
 
     .option-price {
       display: block;
-      margin-top: 10px;
+      margin-top: 12px;
       color: var(--accent-dark);
-      font-weight: 800;
+      font-weight: 850;
+      letter-spacing: -0.02em;
     }
 
     .inline-group {
@@ -344,6 +545,103 @@
       background: var(--accent-soft);
       color: var(--accent-dark);
       border: 1px solid rgba(111, 91, 69, .16);
+    }
+
+    .btn-outline {
+      background: #fffdf8;
+      color: var(--accent-dark);
+      border: 1px solid rgba(111, 91, 69, .22);
+    }
+
+    .add-cart-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(33, 28, 24, .16);
+    }
+
+    .current-pick {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .cart-empty {
+      margin: 0;
+      padding: 16px;
+      border: 1px dashed rgba(33, 28, 24, .18);
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(255, 253, 248, .7);
+      font-size: 14px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 16px;
+      background: #fffdf8;
+    }
+
+    .cart-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .cart-title small {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .cart-meta {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(33, 28, 24, .14);
+      border-radius: 999px;
+      background: #fffaf2;
+      color: var(--accent-dark);
+      cursor: pointer;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .remove-btn {
+      border: 0;
+      background: transparent;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 750;
+      padding: 8px 4px;
     }
 
     .postcode-wrap {
@@ -404,6 +702,31 @@
     }
 
     .summary-body { padding: 22px; }
+
+    .summary-items {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .summary-item {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(33, 28, 24, .14);
+    }
+
+    .summary-item strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .summary-item span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
     .summary-line {
       display: flex;
@@ -476,262 +799,29 @@
       font-size: 12px;
     }
 
-
-
-    .product-story {
-      margin: 12px 0 24px;
-      background: rgba(255, 250, 242, 0.88);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .story-hero {
-      padding: 30px 28px 24px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
-      gap: 24px;
-      align-items: stretch;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .story-kicker {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      padding: 7px 12px;
-      border-radius: 999px;
-      color: var(--accent-dark);
-      background: var(--accent-soft);
-      border: 1px solid rgba(111, 91, 69, .14);
-      font-size: 12px;
-      font-weight: 750;
-      margin-bottom: 14px;
-    }
-
-    .story-title {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 48px);
-      line-height: 1.04;
-      letter-spacing: -0.055em;
-    }
-
-    .story-lead {
-      margin: 16px 0 0;
-      max-width: 640px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .story-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .story-tag {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid rgba(33, 28, 24, .12);
-      border-radius: 999px;
-      background: #fffdf8;
-      color: var(--accent-dark);
-      padding: 7px 10px;
-      font-size: 12px;
-      font-weight: 650;
-    }
-
-    .story-side {
-      border: 1px solid rgba(33, 28, 24, .12);
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, .9), transparent 9rem),
-        linear-gradient(145deg, #f4eadc, #fffdf8);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 230px;
-    }
-
-    .story-side small {
-      color: var(--muted);
-      font-weight: 650;
-    }
-
-    .story-side strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 24px;
-      letter-spacing: -0.035em;
-      line-height: 1.22;
-    }
-
-    .story-side p {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .story-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      margin-top: 18px;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: var(--accent-dark);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 780;
-    }
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-    }
-
-    .story-block {
-      padding: 24px;
-      border-right: 1px solid var(--line);
-      min-height: 250px;
-    }
-
-    .story-block:last-child { border-right: 0; }
-
-    .story-block h3 {
-      margin: 0 0 12px;
-      font-size: 16px;
-      letter-spacing: -0.025em;
-    }
-
-    .story-block p,
-    .story-block li {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .story-block ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 9px;
-    }
-
-    .story-block li {
-      position: relative;
-      padding-left: 15px;
-    }
-
-    .story-block li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: .72em;
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .note-stack {
-      display: grid;
-      gap: 10px;
-    }
-
-    .note-row {
-      border: 1px solid rgba(33, 28, 24, .1);
-      border-radius: 14px;
-      background: #fffdf8;
-      padding: 11px 12px;
-    }
-
-    .note-row span {
-      display: block;
-      margin-bottom: 2px;
-      color: var(--accent-dark);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .note-row strong {
-      font-size: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .flow-list {
-      counter-reset: flow;
-      display: grid;
-      gap: 10px;
-    }
-
-    .flow-item {
-      counter-increment: flow;
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 10px;
-      align-items: start;
-    }
-
-    .flow-item::before {
-      content: counter(flow);
-      display: inline-flex;
-      width: 28px;
-      height: 28px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      font-size: 12px;
-      font-weight: 850;
-    }
-
-    .flow-item strong {
-      display: block;
-      color: var(--ink);
-      font-size: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .flow-item span {
-      display: block;
-      margin-top: 1px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; padding-top: 36px; }
-      .story-hero { grid-template-columns: 1fr; }
-      .story-grid { grid-template-columns: 1fr; }
-      .story-block { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; }
-      .story-block:last-child { border-bottom: 0; }
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
       .grid { grid-template-columns: 1fr; }
       .summary { position: static; }
-      .option-list { grid-template-columns: 1fr; }
+      .option-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
-    @media (max-width: 560px) {
-      .header-inner { padding: 13px 16px; }
+    @media (max-width: 720px) {
+      .header-inner { align-items: flex-start; }
       .header-actions { display: none; }
       .wrap { padding: 22px 14px 60px; }
-      .hero { gap: 18px; }
-      .notice-card { padding: 18px; }
-      .story-hero { padding: 22px 16px; }
-      .story-side { padding: 18px; min-height: 0; }
-      .story-block { padding: 20px 16px; }
-      .story-cta { width: 100%; }
-      .panel-head, .section { padding: 20px 16px; }
+      .hero { padding-top: 30px; gap: 18px; }
+      .product-cards { grid-template-columns: 1fr; }
+      .product-card { border-right: 0; border-bottom: 1px solid var(--line); padding: 22px; }
+      .product-card:last-child { border-bottom: 0; }
+      .product-actions { align-items: flex-start; flex-direction: column; }
+      .section, .panel-head, .summary-body { padding: 20px; }
+      .option-list { grid-template-columns: 1fr; }
+      .option-body { min-height: auto; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
       .inline-group { flex-direction: column; }
-      .btn { width: 100%; }
+      .cart-item { grid-template-columns: 1fr; }
+      .cart-actions { justify-content: flex-end; }
       .summary-total strong { font-size: 24px; }
     }
   </style>
@@ -744,7 +834,7 @@
         <small>Online Order</small>
       </a>
       <nav class="header-actions" aria-label="페이지 이동">
-        <a class="ghost-link" href="#solviaIntro">SOLVIA</a>
+        <a class="ghost-link" href="#products">제품 소개</a>
         <a class="ghost-link" href="#orderForm">주문하기</a>
         <a class="ghost-link" href="#guide">주문 안내</a>
       </nav>
@@ -757,74 +847,88 @@
         <div class="eyebrow">직접 제조 · 소량 주문 접수</div>
         <h1>일상에<br />조용히 남는 향</h1>
         <p class="hero-copy">
-          ILLVII의 향수를 온라인으로 주문할 수 있습니다. 원하는 향과 용량을 선택한 뒤 주문자 정보와 배송지를 남겨주세요.
+          ILLVII의 향수를 온라인으로 주문할 수 있습니다. 원하는 향과 용량을 선택해 장바구니에 담고, 주문자 정보와 배송지를 남겨주세요.
         </p>
       </div>
       <aside id="guide" class="notice-card">
         <strong>주문 접수 안내</strong>
         <p>
           현재는 소량 운영 단계입니다. 주문 접수 후 내용 확인을 거쳐 제작 및 발송 안내를 드립니다.
-          향 선택이 어렵다면 요청사항에 사용 목적과 선호 분위기를 남겨주세요.
+          향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 담거나 요청사항에 사용 목적과 선호 분위기를 남겨주세요.
         </p>
       </aside>
     </section>
 
-
-
-    <section id="solviaIntro" class="product-story" aria-label="SOLVIA 향수 소개">
-      <div class="story-hero">
-        <div>
-          <div class="story-kicker">ILLVII 첫 향수 · Perfumer YDO</div>
-          <h2 class="story-title">SOLVIA, 활동 후 산뜻하게 리셋되는 첫인상</h2>
-          <p class="story-lead">
-            햇살을 받은 과일처럼 상큼하게 시작하고, 플로럴과 우디 잔향으로 깨끗하게 마무리되는 향입니다.
-            아침을 활기차게 열고 싶을 때, 실외 활동이 많은 날, 기분 전환이 필요한 순간에 가볍게 사용하기 좋습니다.
-          </p>
-          <div class="story-tags" aria-label="SOLVIA 키워드">
-            <span class="story-tag">체취 리셋</span>
-            <span class="story-tag">시트러스 프루티</span>
-            <span class="story-tag">플로럴 클린</span>
-            <span class="story-tag">포켓 사이즈</span>
-          </div>
-        </div>
-        <aside class="story-side" aria-label="SOLVIA 주문 포인트">
-          <div>
-            <small>Recommended For</small>
-            <strong>가방과 주머니에 넣어두고, 필요할 때 바로 뿌리는 산뜻한 향</strong>
-            <p>땀냄새가 신경 쓰이는 순간을 향으로 덮기보다, 상쾌한 첫인상으로 빠르게 전환하는 데 초점을 둔 향수입니다.</p>
-          </div>
-          <a class="story-cta" href="#orderForm">SOLVIA 주문 선택하기</a>
-        </aside>
+    <section id="products" class="product-showcase" aria-label="ILLVII 향수 소개">
+      <div class="showcase-head">
+        <div class="showcase-kicker">Signature Perfume</div>
+        <h2>주문 가능한 ILLVII의 향</h2>
+        <p>
+          SOLVIA와 STEMLINE은 모두 활동 후 가볍게 뿌려 첫인상을 다시 정돈하는 데 초점을 둔 향입니다.
+          가방이나 주머니에 넣고 일상 속에서 부담 없이 사용할 수 있는 5ml 구성과 데일리 사용을 위한 50ml 구성으로 안내합니다.
+        </p>
       </div>
 
-      <div class="story-grid">
-        <div class="story-block">
-          <h3>Fragrance Concept</h3>
-          <ul>
-            <li>활동 후 바로 쓰기 좋은 체취 리셋 향수</li>
-            <li>실외활동이 많은 날 산뜻한 분위기 전환</li>
-            <li>상큼하지만 부담스럽지 않은 데일리 사용감</li>
-            <li>처음 만나는 사람에게 깨끗한 인상을 남기는 향</li>
-          </ul>
-        </div>
-
-        <div class="story-block">
-          <h3>Fragrance Note</h3>
-          <div class="note-stack">
-            <div class="note-row"><span>TOP</span><strong>Lemon · Lime · Apple</strong></div>
-            <div class="note-row"><span>MIDDLE</span><strong>Rose · Jasmine · Lavender</strong></div>
-            <div class="note-row"><span>BASE</span><strong>Cedar · Amber</strong></div>
+      <div class="product-cards">
+        <article class="product-card">
+          <div class="product-topline">
+            ILLVII · Perfumer YDO
+            <span class="product-badge">첫 향수</span>
           </div>
-        </div>
-
-        <div class="story-block">
-          <h3>Fragrance Flow</h3>
-          <div class="flow-list">
-            <div class="flow-item"><div><strong>0~20분</strong><span>시트러스가 먼저 올라와 냄새를 빠르게 환기합니다.</span></div></div>
-            <div class="flow-item"><div><strong>20~40분</strong><span>플로럴과 프루티 무드가 산뜻하고 깨끗한 느낌을 유지합니다.</span></div></div>
-            <div class="flow-item"><div><strong>40~100분</strong><span>우디 계열의 부드러운 잔향으로 안정감 있게 마무리됩니다.</span></div></div>
+          <h3>SOLVIA <span class="kr-name">솔비아</span></h3>
+          <p class="product-copy">
+            햇살을 받은 과일처럼 상큼하고 깨끗한 인상을 남기는 향입니다.
+            시트러스의 산뜻함으로 시작해 플로럴 무드와 부드러운 우디 잔향으로 이어집니다.
+          </p>
+          <div class="keyword-row" aria-label="SOLVIA 키워드">
+            <span>시트러스 프루티</span>
+            <span>클린 플로럴</span>
+            <span>첫인상 리셋</span>
+            <span>포켓 사이즈</span>
           </div>
-        </div>
+          <dl class="note-list">
+            <div><dt>Top</dt><dd>Lemon, Lime, Apple</dd></div>
+            <div><dt>Middle</dt><dd>Rose, Jasmine, Lavender</dd></div>
+            <div><dt>Base</dt><dd>Cedar, Amber</dd></div>
+          </dl>
+          <div class="flow-box">
+            강한 시트러스 톤으로 시작해 산뜻한 플로럴/프루티 느낌을 유지하고, 우디 계열의 잔향으로 부드럽게 마무리됩니다.
+          </div>
+          <div class="product-actions">
+            <small>5ml / 50ml 주문 가능</small>
+            <a class="product-order-link" href="#orderForm" data-scent-target="Solvia">SOLVIA 주문 선택</a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-topline">
+            ILLVII · Perfumer YDO
+            <span class="product-badge">Green Woody</span>
+          </div>
+          <h3>STEMLINE <span class="kr-name">스템라인</span></h3>
+          <p class="product-copy">
+            열매, 줄기, 뿌리, 흙의 이미지를 하나의 나무처럼 연결한 향입니다.
+            전반적으로 푸릇하고 싱그러운 색감이 떠오르며, 시트러스 그린 톤 뒤로 우디한 안정감이 남습니다.
+          </p>
+          <div class="keyword-row" aria-label="STEMLINE 키워드">
+            <span>그린 시트러스</span>
+            <span>니치한 자연감</span>
+            <span>우디 잔향</span>
+            <span>기분 전환</span>
+          </div>
+          <dl class="note-list">
+            <div><dt>Top</dt><dd>Grapefruit, Bergamote, Petitgrain</dd></div>
+            <div><dt>Middle</dt><dd>Rose, Lily-of-the-valley, Patchouli</dd></div>
+            <div><dt>Base</dt><dd>Vetiver, Cedar, Sandalwood</dd></div>
+          </dl>
+          <div class="flow-box">
+            선명한 시트러스가 첫 느낌을 정돈하고, 플로럴/그린 톤을 지나 베티버·시더·샌달우드의 잔향으로 차분하게 이어집니다.
+          </div>
+          <div class="product-actions">
+            <small>5ml / 50ml 주문 가능</small>
+            <a class="product-order-link" href="#orderForm" data-scent-target="STEMLINE">STEMLINE 주문 선택</a>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -832,7 +936,7 @@
       <form id="orderForm" class="panel" novalidate>
         <div class="panel-head">
           <h2>ILLVII 향수 주문하기</h2>
-          <p>이메일은 받지 않고, 주문 확인은 연락처 기준으로 진행합니다.</p>
+          <p>원하는 제품을 하나씩 장바구니에 담은 뒤 한 번에 주문할 수 있습니다. 이메일은 받지 않고, 주문 확인은 연락처 기준으로 진행합니다.</p>
         </div>
 
         <div class="section">
@@ -842,10 +946,9 @@
             <select id="scent" name="scent" required>
               <option value="">향을 선택해주세요</option>
               <option value="Solvia">Solvia</option>
-              <option value="Golden Haze">Golden Haze</option>
+              <option value="STEMLINE">STEMLINE</option>
               <option value="향 추천 요청">향 추천 요청</option>
             </select>
-            <p class="help">5ml 3개 세트를 서로 다른 향으로 받고 싶다면 요청사항에 구성을 적어주세요.</p>
           </div>
         </div>
 
@@ -853,49 +956,60 @@
           <div class="section-title"><span class="num">2</span> 용량 / 구성 선택</div>
           <div class="option-list" id="optionList">
             <label class="option-card">
-              <input type="radio" name="productOption" value="5ml 향수" data-price="5000" data-label="5ml 향수" required />
+              <input type="radio" name="productOption" value="5ml 향수" data-price="2000" data-label="5ml 향수" required />
               <span class="option-body">
-                <span class="option-name">5ml 향수</span>
-                <span class="option-desc">향 테스트용 / 휴대용</span>
+                <span>
+                  <span class="option-name">5ml 향수</span>
+                  <span class="option-desc">향 테스트용 / 휴대용</span>
+                </span>
+                <span class="option-price">2,000원</span>
+              </span>
+            </label>
+
+            <label class="option-card">
+              <input type="radio" name="productOption" value="5ml 3개 세트" data-price="5000" data-label="5ml 3개 세트" />
+              <span class="option-body">
+                <span>
+                  <span class="option-name">5ml 3개 세트</span>
+                  <span class="option-desc">여러 향을 함께 경험하기 좋은 구성</span>
+                </span>
                 <span class="option-price">5,000원</span>
               </span>
             </label>
 
             <label class="option-card">
-              <input type="radio" name="productOption" value="5ml 3개 세트" data-price="15000" data-label="5ml 3개 세트" />
+              <input type="radio" name="productOption" value="50ml 향수" data-price="20000" data-label="50ml 향수" />
               <span class="option-body">
-                <span class="option-name">5ml 3개 세트</span>
-                <span class="option-desc">처음 경험해보기 좋은 구성</span>
-                <span class="option-price">15,000원</span>
-              </span>
-            </label>
-
-            <label class="option-card">
-              <input type="radio" name="productOption" value="15ml 향수" data-price="20000" data-label="15ml 향수" />
-              <span class="option-body">
-                <span class="option-name">15ml 향수</span>
-                <span class="option-desc">가볍게 사용하기 좋은 용량</span>
+                <span>
+                  <span class="option-name">50ml 향수</span>
+                  <span class="option-desc">데일리 사용을 위한 본품</span>
+                </span>
                 <span class="option-price">20,000원</span>
               </span>
             </label>
+          </div>
 
-            <label class="option-card">
-              <input type="radio" name="productOption" value="50ml 향수" data-price="29000" data-label="50ml 향수" />
-              <span class="option-body">
-                <span class="option-name">50ml 향수</span>
-                <span class="option-desc">데일리 사용을 위한 본품</span>
-                <span class="option-price">29,000원</span>
-              </span>
-            </label>
+          <div class="form-row" style="margin-top:14px;">
+            <div class="field">
+              <label for="quantity" class="required">수량</label>
+              <input id="quantity" name="quantity" type="number" min="1" step="1" value="1" required />
+            </div>
+            <div class="field">
+              <label>선택 상품 금액</label>
+              <input id="currentItemPrice" type="text" value="0원" readonly />
+            </div>
+          </div>
+
+          <div class="add-cart-row">
+            <div class="current-pick" id="currentPickText">향과 구성을 선택한 뒤 장바구니에 담아주세요.</div>
+            <button type="button" class="btn btn-secondary" id="addToCartBtn">장바구니 담기</button>
           </div>
         </div>
 
         <div class="section">
-          <div class="section-title"><span class="num">3</span> 수량 선택</div>
-          <div class="field">
-            <label for="quantity" class="required">수량</label>
-            <input id="quantity" name="quantity" type="number" min="1" max="99" value="1" inputmode="numeric" required />
-          </div>
+          <div class="section-title"><span class="num">3</span> 장바구니</div>
+          <div id="cartList" class="cart-list" aria-live="polite"></div>
+          <p class="help">같은 향과 같은 구성은 장바구니에서 수량이 합산됩니다.</p>
         </div>
 
         <div class="section">
@@ -903,56 +1017,49 @@
           <div class="form-row">
             <div class="field">
               <label for="customerName" class="required">이름</label>
-              <input id="customerName" name="customerName" type="text" autocomplete="name" required />
+              <input id="customerName" name="customerName" type="text" autocomplete="name" placeholder="주문자 이름" required />
             </div>
             <div class="field">
               <label for="phone" class="required">연락처</label>
-              <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" autocomplete="tel" required />
+              <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" required />
             </div>
           </div>
         </div>
 
         <div class="section">
-          <div class="section-title"><span class="num">5</span> 배송지 주소</div>
-
+          <div class="section-title"><span class="num">5</span> 배송지 정보</div>
           <div class="field">
             <label for="postcode" class="required">우편번호</label>
             <div class="inline-group">
-              <input id="postcode" name="postcode" type="text" inputmode="numeric" maxlength="5" placeholder="주소 검색으로 입력" readonly required />
+              <input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="주소 검색으로 입력" readonly required />
               <button type="button" class="btn btn-secondary" id="addressSearchBtn">주소 검색</button>
             </div>
           </div>
-
-          <div id="postcodeWrap" class="postcode-wrap" aria-label="우편번호 검색 영역">
+          <div id="postcodeWrap" class="postcode-wrap">
             <button type="button" class="postcode-close" id="postcodeCloseBtn" aria-label="주소 검색 닫기">×</button>
           </div>
-
           <div class="field">
             <label for="baseAddress" class="required">기본주소</label>
-            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 입력" readonly required />
+            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 자동 입력" readonly required />
           </div>
-
           <div class="field">
             <label for="detailAddress" class="required">상세주소</label>
-            <input id="detailAddress" name="detailAddress" type="text" placeholder="동/호수, 건물명, 층수 등" autocomplete="address-line2" required />
-            <p class="help">전체주소는 기본주소 + 상세주소로 저장됩니다. 우편번호는 전체주소에 포함하지 않습니다.</p>
+            <input id="detailAddress" name="detailAddress" type="text" autocomplete="address-line2" placeholder="동/호수, 층, 상세 위치" required />
+            <p class="help">전체주소에는 우편번호를 포함하지 않고, 기본주소와 상세주소만 저장합니다.</p>
           </div>
-
           <div class="field">
-            <label for="deliveryMemo">배송 메모</label>
+            <label for="deliveryMemo">배송메모</label>
             <select id="deliveryMemo" name="deliveryMemo">
               <option value="">선택 안 함</option>
               <option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
-              <option value="부재 시 연락 주세요">부재 시 연락 주세요</option>
-              <option value="경비실에 맡겨주세요">경비실에 맡겨주세요</option>
-              <option value="택배함에 넣어주세요">택배함에 넣어주세요</option>
+              <option value="부재 시 연락주세요">부재 시 연락주세요</option>
+              <option value="배송 전 연락주세요">배송 전 연락주세요</option>
               <option value="직접 입력">직접 입력</option>
             </select>
           </div>
-
           <div class="field" id="customDeliveryMemoField" style="display:none;">
-            <label for="customDeliveryMemo">배송 메모 직접 입력</label>
-            <input id="customDeliveryMemo" name="customDeliveryMemo" type="text" placeholder="배송 요청사항을 입력해주세요" />
+            <label for="customDeliveryMemo">배송메모 직접 입력</label>
+            <input id="customDeliveryMemo" type="text" placeholder="배송 요청사항을 입력해주세요" />
           </div>
         </div>
 
@@ -960,9 +1067,8 @@
           <div class="section-title"><span class="num">6</span> 요청사항</div>
           <div class="field">
             <label for="memo">추가 요청사항</label>
-            <textarea id="memo" name="memo" placeholder="예: 5ml 3개 세트는 Solvia 2개, Golden Haze 1개로 받고 싶어요. / 선물용입니다. / 향 추천을 받고 싶어요."></textarea>
+            <textarea id="memo" name="memo" placeholder="선물용 여부, 향 추천 요청, 배송 관련 요청사항 등을 남겨주세요."></textarea>
           </div>
-
           <label class="privacy-box">
             <input id="privacyAgree" name="privacyAgree" type="checkbox" required />
             <span>
@@ -975,12 +1081,11 @@
       <aside class="panel summary" aria-label="주문 요약">
         <div class="panel-head">
           <h2>주문 요약</h2>
-          <p>선택한 내용을 확인해주세요.</p>
+          <p>장바구니에 담긴 내용을 확인해주세요.</p>
         </div>
         <div class="summary-body">
-          <div class="summary-line"><span>향</span><strong id="summaryScent">-</strong></div>
-          <div class="summary-line"><span>구성</span><strong id="summaryOption">-</strong></div>
-          <div class="summary-line"><span>수량</span><strong id="summaryQty">1개</strong></div>
+          <div id="summaryItems" class="summary-items"></div>
+          <div class="summary-line"><span>상품 수량</span><strong id="summaryQty">0개</strong></div>
           <div class="summary-line"><span>상품금액</span><strong id="summarySubtotal">0원</strong></div>
           <div class="summary-line"><span>배송비</span><strong id="summaryShipping">0원</strong></div>
           <div class="summary-total">
@@ -990,7 +1095,7 @@
           <button type="submit" form="orderForm" class="btn btn-primary submit-btn" id="submitBtn">주문 접수하기</button>
           <div id="resultMessage" class="message" role="status" aria-live="polite"></div>
           <p class="small-note">
-            15,000원 이상 주문 시 무료배송으로 계산됩니다. 15,000원 미만 주문은 배송비 4,000원이 적용됩니다.
+            30,000원 이상 주문 시 무료배송으로 계산됩니다. 30,000원 미만 주문은 배송비 4,000원이 적용됩니다.
           </p>
         </div>
       </aside>
@@ -998,12 +1103,11 @@
   </main>
 
   <script>
-    // 1) Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby8gRVygaoiTBRZ1zts5dEai8MQ3iVxOBBj7oaOqbpE-2oq37Uea38RZK76TLifqFc8/exec';
+    // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxQ_p6JKS-4w3alNrMdcZ05MZMZDe5_cCXRAhM96IaXN3OWDpXLVyzDQ30YgRRtfzFX/exec';
 
-    // 2) 배송비 정책
     const SHIPPING_FEE = 4000;
-    const FREE_SHIPPING_MIN = 15000;
+    const FREE_SHIPPING_MIN = 30000;
 
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => Array.from(document.querySelectorAll(selector));
@@ -1012,6 +1116,7 @@
     const resultMessage = $('#resultMessage');
     const submitBtn = $('#submitBtn');
     const postcodeWrap = $('#postcodeWrap');
+    const cart = [];
 
     function formatKRW(value) {
       return Number(value || 0).toLocaleString('ko-KR') + '원';
@@ -1032,15 +1137,26 @@
       return $('input[name="productOption"]:checked');
     }
 
-    function getOrderPrice() {
+    function getCurrentItem() {
       const selected = getSelectedOption();
-      const unitPrice = selected ? Number(selected.dataset.price) : 0;
       const quantity = Math.max(1, Number($('#quantity').value || 1));
-      const subtotal = unitPrice * quantity;
+      const unitPrice = selected ? Number(selected.dataset.price || 0) : 0;
+      return {
+        scent: $('#scent').value,
+        productOption: selected ? selected.value : '',
+        productLabel: selected ? selected.dataset.label : '',
+        unitPrice,
+        quantity,
+        subtotal: unitPrice * quantity
+      };
+    }
+
+    function getCartTotals() {
+      const subtotal = cart.reduce((sum, item) => sum + Number(item.subtotal || 0), 0);
+      const quantity = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
       const shippingFee = subtotal >= FREE_SHIPPING_MIN || subtotal === 0 ? 0 : SHIPPING_FEE;
       const total = subtotal + shippingFee;
-
-      return { unitPrice, quantity, subtotal, shippingFee, total };
+      return { subtotal, quantity, shippingFee, total };
     }
 
     function getDeliveryMemo() {
@@ -1055,16 +1171,70 @@
       return `${baseAddress} ${detailAddress}`.trim();
     }
 
-    function updateSummary() {
-      const selected = getSelectedOption();
-      const { quantity, subtotal, shippingFee, total } = getOrderPrice();
+    function makeOrderSummary() {
+      if (!cart.length) return '';
+      return cart.map((item) => `${item.scent || '향 미선택'} / ${item.productLabel || item.productOption} x ${item.quantity}`).join('\n');
+    }
 
-      $('#summaryScent').textContent = $('#scent').value || '-';
-      $('#summaryOption').textContent = selected ? selected.dataset.label : '-';
-      $('#summaryQty').textContent = `${quantity}개`;
-      $('#summarySubtotal').textContent = formatKRW(subtotal);
-      $('#summaryShipping').textContent = subtotal >= FREE_SHIPPING_MIN || subtotal === 0 ? '무료' : formatKRW(shippingFee);
-      $('#summaryTotal').textContent = formatKRW(total);
+    function updateCurrentPick() {
+      const item = getCurrentItem();
+      if (!item.scent && !item.productOption) {
+        $('#currentPickText').textContent = '향과 구성을 선택한 뒤 장바구니에 담아주세요.';
+        $('#currentItemPrice').value = '0원';
+        return;
+      }
+
+      const scent = item.scent || '향 미선택';
+      const option = item.productLabel || item.productOption || '구성 미선택';
+      $('#currentPickText').textContent = `${scent} / ${option} / ${item.quantity}개`;
+      $('#currentItemPrice').value = formatKRW(item.subtotal);
+    }
+
+    function updateCart() {
+      const cartList = $('#cartList');
+      const summaryItems = $('#summaryItems');
+      const totals = getCartTotals();
+
+      if (!cart.length) {
+        cartList.innerHTML = '<p class="cart-empty">아직 장바구니에 담긴 제품이 없습니다.</p>';
+        summaryItems.innerHTML = '<div class="summary-item"><strong>장바구니가 비어 있습니다.</strong><span>제품을 선택한 뒤 장바구니에 담아주세요.</span></div>';
+      } else {
+        cartList.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div>
+              <div class="cart-title">${escapeHTML(item.scent)} <small>${escapeHTML(item.productLabel || item.productOption)}</small></div>
+              <div class="cart-meta">${formatKRW(item.unitPrice)} × ${item.quantity}개 = ${formatKRW(item.subtotal)}</div>
+            </div>
+            <div class="cart-actions">
+              <button type="button" class="icon-btn" data-cart-action="decrease" data-index="${index}" aria-label="수량 줄이기">−</button>
+              <button type="button" class="icon-btn" data-cart-action="increase" data-index="${index}" aria-label="수량 늘리기">+</button>
+              <button type="button" class="remove-btn" data-cart-action="remove" data-index="${index}">삭제</button>
+            </div>
+          </div>
+        `).join('');
+
+        summaryItems.innerHTML = cart.map((item) => `
+          <div class="summary-item">
+            <strong>${escapeHTML(item.scent)} / ${escapeHTML(item.productLabel || item.productOption)}</strong>
+            <span>${item.quantity}개 · ${formatKRW(item.subtotal)}</span>
+          </div>
+        `).join('');
+      }
+
+      $('#summaryQty').textContent = `${totals.quantity}개`;
+      $('#summarySubtotal').textContent = formatKRW(totals.subtotal);
+      $('#summaryShipping').textContent = totals.shippingFee === 0 ? '무료' : formatKRW(totals.shippingFee);
+      $('#summaryTotal').textContent = formatKRW(totals.total);
+      updateCurrentPick();
+    }
+
+    function escapeHTML(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     function showMessage(type, text) {
@@ -1072,16 +1242,44 @@
       resultMessage.textContent = text;
     }
 
+    function addToCart() {
+      const item = getCurrentItem();
+      if (!item.scent) {
+        showMessage('error', '장바구니에 담을 향을 선택해주세요.');
+        return;
+      }
+      if (!item.productOption) {
+        showMessage('error', '장바구니에 담을 용량/구성을 선택해주세요.');
+        return;
+      }
+      if (!item.quantity || item.quantity < 1) {
+        showMessage('error', '수량을 확인해주세요.');
+        return;
+      }
+
+      resultMessage.className = 'message';
+      resultMessage.textContent = '';
+
+      const key = `${item.scent}__${item.productOption}`;
+      const existing = cart.find((cartItem) => `${cartItem.scent}__${cartItem.productOption}` === key);
+      if (existing) {
+        existing.quantity += item.quantity;
+        existing.subtotal = existing.unitPrice * existing.quantity;
+      } else {
+        cart.push(item);
+      }
+
+      $('#quantity').value = 1;
+      updateCart();
+    }
+
     function validateForm() {
-      const selected = getSelectedOption();
       const phone = onlyNumbers($('#phone').value);
       const postcode = $('#postcode').value.trim();
       const baseAddress = $('#baseAddress').value.trim();
       const detailAddress = $('#detailAddress').value.trim();
 
-      if (!$('#scent').value) return '향을 선택해주세요.';
-      if (!selected) return '용량/구성을 선택해주세요.';
-      if (!$('#quantity').value || Number($('#quantity').value) < 1) return '수량을 확인해주세요.';
+      if (!cart.length) return '장바구니에 제품을 1개 이상 담아주세요.';
       if (!$('#customerName').value.trim()) return '주문자 이름을 입력해주세요.';
       if (phone.length < 10) return '연락처를 정확히 입력해주세요.';
       if (!postcode || !baseAddress) return '주소 검색으로 배송지를 입력해주세요.';
@@ -1092,15 +1290,16 @@
     }
 
     function buildPayload() {
-      const selected = getSelectedOption();
-      const { unitPrice, quantity, subtotal, shippingFee, total } = getOrderPrice();
+      const totals = getCartTotals();
       const postcode = String($('#postcode').value || '').padStart(5, '0');
       const baseAddress = $('#baseAddress').value.trim();
       const detailAddress = $('#detailAddress').value.trim();
       const fullAddress = getFullAddress(); // 우편번호 제외
+      const firstItem = cart[0] || {};
 
       return {
         orderStatus: '접수',
+        orderSummary: makeOrderSummary(),
         customerName: $('#customerName').value.trim(),
         phone: $('#phone').value.trim(),
         postcode,
@@ -1108,14 +1307,15 @@
         detailAddress,
         fullAddress,
         deliveryMemo: getDeliveryMemo(),
-        scent: $('#scent').value,
-        productOption: selected ? selected.value : '',
-        productLabel: selected ? selected.dataset.label : '',
-        unitPrice,
-        quantity,
-        subtotal,
-        shippingFee,
-        total,
+        scent: firstItem.scent || '',
+        productOption: firstItem.productOption || '',
+        productLabel: firstItem.productLabel || '',
+        unitPrice: firstItem.unitPrice || 0,
+        quantity: firstItem.quantity || 0,
+        subtotal: totals.subtotal,
+        shippingFee: totals.shippingFee,
+        total: totals.total,
+        items: cart.map((item) => ({ ...item })),
         memo: $('#memo').value.trim(),
         privacyAgree: $('#privacyAgree').checked ? '동의' : '미동의',
         userAgent: navigator.userAgent,
@@ -1125,6 +1325,7 @@
 
     function foldPostcode() {
       postcodeWrap.style.display = 'none';
+      postcodeWrap.style.height = '';
       postcodeWrap.innerHTML = '<button type="button" class="postcode-close" id="postcodeCloseBtn" aria-label="주소 검색 닫기">×</button>';
       $('#postcodeCloseBtn').addEventListener('click', foldPostcode);
     }
@@ -1154,9 +1355,7 @@
               extraAddr += extraAddr ? `, ${data.buildingName}` : data.buildingName;
             }
 
-            if (extraAddr) {
-              addr += ` (${extraAddr})`;
-            }
+            if (extraAddr) addr += ` (${extraAddr})`;
           } else {
             addr = data.jibunAddress;
           }
@@ -1166,7 +1365,6 @@
           $('#baseAddress').value = addr;
           $('#detailAddress').focus();
           foldPostcode();
-          updateSummary();
         },
         onresize: function(size) {
           postcodeWrap.style.height = `${size.height}px`;
@@ -1178,10 +1376,7 @@
 
     $('#addressSearchBtn').addEventListener('click', openPostcode);
     $('#postcodeCloseBtn').addEventListener('click', foldPostcode);
-
-    $('#phone').addEventListener('input', (e) => {
-      e.target.value = formatPhone(e.target.value);
-    });
+    $('#phone').addEventListener('input', (e) => { e.target.value = formatPhone(e.target.value); });
 
     $('#deliveryMemo').addEventListener('change', (e) => {
       $('#customDeliveryMemoField').style.display = e.target.value === '직접 입력' ? 'block' : 'none';
@@ -1189,8 +1384,47 @@
     });
 
     $$('#scent, #quantity, input[name="productOption"]').forEach((el) => {
-      el.addEventListener('change', updateSummary);
-      el.addEventListener('input', updateSummary);
+      el.addEventListener('change', updateCurrentPick);
+      el.addEventListener('input', updateCurrentPick);
+    });
+
+    $('#addToCartBtn').addEventListener('click', addToCart);
+
+    $('#cartList').addEventListener('click', (e) => {
+      const button = e.target.closest('[data-cart-action]');
+      if (!button) return;
+
+      const index = Number(button.dataset.index);
+      const action = button.dataset.cartAction;
+      const item = cart[index];
+      if (!item) return;
+
+      if (action === 'increase') {
+        item.quantity += 1;
+        item.subtotal = item.unitPrice * item.quantity;
+      }
+
+      if (action === 'decrease') {
+        item.quantity -= 1;
+        if (item.quantity <= 0) cart.splice(index, 1);
+        else item.subtotal = item.unitPrice * item.quantity;
+      }
+
+      if (action === 'remove') {
+        cart.splice(index, 1);
+      }
+
+      updateCart();
+    });
+
+    $$('.product-order-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        const target = link.dataset.scentTarget;
+        if (target && $('#scent')) {
+          $('#scent').value = target;
+          updateCurrentPick();
+        }
+      });
     });
 
     form.addEventListener('submit', async (e) => {
@@ -1209,7 +1443,6 @@
       submitBtn.textContent = '접수 중입니다...';
 
       try {
-        // Apps Script Web App은 CORS 응답 환경에 따라 일반 fetch 응답 읽기가 막힐 수 있어 no-cors 방식으로 전송합니다.
         await fetch(ORDER_WEB_APP_URL, {
           method: 'POST',
           mode: 'no-cors',
@@ -1219,8 +1452,9 @@
 
         showMessage('success', '주문이 접수되었습니다. 입력하신 연락처로 주문 확인 안내를 드리겠습니다.');
         form.reset();
+        cart.splice(0, cart.length);
         foldPostcode();
-        updateSummary();
+        updateCart();
       } catch (err) {
         console.error(err);
         showMessage('error', '주문 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
@@ -1230,7 +1464,7 @@
       }
     });
 
-    updateSummary();
+    updateCart();
   </script>
 </body>
 </html>
