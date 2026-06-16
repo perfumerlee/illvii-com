@@ -268,49 +268,21 @@
       cursor: pointer;
       position: relative;
       display: block;
-      min-width: 0;
-      margin: 0;
-      color: inherit;
     }
 
-    .option-card input[type="radio"] {
+    .option-card input {
       position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: 0;
-      padding: 0;
-      border: 0;
       opacity: 0;
       pointer-events: none;
-      appearance: none;
     }
 
     .option-body {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      min-height: 128px;
+      min-height: 104px;
       border: 1px solid rgba(33, 28, 24, .14);
       background: #fffdf8;
       border-radius: 18px;
-      padding: 18px;
-      overflow: hidden;
+      padding: 15px;
       transition: transform .18s ease, border .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-
-    .option-body::after {
-      content: "";
-      position: absolute;
-      right: 16px;
-      top: 16px;
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(33, 28, 24, .18);
-      background: #fffdf8;
-      transition: background .18s ease, border .18s ease, box-shadow .18s ease;
     }
 
     .option-card input:checked + .option-body {
@@ -319,42 +291,26 @@
       box-shadow: 0 12px 28px rgba(82, 63, 44, .12);
     }
 
-    .option-card input:checked + .option-body::after {
-      border-color: var(--accent-dark);
-      background: var(--accent-dark);
-      box-shadow: inset 0 0 0 5px #f4eadc;
-    }
-
-    .option-card input:focus-visible + .option-body {
-      border-color: rgba(111, 91, 69, .65);
-      box-shadow: 0 0 0 4px rgba(111, 91, 69, .11);
-    }
-
     .option-card:hover .option-body { transform: translateY(-1px); }
 
     .option-name {
       display: block;
-      padding-right: 34px;
       font-weight: 780;
       letter-spacing: -0.02em;
-      line-height: 1.4;
     }
 
     .option-desc {
       display: block;
-      margin-top: 5px;
+      margin-top: 4px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.45;
     }
 
     .option-price {
       display: block;
-      margin-top: 14px;
+      margin-top: 10px;
       color: var(--accent-dark);
       font-weight: 800;
-      font-size: 17px;
-      line-height: 1.35;
     }
 
     .inline-group {
@@ -520,8 +476,243 @@
       font-size: 12px;
     }
 
+
+
+    .product-story {
+      margin: 12px 0 24px;
+      background: rgba(255, 250, 242, 0.88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .story-hero {
+      padding: 30px 28px 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 24px;
+      align-items: stretch;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .story-kicker {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid rgba(111, 91, 69, .14);
+      font-size: 12px;
+      font-weight: 750;
+      margin-bottom: 14px;
+    }
+
+    .story-title {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .story-lead {
+      margin: 16px 0 0;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .story-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .story-tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 999px;
+      background: #fffdf8;
+      color: var(--accent-dark);
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .story-side {
+      border: 1px solid rgba(33, 28, 24, .12);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, .9), transparent 9rem),
+        linear-gradient(145deg, #f4eadc, #fffdf8);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 230px;
+    }
+
+    .story-side small {
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .story-side strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+      letter-spacing: -0.035em;
+      line-height: 1.22;
+    }
+
+    .story-side p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .story-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin-top: 18px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--accent-dark);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .story-block {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+      min-height: 250px;
+    }
+
+    .story-block:last-child { border-right: 0; }
+
+    .story-block h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      letter-spacing: -0.025em;
+    }
+
+    .story-block p,
+    .story-block li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .story-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 9px;
+    }
+
+    .story-block li {
+      position: relative;
+      padding-left: 15px;
+    }
+
+    .story-block li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .72em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .note-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .note-row {
+      border: 1px solid rgba(33, 28, 24, .1);
+      border-radius: 14px;
+      background: #fffdf8;
+      padding: 11px 12px;
+    }
+
+    .note-row span {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .note-row strong {
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .flow-list {
+      counter-reset: flow;
+      display: grid;
+      gap: 10px;
+    }
+
+    .flow-item {
+      counter-increment: flow;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .flow-item::before {
+      content: counter(flow);
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .flow-item strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .flow-item span {
+      display: block;
+      margin-top: 1px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     @media (max-width: 860px) {
       .hero { grid-template-columns: 1fr; padding-top: 36px; }
+      .story-hero { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-block { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; }
+      .story-block:last-child { border-bottom: 0; }
       .grid { grid-template-columns: 1fr; }
       .summary { position: static; }
       .option-list { grid-template-columns: 1fr; }
@@ -533,6 +724,10 @@
       .wrap { padding: 22px 14px 60px; }
       .hero { gap: 18px; }
       .notice-card { padding: 18px; }
+      .story-hero { padding: 22px 16px; }
+      .story-side { padding: 18px; min-height: 0; }
+      .story-block { padding: 20px 16px; }
+      .story-cta { width: 100%; }
       .panel-head, .section { padding: 20px 16px; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
       .inline-group { flex-direction: column; }
@@ -549,6 +744,7 @@
         <small>Online Order</small>
       </a>
       <nav class="header-actions" aria-label="페이지 이동">
+        <a class="ghost-link" href="#solviaIntro">SOLVIA</a>
         <a class="ghost-link" href="#orderForm">주문하기</a>
         <a class="ghost-link" href="#guide">주문 안내</a>
       </nav>
@@ -571,6 +767,65 @@
           향 선택이 어렵다면 요청사항에 사용 목적과 선호 분위기를 남겨주세요.
         </p>
       </aside>
+    </section>
+
+
+
+    <section id="solviaIntro" class="product-story" aria-label="SOLVIA 향수 소개">
+      <div class="story-hero">
+        <div>
+          <div class="story-kicker">ILLVII 첫 향수 · Perfumer YDO</div>
+          <h2 class="story-title">SOLVIA, 활동 후 산뜻하게 리셋되는 첫인상</h2>
+          <p class="story-lead">
+            햇살을 받은 과일처럼 상큼하게 시작하고, 플로럴과 우디 잔향으로 깨끗하게 마무리되는 향입니다.
+            아침을 활기차게 열고 싶을 때, 실외 활동이 많은 날, 기분 전환이 필요한 순간에 가볍게 사용하기 좋습니다.
+          </p>
+          <div class="story-tags" aria-label="SOLVIA 키워드">
+            <span class="story-tag">체취 리셋</span>
+            <span class="story-tag">시트러스 프루티</span>
+            <span class="story-tag">플로럴 클린</span>
+            <span class="story-tag">포켓 사이즈</span>
+          </div>
+        </div>
+        <aside class="story-side" aria-label="SOLVIA 주문 포인트">
+          <div>
+            <small>Recommended For</small>
+            <strong>가방과 주머니에 넣어두고, 필요할 때 바로 뿌리는 산뜻한 향</strong>
+            <p>땀냄새가 신경 쓰이는 순간을 향으로 덮기보다, 상쾌한 첫인상으로 빠르게 전환하는 데 초점을 둔 향수입니다.</p>
+          </div>
+          <a class="story-cta" href="#orderForm">SOLVIA 주문 선택하기</a>
+        </aside>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-block">
+          <h3>Fragrance Concept</h3>
+          <ul>
+            <li>활동 후 바로 쓰기 좋은 체취 리셋 향수</li>
+            <li>실외활동이 많은 날 산뜻한 분위기 전환</li>
+            <li>상큼하지만 부담스럽지 않은 데일리 사용감</li>
+            <li>처음 만나는 사람에게 깨끗한 인상을 남기는 향</li>
+          </ul>
+        </div>
+
+        <div class="story-block">
+          <h3>Fragrance Note</h3>
+          <div class="note-stack">
+            <div class="note-row"><span>TOP</span><strong>Lemon · Lime · Apple</strong></div>
+            <div class="note-row"><span>MIDDLE</span><strong>Rose · Jasmine · Lavender</strong></div>
+            <div class="note-row"><span>BASE</span><strong>Cedar · Amber</strong></div>
+          </div>
+        </div>
+
+        <div class="story-block">
+          <h3>Fragrance Flow</h3>
+          <div class="flow-list">
+            <div class="flow-item"><div><strong>0~20분</strong><span>시트러스가 먼저 올라와 냄새를 빠르게 환기합니다.</span></div></div>
+            <div class="flow-item"><div><strong>20~40분</strong><span>플로럴과 프루티 무드가 산뜻하고 깨끗한 느낌을 유지합니다.</span></div></div>
+            <div class="flow-item"><div><strong>40~100분</strong><span>우디 계열의 부드러운 잔향으로 안정감 있게 마무리됩니다.</span></div></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="grid" aria-label="ILLVII 향수 주문 폼">
@@ -744,7 +999,7 @@
 
   <script>
     // 1) Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxKYYO9fpSns690svUWIfP6ZXrdp9QUlDkT6J4Ksw7I6qhHV2rnRrDBab9QqUCupHg8/exec';
+    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby8gRVygaoiTBRZ1zts5dEai8MQ3iVxOBBj7oaOqbpE-2oq37Uea38RZK76TLifqFc8/exec';
 
     // 2) 배송비 정책
     const SHIPPING_FEE = 4000;
@@ -954,17 +1209,12 @@
       submitBtn.textContent = '접수 중입니다...';
 
       try {
-        // Apps Script Web App은 CORS 응답을 읽기 어려운 경우가 있어 no-cors로 전송합니다.
-        // JSON을 그대로 보내면 일부 환경에서 doPost 파싱이 불안정할 수 있어
-        // application/x-www-form-urlencoded의 payload 필드에 JSON 문자열을 담아 보냅니다.
-        const formBody = new URLSearchParams();
-        formBody.append('payload', JSON.stringify(payload));
-
+        // Apps Script Web App은 CORS 응답 환경에 따라 일반 fetch 응답 읽기가 막힐 수 있어 no-cors 방식으로 전송합니다.
         await fetch(ORDER_WEB_APP_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: formBody.toString()
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
         });
 
         showMessage('success', '주문이 접수되었습니다. 입력하신 연락처로 주문 확인 안내를 드리겠습니다.');
