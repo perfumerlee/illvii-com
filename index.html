@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.22 -->
+<!-- ILLVII 향수 주문 페이지 v0.23 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.22</title>
+  <title>ILLVII 향수 주문하기 · v0.23</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -1208,7 +1208,7 @@
 
 
 
-    /* v0.22: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.23: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1501,6 +1501,8 @@
     }
 
     @media (max-width: 720px) {
+      .order-process { grid-template-columns: 1fr; gap: 10px; }
+      .process-step { min-height: auto; }
       .header-inner { align-items: flex-start; }
       .header-actions { display: none; }
       .wrap { padding: 22px 14px 60px; }
@@ -1525,7 +1527,7 @@
     }
 
 
-    /* v0.22: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.23: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -1745,6 +1747,76 @@
       color: rgba(255,253,246,.80);
       font-size: 14px;
       line-height: 1.86;
+    }
+
+    .order-process {
+      position: relative;
+      z-index: 1;
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .process-step {
+      min-height: 112px;
+      padding: 15px 15px 16px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,253,246,.12);
+      background: rgba(255,253,246,.065);
+      backdrop-filter: blur(10px);
+    }
+
+    .process-step.is-accent {
+      border-color: rgba(223,255,95,.28);
+      background:
+        linear-gradient(135deg, rgba(223,255,95,.16), rgba(255,253,246,.055));
+    }
+
+    .process-step-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+
+    .process-no {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--drop);
+      color: #171411;
+      font-size: 11px;
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+
+    .process-step b {
+      color: #fffdf6;
+      font-size: 13px;
+      line-height: 1.3;
+      letter-spacing: -.02em;
+    }
+
+    .process-step p {
+      margin: 0;
+      color: rgba(255,253,246,.68);
+      font-size: 12.5px;
+      line-height: 1.62;
+    }
+
+    .process-note {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      padding-top: 15px;
+      border-top: 1px dashed rgba(255,253,246,.18);
+      color: rgba(255,253,246,.66);
+      font-size: 12.5px;
+      line-height: 1.7;
     }
 
     .product-showcase {
@@ -2220,7 +2292,7 @@
     }
 
 
-    /* v0.22: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.23: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2388,7 +2460,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.22: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.23: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2580,7 +2652,7 @@
     }
 
 
-    /* v0.22: barcode logo + right top menu */
+    /* v0.23: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2686,7 +2758,7 @@
     }
 
 
-    /* v0.22: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.23: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2845,7 +2917,7 @@
 
 
 
-    /* v0.22: fixed header / mobile logo balance / refined alert modal */
+    /* v0.23: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -2994,7 +3066,7 @@
 
   
 
-    /* v0.22: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.23: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3111,9 +3183,27 @@
         <strong>주문 접수 안내</strong>
         <p>
           주문 접수 후 내용 확인을 거쳐 입금정보를 안내하고 제작 및 발송 안내를 드립니다.
-          향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 선택하고 주문 수량을 지정해주세요.
-          그리고 요청사항에 사용 목적과 선호 분위기를 남겨주세요. SOLVIA와 STEMLINE 외의 향수로 추천하여 발송드립니다.
+          아래 흐름대로 선택하면 한 번에 주문을 남길 수 있습니다.
         </p>
+        <div class="order-process" aria-label="주문 과정 안내 도표">
+          <div class="process-step is-accent">
+            <div class="process-step-head"><span class="process-no">01</span><b>향 · 구성 선택</b></div>
+            <p>SOLVIA, STEMLINE 또는 향 추천 요청을 선택하고 용량과 주문 수량을 정합니다.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-head"><span class="process-no">02</span><b>장바구니 담기</b></div>
+            <p>선택한 제품을 담고, 필요한 경우 다른 향과 구성을 추가로 누적합니다.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-head"><span class="process-no">03</span><b>주문 정보 입력</b></div>
+            <p>주문자 정보와 배송지 정보를 입력하고 요청사항을 확인합니다.</p>
+          </div>
+          <div class="process-step is-accent">
+            <div class="process-step-head"><span class="process-no">04</span><b>입금 안내 · 제작 발송</b></div>
+            <p>접수 후 안내된 계좌로 입금하면 확인 후 제작 및 발송을 진행합니다.</p>
+          </div>
+        </div>
+        <div class="process-note">향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 담고 요청사항에 사용 목적과 선호 분위기를 남겨주세요.</div>
       </aside>
     </section>
 
@@ -3457,9 +3547,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.22
+    // ILLVII 향수 주문 페이지 v0.23
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.22';
+    const APP_VERSION = 'v0.23';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
