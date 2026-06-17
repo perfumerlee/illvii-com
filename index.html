@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.19 -->
+<!-- ILLVII 향수 주문 페이지 v0.20 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.19</title>
+  <title>ILLVII 향수 주문하기 · v0.20</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -1180,8 +1180,35 @@
     .modal-confirm-btn:hover { box-shadow: 0 14px 28px rgba(47, 111, 78, .26); }
 
 
+    .alert-modal .modal-panel {
+      max-width: 420px;
+    }
 
-    /* v0.19: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    .alert-modal .modal-kicker {
+      background: rgba(165, 64, 52, .10);
+      color: var(--danger);
+    }
+
+    .alert-modal .modal-copy {
+      margin-bottom: 20px;
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .alert-confirm-btn {
+      background: #171411;
+      color: #fffdf6;
+      border-color: #171411;
+    }
+
+    .alert-confirm-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(23,20,17,.18);
+    }
+
+
+
+    /* v0.20: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1498,7 +1525,7 @@
     }
 
 
-    /* v0.19: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.20: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2193,7 +2220,7 @@
     }
 
 
-    /* v0.19: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.20: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2361,7 +2388,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.19: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.20: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2553,7 +2580,7 @@
     }
 
 
-    /* v0.19: barcode logo + right top menu */
+    /* v0.20: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2561,12 +2588,19 @@
       justify-content: flex-end;
     }
 
+    .site-header {
+      position: -webkit-sticky !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000;
+    }
+
     .brand {
-      font-size: clamp(30px, 4.8vw, 48px) !important;
+      font-size: clamp(24px, 3.8vw, 38px) !important;
       font-weight: 1000 !important;
-      letter-spacing: .34em !important;
-      line-height: .82 !important;
-      transform: scaleX(.82);
+      letter-spacing: .30em !important;
+      line-height: .86 !important;
+      transform: scaleX(.86);
       transform-origin: left center;
       font-family: Arial Black, Impact, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       text-rendering: geometricPrecision;
@@ -2645,14 +2679,14 @@
     }
 
     @media (max-width: 640px) {
-      .header-inner { padding: 18px 20px; }
-      .brand { font-size: clamp(34px, 11vw, 48px) !important; letter-spacing: .30em !important; }
+      .header-inner { padding: 15px 20px; }
+      .brand { font-size: clamp(28px, 8.7vw, 40px) !important; letter-spacing: .28em !important; transform: scaleX(.86); }
       .menu-toggle { width: 46px; height: 46px; }
       .header-actions { min-width: min(220px, calc(100vw - 36px)); }
     }
 
 
-    /* v0.19: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.20: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -3152,6 +3186,19 @@
 
   </main>
 
+  <div class="order-modal alert-modal" id="alertModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-alert-close></div>
+    <div class="modal-panel" role="document">
+      <button type="button" class="modal-close" data-alert-close aria-label="안내창 닫기">×</button>
+      <p class="modal-kicker" id="alertModalKicker">안내</p>
+      <h2 id="alertModalTitle">확인해주세요.</h2>
+      <p class="modal-copy" id="alertModalMessage">입력 내용을 확인해주세요.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn alert-confirm-btn" data-alert-close>확인</button>
+      </div>
+    </div>
+  </div>
+
   <div class="order-modal" id="orderCompleteModal" role="dialog" aria-modal="true" aria-labelledby="orderCompleteTitle" aria-hidden="true">
     <div class="modal-backdrop" data-modal-close></div>
     <div class="modal-panel" role="document">
@@ -3175,10 +3222,22 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.19
+    // ILLVII 향수 주문 페이지 v0.20
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.19';
+    const APP_VERSION = 'v0.20';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
+
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+    });
+
+    window.addEventListener('pageshow', () => {
+      setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+    });
 
     const SHIPPING_FEE = 4000;
     const FREE_SHIPPING_MIN = 30000;
@@ -3195,6 +3254,7 @@
     const postcodeWrap = $('#postcodeWrap');
     const postcodeEmbed = $('#postcodeEmbed');
     const orderCompleteModal = $('#orderCompleteModal');
+    const alertModal = $('#alertModal');
     const cart = [];
 
     function formatKRW(value) {
@@ -3341,6 +3401,26 @@
       updateCurrentPick();
     }
 
+    function openAlertModal(message, title = '확인해주세요.', kicker = '안내') {
+      if (!alertModal) {
+        window.alert(message);
+        return;
+      }
+      $('#alertModalTitle').textContent = title;
+      $('#alertModalKicker').textContent = kicker;
+      $('#alertModalMessage').textContent = message;
+      alertModal.classList.add('is-open');
+      alertModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAlertModal() {
+      if (!alertModal) return;
+      alertModal.classList.remove('is-open');
+      alertModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
     function openOrderCompleteModal(total) {
       if (!orderCompleteModal) return;
       $('#modalTotalAmount').textContent = formatKRW(total);
@@ -3418,8 +3498,13 @@
     }
 
     function showMessage(type, text) {
-      resultMessage.className = `message ${type}`;
-      resultMessage.textContent = text;
+      if (resultMessage) {
+        resultMessage.className = 'message';
+        resultMessage.textContent = '';
+      }
+      const title = type === 'success' ? '처리되었습니다.' : '확인해주세요.';
+      const kicker = type === 'success' ? '완료' : '안내';
+      openAlertModal(text, title, kicker);
     }
 
     function addToCart() {
@@ -3661,8 +3746,15 @@
       el.addEventListener('click', closeOrderCompleteModal);
     });
 
+    $$('[data-alert-close]').forEach((el) => {
+      el.addEventListener('click', closeAlertModal);
+    });
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeOrderCompleteModal();
+      if (e.key === 'Escape') {
+        closeOrderCompleteModal();
+        closeAlertModal();
+      }
     });
 
     $$('.product-order-link').forEach((link) => {
@@ -3698,7 +3790,6 @@
           body: JSON.stringify(payload)
         });
 
-        showMessage('success', '주문이 접수되었습니다. 입력하신 연락처로 주문 확인 안내를 드리겠습니다.');
         openOrderCompleteModal(payload.total);
         form.reset();
         cart.splice(0, cart.length);
