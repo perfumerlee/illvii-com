@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.35 -->
+<!-- ILLVII 향수 주문 페이지 v0.36 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.35</title>
+  <title>ILLVII 향수 주문하기 · v0.36</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -112,7 +112,7 @@
       padding: 34px 20px 80px;
     }
 
-    #top, #products, #orderForm, #guide, #summaryPanel, #scentStep, #summaryPanel {
+    #top, #products, #orderForm, #guide, #summaryPanel, #scentStep, #optionStep, #cartStep, #customerStep, #addressSection, #memoStep, #scentStep, #optionStep, #cartStep, #customerStep, #addressSection, #memoStep {
       scroll-margin-top: 96px;
     }
 
@@ -1282,7 +1282,7 @@
 
 
 
-    /* v0.35: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.36: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1599,7 +1599,7 @@
     }
 
 
-    /* v0.35: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.36: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2294,7 +2294,7 @@
     }
 
 
-    /* v0.35: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.36: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2462,7 +2462,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.35: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.36: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2654,7 +2654,7 @@
     }
 
 
-    /* v0.35: barcode logo + right top menu */
+    /* v0.36: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2816,7 +2816,7 @@
     }
 
 
-    /* v0.35: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.36: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2975,7 +2975,7 @@
 
 
 
-    /* v0.35: fixed header / mobile logo balance / refined alert modal */
+    /* v0.36: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3124,7 +3124,7 @@
 
   
 
-    /* v0.35: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.36: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3210,7 +3210,7 @@
 
   
 
-    /* v0.35: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.36: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3345,7 +3345,7 @@
       margin-left: 6px !important;
     }
   
-    /* v0.35 장바구니 담기 알림 인지 시간 보강 */
+    /* v0.36 장바구니 담기 알림 인지 시간 보강 */
     .cart-toast,
     .add-cart-toast,
     .add-cart-feedback.is-floating {
@@ -3363,6 +3363,57 @@
     input.address-trigger-input:focus {
       border-color: rgba(61, 48, 36, 0.38);
       box-shadow: 0 0 0 4px rgba(111, 91, 69, 0.08);
+    }
+
+  
+    /* v0.36 필수사항 확인 표시 */
+    .section.is-invalid,
+    .field.is-invalid,
+    .privacy-box.is-invalid,
+    .cart-list.is-invalid {
+      position: relative;
+    }
+
+    .section.is-invalid {
+      border-color: rgba(165, 64, 52, 0.26);
+      background:
+        linear-gradient(180deg, rgba(255, 250, 242, .96), rgba(255, 247, 241, .9));
+    }
+
+    .field.is-invalid input,
+    .field.is-invalid select,
+    .field.is-invalid textarea,
+    .privacy-box.is-invalid {
+      border-color: rgba(165, 64, 52, 0.58) !important;
+      box-shadow: 0 0 0 4px rgba(165, 64, 52, 0.10) !important;
+      background-color: #fffaf7;
+    }
+
+    .cart-list.is-invalid {
+      border: 1px solid rgba(165, 64, 52, 0.34);
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(165, 64, 52, 0.045);
+    }
+
+    .validation-message {
+      margin-top: 8px;
+      padding: 9px 11px;
+      border-radius: 13px;
+      background: rgba(165, 64, 52, 0.08);
+      border: 1px solid rgba(165, 64, 52, 0.16);
+      color: var(--danger);
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .section > .validation-message {
+      margin-top: 12px;
+    }
+
+    .privacy-box + .validation-message {
+      margin-top: 10px;
     }
 
   </style>
@@ -3521,7 +3572,7 @@
           <p>원하는 제품을 하나씩 장바구니에 담은 뒤 한 번에 주문할 수 있습니다. 이메일은 받지 않고, 주문 확인은 연락처 기준으로 진행합니다.</p>
         </div>
 
-        <div class="section scent-focus">
+        <div class="section scent-focus" id="scentStep">
           <div class="section-title"><span class="num">1</span> 향 선택</div>
           <div class="field">
             <label for="scent" class="required">주문할 향</label>
@@ -3533,7 +3584,7 @@
           </div>
         </div>
 
-        <div class="section option-focus">
+        <div class="section option-focus" id="optionStep">
           <div class="section-title"><span class="num">2</span> 용량 / 구성 선택</div>
           <div class="option-list" id="optionList">
             <label class="option-card">
@@ -3592,13 +3643,13 @@
           <div class="add-cart-feedback" id="addCartFeedback" role="status" aria-live="polite"></div>
         </div>
 
-        <div class="section">
+        <div class="section" id="cartStep">
           <div class="section-title"><span class="num">3</span> 장바구니</div>
           <div id="cartList" class="cart-list" aria-live="polite"></div>
           <p class="help">같은 향과 같은 구성은 장바구니에서 수량이 합산됩니다.</p>
         </div>
 
-        <div class="section">
+        <div class="section" id="customerStep">
           <div class="section-title"><span class="num">4</span> 주문자 정보</div>
           <div class="form-row">
             <div class="field">
@@ -3617,7 +3668,7 @@
           <div class="field">
             <label for="postcode" class="required">우편번호</label>
             <div class="inline-group">
-              <input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="주소 검색으로 입력" readonly required / class="address-trigger-input" title="클릭하면 주소 검색창이 열립니다" aria-label="우편번호, 클릭하면 주소 검색창이 열립니다">
+              <input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="주소 검색으로 입력" readonly required class="address-trigger-input" title="클릭하면 주소 검색창이 열립니다" aria-label="우편번호, 클릭하면 주소 검색창이 열립니다">
               <button type="button" class="btn btn-secondary" id="addressSearchBtn">주소 검색</button>
             </div>
           </div>
@@ -3630,7 +3681,7 @@
           </div>
           <div class="field">
             <label for="baseAddress" class="required">기본주소</label>
-            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 자동 입력" readonly required / class="address-trigger-input" title="클릭하면 주소 검색창이 열립니다" aria-label="기본주소, 클릭하면 주소 검색창이 열립니다">
+            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 자동 입력" readonly required class="address-trigger-input" title="클릭하면 주소 검색창이 열립니다" aria-label="기본주소, 클릭하면 주소 검색창이 열립니다">
           </div>
           <div class="field">
             <label for="detailAddress" class="required">상세주소</label>
@@ -3664,7 +3715,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="memoStep">
           <div class="section-title"><span class="num">6</span> 요청사항</div>
           <div class="field">
             <label for="memo">추가 요청사항</label>
@@ -3775,9 +3826,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.35
+    // ILLVII 향수 주문 페이지 v0.36
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.35';
+    const APP_VERSION = 'v0.36';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
@@ -4056,6 +4107,9 @@
         cartShortcutCount.textContent = String(groupCount);
         cartShortcutCount.setAttribute('aria-label', `장바구니 제품군 ${groupCount}개`);
       }
+      if (cart.length) {
+        clearValidationFor($('#cartList'));
+      }
       updateCurrentPick();
     }
 
@@ -4154,6 +4208,7 @@
 
       resultMessage.className = 'message';
       resultMessage.textContent = '';
+      clearAllValidation();
 
       const key = `${item.scent}__${item.productOption}`;
       const existing = cart.find((cartItem) => `${cartItem.scent}__${cartItem.productOption}` === key);
@@ -4168,20 +4223,154 @@
       resetSelectionAfterCart();
     }
 
+
+    function clearValidationFor(element) {
+      if (!element) return;
+
+      const field = element.closest('.field, .privacy-box, .cart-list');
+      if (field) {
+        field.classList.remove('is-invalid');
+        field.querySelectorAll('.validation-message').forEach((msg) => msg.remove());
+      }
+
+      const section = element.closest('.section');
+      if (section) {
+        const hasInvalidChild = section.querySelector('.field.is-invalid, .privacy-box.is-invalid, .cart-list.is-invalid');
+        if (!hasInvalidChild) {
+          section.classList.remove('is-invalid');
+          Array.from(section.children).forEach((child) => {
+            if (child.classList && child.classList.contains('validation-message')) child.remove();
+          });
+        }
+      }
+    }
+
+    function clearAllValidation() {
+      $$('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+      $$('.validation-message').forEach((el) => el.remove());
+    }
+
+    function addValidationMessage(container, message) {
+      if (!container || !message) return;
+      container.querySelectorAll('.validation-message').forEach((el) => el.remove());
+      const messageEl = document.createElement('div');
+      messageEl.className = 'validation-message';
+      messageEl.textContent = message;
+      container.appendChild(messageEl);
+    }
+
+    function markValidationError({ sectionId, field, message }) {
+      const section = sectionId ? document.getElementById(sectionId) : null;
+      const targetField = field ? (field.closest('.field, .privacy-box, .cart-list') || field) : null;
+
+      if (section) section.classList.add('is-invalid');
+
+      if (targetField) {
+        targetField.classList.add('is-invalid');
+        addValidationMessage(targetField, message);
+      } else if (section) {
+        addValidationMessage(section, message);
+      }
+
+      return {
+        section,
+        field,
+        message,
+        target: targetField || section
+      };
+    }
+
+    function focusValidationTarget(error) {
+      if (!error) return;
+      const scrollTarget = error.section || error.target;
+      if (scrollTarget && scrollTarget.id) {
+        scrollToTarget(scrollTarget.id);
+      } else if (scrollTarget) {
+        const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      }
+
+      window.setTimeout(() => {
+        if (error.field && typeof error.field.focus === 'function') {
+          error.field.focus({ preventScroll: true });
+        }
+      }, 420);
+    }
+
     function validateForm() {
+      clearAllValidation();
+
+      const errors = [];
       const phone = onlyNumbers($('#phone').value);
       const postcode = $('#postcode').value.trim();
       const baseAddress = $('#baseAddress').value.trim();
       const detailAddress = $('#detailAddress').value.trim();
 
-      if (!cart.length) return '장바구니에 제품을 1개 이상 담아주세요.';
-      if (!$('#customerName').value.trim()) return '주문자 이름을 입력해주세요.';
-      if (phone.length < 10) return '연락처를 정확히 입력해주세요.';
-      if (!postcode || !baseAddress) return '주소 검색으로 배송지를 입력해주세요.';
-      if (!detailAddress) return '상세주소를 입력해주세요.';
-      if ($('#hasEntranceCode').checked && !$('#entranceCode').value.trim()) return '공동현관 출입번호를 입력해주세요.';
-      if (!$('#privacyAgree').checked) return '개인정보 수집·이용 동의가 필요합니다.';
-      if (ORDER_WEB_APP_URL.includes('여기에_')) return 'Apps Script 웹 앱 URL을 먼저 입력해주세요.';
+      if (!cart.length) {
+        errors.push(markValidationError({
+          sectionId: 'cartStep',
+          field: $('#cartList'),
+          message: '장바구니에 제품을 1개 이상 담아주세요.'
+        }));
+      }
+
+      if (!$('#customerName').value.trim()) {
+        errors.push(markValidationError({
+          sectionId: 'customerStep',
+          field: $('#customerName'),
+          message: '주문자 이름을 입력해주세요.'
+        }));
+      }
+
+      if (phone.length < 10) {
+        errors.push(markValidationError({
+          sectionId: 'customerStep',
+          field: $('#phone'),
+          message: '연락처를 정확히 입력해주세요.'
+        }));
+      }
+
+      if (!postcode || !baseAddress) {
+        errors.push(markValidationError({
+          sectionId: 'addressSection',
+          field: $('#postcode'),
+          message: '주소 검색으로 배송지를 입력해주세요.'
+        }));
+      }
+
+      if (!detailAddress) {
+        errors.push(markValidationError({
+          sectionId: 'addressSection',
+          field: $('#detailAddress'),
+          message: '상세주소를 입력해주세요.'
+        }));
+      }
+
+      if ($('#hasEntranceCode').checked && !$('#entranceCode').value.trim()) {
+        errors.push(markValidationError({
+          sectionId: 'addressSection',
+          field: $('#entranceCode'),
+          message: '공동현관 출입번호를 입력해주세요.'
+        }));
+      }
+
+      if (!$('#privacyAgree').checked) {
+        errors.push(markValidationError({
+          sectionId: 'memoStep',
+          field: $('#privacyAgree'),
+          message: '개인정보 수집·이용 동의가 필요합니다.'
+        }));
+      }
+
+      if (ORDER_WEB_APP_URL.includes('여기에_')) {
+        return 'Apps Script 웹 앱 URL을 먼저 입력해주세요.';
+      }
+
+      if (errors.length) {
+        focusValidationTarget(errors[0]);
+        return errors[0].message;
+      }
+
       return '';
     }
 
@@ -4276,6 +4465,8 @@
           const zonecode = String(data.zonecode || '').padStart(5, '0');
           $('#postcode').value = zonecode;
           $('#baseAddress').value = addr;
+          clearValidationFor($('#postcode'));
+          clearValidationFor($('#baseAddress'));
           $('#detailAddress').focus();
           foldPostcode();
         },
@@ -4418,6 +4609,17 @@
           updateOptionAvailability();
         }
       });
+    });
+
+
+    form.querySelectorAll('input, select, textarea').forEach((field) => {
+      field.addEventListener('focus', () => clearValidationFor(field));
+      field.addEventListener('input', () => clearValidationFor(field));
+      field.addEventListener('change', () => clearValidationFor(field));
+    });
+
+    $$('input[name="productOption"]').forEach((field) => {
+      field.addEventListener('change', () => clearValidationFor(document.getElementById('optionStep')));
     });
 
     form.addEventListener('submit', async (e) => {
