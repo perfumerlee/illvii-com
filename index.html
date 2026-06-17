@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.23 -->
+<!-- ILLVII 향수 주문 페이지 v0.25 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.23</title>
+  <title>ILLVII 향수 주문하기 · v0.25</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -112,7 +112,7 @@
       padding: 34px 20px 80px;
     }
 
-    #top, #products, #orderForm, #guide {
+    #top, #products, #orderForm, #guide, #scentStep {
       scroll-margin-top: 96px;
     }
 
@@ -664,6 +664,23 @@
       border-top: 1px dashed rgba(33, 28, 24, .16);
     }
 
+
+    .add-cart-feedback {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(47, 111, 78, 0.09);
+      border: 1px solid rgba(47, 111, 78, 0.18);
+      color: var(--success);
+      font-size: 13px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .add-cart-feedback.is-active {
+      display: block;
+    }
+
     .current-pick {
       color: var(--muted);
       font-size: 13px;
@@ -1208,7 +1225,7 @@
 
 
 
-    /* v0.23: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.25: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1501,8 +1518,6 @@
     }
 
     @media (max-width: 720px) {
-      .order-process { grid-template-columns: 1fr; gap: 10px; }
-      .process-step { min-height: auto; }
       .header-inner { align-items: flex-start; }
       .header-actions { display: none; }
       .wrap { padding: 22px 14px 60px; }
@@ -1527,7 +1542,7 @@
     }
 
 
-    /* v0.23: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.25: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -1747,76 +1762,6 @@
       color: rgba(255,253,246,.80);
       font-size: 14px;
       line-height: 1.86;
-    }
-
-    .order-process {
-      position: relative;
-      z-index: 1;
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .process-step {
-      min-height: 112px;
-      padding: 15px 15px 16px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,253,246,.12);
-      background: rgba(255,253,246,.065);
-      backdrop-filter: blur(10px);
-    }
-
-    .process-step.is-accent {
-      border-color: rgba(223,255,95,.28);
-      background:
-        linear-gradient(135deg, rgba(223,255,95,.16), rgba(255,253,246,.055));
-    }
-
-    .process-step-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 9px;
-    }
-
-    .process-no {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--drop);
-      color: #171411;
-      font-size: 11px;
-      font-weight: 950;
-      flex: 0 0 auto;
-    }
-
-    .process-step b {
-      color: #fffdf6;
-      font-size: 13px;
-      line-height: 1.3;
-      letter-spacing: -.02em;
-    }
-
-    .process-step p {
-      margin: 0;
-      color: rgba(255,253,246,.68);
-      font-size: 12.5px;
-      line-height: 1.62;
-    }
-
-    .process-note {
-      position: relative;
-      z-index: 1;
-      margin-top: 16px;
-      padding-top: 15px;
-      border-top: 1px dashed rgba(255,253,246,.18);
-      color: rgba(255,253,246,.66);
-      font-size: 12.5px;
-      line-height: 1.7;
     }
 
     .product-showcase {
@@ -2292,7 +2237,7 @@
     }
 
 
-    /* v0.23: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.25: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2460,7 +2405,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.23: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.25: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2652,7 +2597,7 @@
     }
 
 
-    /* v0.23: barcode logo + right top menu */
+    /* v0.25: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2758,7 +2703,7 @@
     }
 
 
-    /* v0.23: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.25: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2917,7 +2862,7 @@
 
 
 
-    /* v0.23: fixed header / mobile logo balance / refined alert modal */
+    /* v0.25: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3066,7 +3011,7 @@
 
   
 
-    /* v0.23: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.25: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3150,6 +3095,133 @@
       }
     }
 
+  
+
+    /* v0.25: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    .order-process {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .process-step {
+      min-height: 104px;
+      padding: 14px 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(33, 28, 24, 0.1);
+      background: linear-gradient(180deg, rgba(255, 250, 242, 0.92) 0%, rgba(249, 243, 235, 0.82) 100%);
+    }
+
+    .process-step.is-accent {
+      background: linear-gradient(135deg, rgba(225, 237, 180, 0.38) 0%, rgba(255, 250, 242, 0.9) 100%);
+      border-color: rgba(168, 205, 72, 0.22);
+    }
+
+    .process-step-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .process-no {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #171411;
+      color: #fffdf6;
+      font-size: 12px;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .process-step b {
+      font-size: 14px;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .process-step p {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .option-card input:checked + .option-body,
+    .option-focus .option-card input:checked + .option-body {
+      border-color: rgba(23, 20, 17, 0.9) !important;
+      background: linear-gradient(135deg, rgba(218, 255, 64, 0.22), rgba(255, 253, 246, 0.96)) !important;
+      box-shadow: 0 16px 34px rgba(23, 20, 17, 0.16), inset 0 0 0 2px rgba(23, 20, 17, 0.06) !important;
+    }
+
+    .option-card input:checked + .option-body::after {
+      content: "선택됨" !important;
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      width: auto !important;
+      height: auto !important;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #171411;
+      color: #fffdf6;
+      border: 0 !important;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .current-pick {
+      flex: 1;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(23, 20, 17, 0.13);
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: rgba(255, 253, 246, 0.82);
+      color: rgba(23, 20, 17, 0.72) !important;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .current-pick.has-selection {
+      border-color: rgba(23, 20, 17, 0.32);
+      background: linear-gradient(135deg, rgba(218, 255, 64, 0.28), rgba(255, 253, 246, 0.96));
+      color: #171411 !important;
+      box-shadow: 0 12px 26px rgba(23, 20, 17, 0.09);
+    }
+
+    .current-pick .pick-kicker {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 8px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #171411;
+      color: #fffdf6;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .current-pick .pick-empty { color: rgba(23, 20, 17, 0.56); font-weight: 650; }
+    .current-pick .pick-main { font-weight: 900; letter-spacing: -0.03em; }
+    .current-pick .pick-sub { display: block; margin-top: 2px; font-size: 12px; color: rgba(23, 20, 17, 0.58); font-weight: 700; }
+
+    @media (max-width: 720px) {
+      .order-process { grid-template-columns: 1fr; gap: 10px; }
+      .process-step { min-height: auto; }
+      .current-pick { width: 100%; }
+      .current-pick .pick-kicker { margin-bottom: 6px; }
+      .current-pick.has-selection { display: block; }
+    }
+
   </style>
 </head>
 <body>
@@ -3188,11 +3260,11 @@
         <div class="order-process" aria-label="주문 과정 안내 도표">
           <div class="process-step is-accent">
             <div class="process-step-head"><span class="process-no">01</span><b>향 · 구성 선택</b></div>
-            <p>SOLVIA, STEMLINE 또는 향 추천 요청을 선택하고 용량과 주문 수량을 정합니다.</p>
+            <p>SOLVIA 또는 STEMLINE을 선택하고 원하는 용량과 주문 수량을 정합니다.</p>
           </div>
           <div class="process-step">
             <div class="process-step-head"><span class="process-no">02</span><b>장바구니 담기</b></div>
-            <p>선택한 제품을 담고, 필요한 경우 다른 향과 구성을 추가로 누적합니다.</p>
+            <p>선택한 제품을 장바구니에 담고, 필요한 경우 다른 향과 구성을 추가합니다.</p>
           </div>
           <div class="process-step">
             <div class="process-step-head"><span class="process-no">03</span><b>주문 정보 입력</b></div>
@@ -3203,7 +3275,6 @@
             <p>접수 후 안내된 계좌로 입금하면 확인 후 제작 및 발송을 진행합니다.</p>
           </div>
         </div>
-        <div class="process-note">향 선택이 어렵다면 장바구니에 ‘향 추천 요청’을 담고 요청사항에 사용 목적과 선호 분위기를 남겨주세요.</div>
       </aside>
     </section>
 
@@ -3304,11 +3375,7 @@
               <option value="">향을 선택해주세요</option>
               <option value="SOLVIA">SOLVIA</option>
               <option value="STEMLINE">STEMLINE</option>
-              <option value="향 추천 요청">향 추천 요청</option>
             </select>
-            <div id="recommendNotice" class="recommend-notice" role="note" aria-live="polite">
-              요청사항에 사용목적과 선호 분위기를 꼭 남겨주세요. SOLVIA와 STEMLINE 외의 일비의 향수 목록에서 임의로 추천하여 발송드립니다.
-            </div>
           </div>
         </div>
 
@@ -3368,6 +3435,7 @@
             <div class="current-pick" id="currentPickText">향과 구성을 선택한 뒤 장바구니에 담아주세요.</div>
             <button type="button" class="btn btn-secondary" id="addToCartBtn">장바구니 담기</button>
           </div>
+          <div class="add-cart-feedback" id="addCartFeedback" role="status" aria-live="polite"></div>
         </div>
 
         <div class="section">
@@ -3446,7 +3514,7 @@
           <div class="section-title"><span class="num">6</span> 요청사항</div>
           <div class="field">
             <label for="memo">추가 요청사항</label>
-            <textarea id="memo" name="memo" placeholder="선물용 여부, 향 추천 요청, 배송 관련 요청사항 등을 남겨주세요."></textarea>
+            <textarea id="memo" name="memo" placeholder="선물용 여부, 배송 관련 요청사항 등을 남겨주세요."></textarea>
           </div>
           <label class="privacy-box">
             <input id="privacyAgree" name="privacyAgree" type="checkbox" required />
@@ -3547,9 +3615,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.23
+    // ILLVII 향수 주문 페이지 v0.25
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.23';
+    const APP_VERSION = 'v0.25';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
@@ -3722,19 +3790,12 @@
 
       updateCurrentPick();
     }
-
-
-    function toggleRecommendationNotice() {
-      const notice = $('#recommendNotice');
-      if (!notice) return;
-      notice.classList.toggle('is-active', $('#scent').value === '향 추천 요청');
-    }
+    function toggleRecommendationNotice() {}
 
     function adjustQuantity(delta) {
       const input = $('#quantity');
       const current = Math.max(1, Number(input.value || 1));
       input.value = Math.max(1, current + delta);
-      toggleRecommendationNotice();
       updateCurrentPick();
     }
 
@@ -3775,15 +3836,20 @@
 
     function updateCurrentPick() {
       const item = getCurrentItem();
+      const pickBox = $('#currentPickText');
+
       if (!item.scent && !item.productOption) {
-        $('#currentPickText').textContent = '향과 구성을 선택한 뒤 장바구니에 담아주세요.';
+        pickBox.classList.remove('has-selection');
+        pickBox.innerHTML = '<span class="pick-empty">향과 구성을 선택한 뒤 장바구니에 담아주세요.</span>';
         $('#currentItemPrice').value = '0원';
         return;
       }
 
       const scent = item.scent || '향 미선택';
       const option = item.productLabel || item.productOption || '구성 미선택';
-      $('#currentPickText').textContent = `${scent} / ${option} / ${item.quantity}개`;
+      const quantity = item.quantity || 1;
+      pickBox.classList.add('has-selection');
+      pickBox.innerHTML = `<span class="pick-kicker">현재 선택</span><span><span class="pick-main">${escapeHTML(scent)} · ${escapeHTML(option)}</span><span class="pick-sub">주문 수량 ${quantity}개 · 선택 상품 금액 ${formatKRW(item.subtotal)}</span></span>`;
       $('#currentItemPrice').value = formatKRW(item.subtotal);
     }
 
@@ -3844,6 +3910,33 @@
       openAlertModal(text, title, kicker);
     }
 
+
+    function resetSelectionAfterCart() {
+      const scentField = $('#scent');
+      if (scentField) scentField.value = '';
+
+      $$('input[name="productOption"]').forEach((input) => {
+        input.checked = false;
+      });
+
+      const quantityField = $('#quantity');
+      if (quantityField) quantityField.value = 1;
+
+      updateOptionAvailability();
+      updateCurrentPick();
+
+      const feedback = $('#addCartFeedback');
+      if (feedback) {
+        feedback.textContent = '장바구니에 담았습니다. 다음 향을 선택할 수 있도록 선택값을 초기화했어요.';
+        feedback.classList.add('is-active');
+        window.setTimeout(() => {
+          feedback.classList.remove('is-active');
+        }, 2600);
+      }
+
+      scrollToTarget('scentStep');
+    }
+
     function addToCart() {
       const item = getCurrentItem();
       if (!item.scent) {
@@ -3875,8 +3968,8 @@
         cart.push(item);
       }
 
-      $('#quantity').value = 1;
       updateCart();
+      resetSelectionAfterCart();
     }
 
     function validateForm() {
@@ -4003,6 +4096,25 @@
 
     $('#hasEntranceCode').addEventListener('change', toggleEntranceCodeField);
     $('#entranceCode').addEventListener('input', syncEntranceMemo);
+
+    $$('.option-card').forEach((card) => {
+      const input = card.querySelector('input[name="productOption"]');
+      if (!input) return;
+
+      card.addEventListener('pointerdown', () => {
+        card.dataset.wasChecked = input.checked ? 'true' : 'false';
+      });
+
+      card.addEventListener('click', (event) => {
+        if (input.disabled || card.classList.contains('is-disabled')) return;
+        if (card.dataset.wasChecked === 'true') {
+          event.preventDefault();
+          input.checked = false;
+          card.dataset.wasChecked = 'false';
+          updateCurrentPick();
+        }
+      });
+    });
 
     $('#scent').addEventListener('change', updateOptionAvailability);
 
