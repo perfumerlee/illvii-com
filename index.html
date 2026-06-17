@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.36 -->
+<!-- ILLVII 향수 주문 페이지 v0.37 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.36</title>
+  <title>ILLVII 향수 주문하기 · v0.37</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -1282,7 +1282,7 @@
 
 
 
-    /* v0.36: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.37: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1599,7 +1599,7 @@
     }
 
 
-    /* v0.36: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.37: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2294,7 +2294,7 @@
     }
 
 
-    /* v0.36: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.37: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2462,7 +2462,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.36: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.37: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2654,7 +2654,7 @@
     }
 
 
-    /* v0.36: barcode logo + right top menu */
+    /* v0.37: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2816,7 +2816,7 @@
     }
 
 
-    /* v0.36: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.37: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2975,7 +2975,7 @@
 
 
 
-    /* v0.36: fixed header / mobile logo balance / refined alert modal */
+    /* v0.37: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3124,7 +3124,7 @@
 
   
 
-    /* v0.36: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.37: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3210,7 +3210,7 @@
 
   
 
-    /* v0.36: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.37: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3345,7 +3345,7 @@
       margin-left: 6px !important;
     }
   
-    /* v0.36 장바구니 담기 알림 인지 시간 보강 */
+    /* v0.37 장바구니 담기 알림 인지 시간 보강 */
     .cart-toast,
     .add-cart-toast,
     .add-cart-feedback.is-floating {
@@ -3366,7 +3366,7 @@
     }
 
   
-    /* v0.36 필수사항 확인 표시 */
+    /* v0.37 필수사항 확인 표시 */
     .section.is-invalid,
     .field.is-invalid,
     .privacy-box.is-invalid,
@@ -3826,9 +3826,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.36
+    // ILLVII 향수 주문 페이지 v0.37
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.36';
+    const APP_VERSION = 'v0.37';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
@@ -4245,6 +4245,68 @@
       }
     }
 
+    function setValidationMessage(container, message) {
+      if (!container || !container.classList.contains('is-invalid')) return;
+      const messageEl = container.querySelector('.validation-message');
+      if (messageEl) messageEl.textContent = message;
+    }
+
+    function restoreValidationFor(element, message) {
+      if (!element) return;
+      const field = element.closest('.field, .privacy-box, .cart-list');
+      const section = element.closest('.section');
+
+      if (field) {
+        field.classList.add('is-invalid');
+        setValidationMessage(field, message);
+        if (!field.querySelector('.validation-message')) {
+          addValidationMessage(field, message);
+        }
+      }
+
+      if (section) section.classList.add('is-invalid');
+    }
+
+    function validateActiveField(field) {
+      if (!field) return;
+
+      if (field.id === 'customerName') {
+        const message = '주문자 이름을 입력해주세요.';
+        field.value.trim() ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+
+      if (field.id === 'phone') {
+        const message = '연락처를 정확히 입력해주세요.';
+        onlyNumbers(field.value).length >= 10 ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+
+      if (field.id === 'postcode' || field.id === 'baseAddress') {
+        const message = '주소 검색으로 배송지를 입력해주세요.';
+        ($('#postcode').value.trim() && $('#baseAddress').value.trim()) ? (clearValidationFor($('#postcode')), clearValidationFor($('#baseAddress'))) : restoreValidationFor(field, message);
+        return;
+      }
+
+      if (field.id === 'detailAddress') {
+        const message = '상세주소를 입력해주세요.';
+        field.value.trim() ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+
+      if (field.id === 'entranceCode') {
+        const message = '공동현관 출입번호를 입력해주세요.';
+        (!$('#hasEntranceCode').checked || field.value.trim()) ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+
+      if (field.id === 'privacyAgree') {
+        const message = '개인정보 수집·이용 동의가 필요합니다.';
+        field.checked ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+    }
+
     function clearAllValidation() {
       $$('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
       $$('.validation-message').forEach((el) => el.remove());
@@ -4465,8 +4527,8 @@
           const zonecode = String(data.zonecode || '').padStart(5, '0');
           $('#postcode').value = zonecode;
           $('#baseAddress').value = addr;
-          clearValidationFor($('#postcode'));
-          clearValidationFor($('#baseAddress'));
+          validateActiveField($('#postcode'));
+          validateActiveField($('#baseAddress'));
           $('#detailAddress').focus();
           foldPostcode();
         },
@@ -4613,13 +4675,22 @@
 
 
     form.querySelectorAll('input, select, textarea').forEach((field) => {
-      field.addEventListener('focus', () => clearValidationFor(field));
-      field.addEventListener('input', () => clearValidationFor(field));
-      field.addEventListener('change', () => clearValidationFor(field));
+      const recheck = () => {
+        const container = field.closest('.field, .privacy-box');
+        if (container && container.classList.contains('is-invalid')) {
+          validateActiveField(field);
+        }
+      };
+      field.addEventListener('input', recheck);
+      field.addEventListener('change', recheck);
     });
 
     $$('input[name="productOption"]').forEach((field) => {
-      field.addEventListener('change', () => clearValidationFor(document.getElementById('optionStep')));
+      field.addEventListener('change', () => {
+        if (document.getElementById('optionStep')?.classList.contains('is-invalid')) {
+          getSelectedOption() ? clearValidationFor(document.getElementById('optionStep')) : restoreValidationFor(document.getElementById('optionStep'), '용량 / 구성을 선택해주세요.');
+        }
+      });
     });
 
     form.addEventListener('submit', async (e) => {
