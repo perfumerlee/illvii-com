@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.17 -->
+<!-- ILLVII 향수 주문 페이지 v0.19 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ILLVII 향수 주문하기 · v0.17</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>ILLVII 향수 주문하기 · v0.19</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -1181,7 +1181,7 @@
 
 
 
-    /* v0.17: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.19: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1498,7 +1498,7 @@
     }
 
 
-    /* v0.17: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.19: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2193,7 +2193,7 @@
     }
 
 
-    /* v0.17: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.19: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2361,7 +2361,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.17: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.19: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2552,16 +2552,280 @@
       }
     }
 
+
+    /* v0.19: barcode logo + right top menu */
+    .header-menu-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .brand {
+      font-size: clamp(30px, 4.8vw, 48px) !important;
+      font-weight: 1000 !important;
+      letter-spacing: .34em !important;
+      line-height: .82 !important;
+      transform: scaleX(.82);
+      transform-origin: left center;
+      font-family: Arial Black, Impact, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      text-rendering: geometricPrecision;
+    }
+
+    .menu-toggle {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(23,20,17,.14);
+      border-radius: 999px;
+      background: rgba(255,253,246,.72);
+      box-shadow: 0 12px 28px rgba(23,20,17,.07);
+      display: inline-grid;
+      place-content: center;
+      gap: 5px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--ink);
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .header-actions {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      min-width: 178px;
+      display: grid !important;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid rgba(23,20,17,.12);
+      border-radius: 22px;
+      background: rgba(255,253,246,.94);
+      box-shadow: 0 22px 54px rgba(23,20,17,.14);
+      backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+    }
+
+    .header-actions.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .header-actions .ghost-link {
+      width: 100%;
+      justify-content: flex-start;
+      text-align: left;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 14px;
+      padding: 11px 12px;
+    }
+
+    .header-actions .ghost-link:hover {
+      background: var(--ink);
+      color: #fffdf6;
+      transform: none;
+    }
+
+    @media (max-width: 640px) {
+      .header-inner { padding: 18px 20px; }
+      .brand { font-size: clamp(34px, 11vw, 48px) !important; letter-spacing: .30em !important; }
+      .menu-toggle { width: 46px; height: 46px; }
+      .header-actions { min-width: min(220px, calc(100vw - 36px)); }
+    }
+
+
+    /* v0.19: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    html,
+    body {
+      width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    button,
+    a,
+    input,
+    select,
+    textarea,
+    label,
+    .option-card,
+    .product-card {
+      touch-action: manipulation;
+    }
+
+    input,
+    select,
+    textarea {
+      font-size: max(16px, 1rem);
+    }
+
+    .wrap {
+      padding-top: clamp(28px, 4vw, 42px);
+    }
+
+    .hero {
+      padding-bottom: clamp(30px, 4.2vw, 48px);
+    }
+
+    .product-showcase {
+      margin-top: clamp(8px, 1.8vw, 16px);
+      margin-bottom: clamp(28px, 4vw, 44px);
+    }
+
+    .grid {
+      margin-top: 0;
+      gap: clamp(20px, 2.6vw, 30px);
+    }
+
+    .panel-head {
+      padding-bottom: 20px;
+    }
+
+    .section {
+      padding-top: clamp(24px, 3vw, 30px);
+      padding-bottom: clamp(24px, 3vw, 30px);
+    }
+
+    .scent-focus {
+      margin-bottom: 16px;
+    }
+
+    .option-focus {
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+    }
+
+    .add-cart-row {
+      align-items: center;
+    }
+
+    .add-cart-row .btn {
+      margin-left: auto;
+    }
+
+    .product-actions {
+      align-items: center;
+    }
+
+    .product-order-link {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+
+    #orderSummary {
+      scroll-margin-top: 112px;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding-bottom: 26px;
+      }
+
+      .product-showcase {
+        margin-bottom: 26px;
+      }
+
+      .grid {
+        gap: 18px;
+      }
+
+      .panel-head {
+        padding: 22px 20px 16px;
+      }
+
+      .section {
+        padding-top: 22px;
+        padding-bottom: 22px;
+      }
+
+      .scent-focus,
+      .option-focus {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .product-actions {
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .product-actions small {
+        display: block;
+      }
+
+      .product-order-link {
+        align-self: flex-end;
+        width: auto;
+        min-width: 156px;
+      }
+
+      .add-cart-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+        gap: 12px;
+      }
+
+      .add-cart-row .btn {
+        justify-self: end;
+        margin-left: 0;
+        min-width: 156px;
+      }
+
+      .cart-actions {
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .product-order-link,
+      .add-cart-row .btn {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
       <button type="button" class="brand brand-link" data-scroll-target="top" aria-label="ILLVII home">ILLVII</button>
-      <nav class="header-actions" aria-label="페이지 이동">
-        <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
-        <button type="button" class="ghost-link" data-scroll-target="orderForm">주문하기</button>
-      </nav>
+      <div class="header-menu-wrap">
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="headerMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="header-actions" id="headerMenu" aria-label="페이지 이동">
+          <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
+          <button type="button" class="ghost-link" data-scroll-target="orderForm">주문하기</button>
+          <button type="button" class="ghost-link" data-scroll-target="addressSection">배송지 정보</button>
+          <button type="button" class="ghost-link" data-scroll-target="orderSummary">주문 요약</button>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -2625,7 +2889,7 @@
           </div>
           <div class="product-actions">
             <small>5ml / 50ml 주문 가능</small>
-            <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="Solvia">SOLVIA 주문 선택</button>
+            <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="SOLVIA">SOLVIA 주문 선택</button>
           </div>
         </article>
 
@@ -2679,7 +2943,7 @@
             <label for="scent" class="required">주문할 향</label>
             <select id="scent" name="scent" required>
               <option value="">향을 선택해주세요</option>
-              <option value="Solvia">Solvia</option>
+              <option value="SOLVIA">SOLVIA</option>
               <option value="STEMLINE">STEMLINE</option>
               <option value="향 추천 요청">향 추천 요청</option>
             </select>
@@ -2767,7 +3031,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="addressSection">
           <div class="section-title"><span class="num">5</span> 배송지 정보</div>
           <div class="field">
             <label for="postcode" class="required">우편번호</label>
@@ -2834,7 +3098,7 @@
         </div>
       </form>
 
-      <aside class="panel summary" aria-label="주문 요약">
+      <aside id="orderSummary" class="panel summary" aria-label="주문 요약">
         <div class="panel-head">
           <h2>주문 요약</h2>
           <p>장바구니에 담긴 내용을 확인해주세요.</p>
@@ -2911,9 +3175,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.17
+    // ILLVII 향수 주문 페이지 v0.19
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.17';
+    const APP_VERSION = 'v0.19';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     const SHIPPING_FEE = 4000;
@@ -3360,8 +3624,37 @@
       updateCart();
     });
 
+    const menuToggle = $('#menuToggle');
+    const headerMenu = $('#headerMenu');
+
+    function closeHeaderMenu() {
+      if (!menuToggle || !headerMenu) return;
+      menuToggle.setAttribute('aria-expanded', 'false');
+      headerMenu.classList.remove('is-open');
+    }
+
+    if (menuToggle && headerMenu) {
+      menuToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        headerMenu.classList.toggle('is-open', !isOpen);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.header-menu-wrap')) closeHeaderMenu();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeHeaderMenu();
+      });
+    }
+
     $$('[data-scroll-target]').forEach((el) => {
-      el.addEventListener('click', () => scrollToTarget(el.dataset.scrollTarget));
+      el.addEventListener('click', () => {
+        scrollToTarget(el.dataset.scrollTarget);
+        closeHeaderMenu();
+      });
     });
 
     $$('[data-modal-close]').forEach((el) => {
