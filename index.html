@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.33 -->
+<!-- ILLVII 향수 주문 페이지 v0.35 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.33</title>
+  <title>ILLVII 향수 주문하기 · v0.35</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -1282,7 +1282,7 @@
 
 
 
-    /* v0.33: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.35: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1599,7 +1599,7 @@
     }
 
 
-    /* v0.33: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.35: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2294,7 +2294,7 @@
     }
 
 
-    /* v0.33: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.35: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2462,7 +2462,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.33: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.35: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2654,7 +2654,7 @@
     }
 
 
-    /* v0.33: barcode logo + right top menu */
+    /* v0.35: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2816,7 +2816,7 @@
     }
 
 
-    /* v0.33: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.35: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2975,7 +2975,7 @@
 
 
 
-    /* v0.33: fixed header / mobile logo balance / refined alert modal */
+    /* v0.35: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3124,7 +3124,7 @@
 
   
 
-    /* v0.33: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.35: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3210,7 +3210,7 @@
 
   
 
-    /* v0.33: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.35: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3345,11 +3345,24 @@
       margin-left: 6px !important;
     }
   
-    /* v0.33 장바구니 담기 알림 인지 시간 보강 */
+    /* v0.35 장바구니 담기 알림 인지 시간 보강 */
     .cart-toast,
     .add-cart-toast,
     .add-cart-feedback.is-floating {
       transition: opacity .55s ease, transform .55s ease, visibility .55s ease;
+    }
+
+  
+    input.address-trigger-input {
+      cursor: pointer;
+      background-image: linear-gradient(90deg, rgba(111, 91, 69, 0.06), rgba(255, 250, 242, 0));
+      border-color: rgba(111, 91, 69, 0.22);
+    }
+
+    input.address-trigger-input:hover,
+    input.address-trigger-input:focus {
+      border-color: rgba(61, 48, 36, 0.38);
+      box-shadow: 0 0 0 4px rgba(111, 91, 69, 0.08);
     }
 
   </style>
@@ -3375,9 +3388,9 @@
         <nav class="header-actions" id="headerMenu" aria-label="페이지 이동">
           <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
           <button type="button" class="ghost-link" data-scroll-target="guide">주문 접수 안내</button>
-          <button type="button" class="ghost-link" data-scroll-target="orderForm">주문하기</button>
+          <button type="button" class="ghost-link" data-scroll-target="orderForm">향수 주문하기</button>
           <button type="button" class="ghost-link" data-scroll-target="addressSection">배송지 정보</button>
-          <button type="button" class="ghost-link" data-scroll-target="orderSummary">주문 요약</button>
+          <button type="button" class="ghost-link" data-scroll-target="orderSummary">주문요약(장바구니)</button>
         </nav>
       </div>
     </div>
@@ -3604,7 +3617,7 @@
           <div class="field">
             <label for="postcode" class="required">우편번호</label>
             <div class="inline-group">
-              <input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="주소 검색으로 입력" readonly required />
+              <input id="postcode" name="postcode" type="text" inputmode="numeric" placeholder="주소 검색으로 입력" readonly required / class="address-trigger-input" title="클릭하면 주소 검색창이 열립니다" aria-label="우편번호, 클릭하면 주소 검색창이 열립니다">
               <button type="button" class="btn btn-secondary" id="addressSearchBtn">주소 검색</button>
             </div>
           </div>
@@ -3617,7 +3630,7 @@
           </div>
           <div class="field">
             <label for="baseAddress" class="required">기본주소</label>
-            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 자동 입력" readonly required />
+            <input id="baseAddress" name="baseAddress" type="text" placeholder="주소 검색으로 자동 입력" readonly required / class="address-trigger-input" title="클릭하면 주소 검색창이 열립니다" aria-label="기본주소, 클릭하면 주소 검색창이 열립니다">
           </div>
           <div class="field">
             <label for="detailAddress" class="required">상세주소</label>
@@ -3668,7 +3681,7 @@
 
       <aside id="orderSummary" class="panel summary" aria-label="주문 요약">
         <div class="panel-head">
-          <h2>주문 요약</h2>
+          <h2>주문요약(장바구니)</h2>
           <p>장바구니에 담긴 내용을 확인해주세요.</p>
         </div>
         <div class="summary-body">
@@ -3762,9 +3775,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.33
+    // ILLVII 향수 주문 페이지 v0.35
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.33';
+    const APP_VERSION = 'v0.35';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
@@ -4218,6 +4231,14 @@
       }
     }
 
+
+    function triggerAddressSearch() {
+      const addressBtn = $('#addressSearchBtn');
+      if (addressBtn) {
+        addressBtn.click();
+      }
+    }
+
     function openPostcode() {
       const Postcode = window.kakao?.Postcode || window.daum?.Postcode;
       if (!Postcode) {
@@ -4464,6 +4485,20 @@
         window.requestAnimationFrame(() => scrollToTarget('summaryPanel'));
       });
     }
+
+
+    ['postcode', 'baseAddress'].forEach((fieldId) => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.addEventListener('click', triggerAddressSearch);
+        field.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            triggerAddressSearch();
+          }
+        });
+      }
+    });
 
     updateCart();
   </script>
