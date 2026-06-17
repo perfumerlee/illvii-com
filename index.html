@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.20 -->
+<!-- ILLVII 향수 주문 페이지 v0.22 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.20</title>
+  <title>ILLVII 향수 주문하기 · v0.22</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -1208,7 +1208,7 @@
 
 
 
-    /* v0.20: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.22: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1525,7 +1525,7 @@
     }
 
 
-    /* v0.20: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.22: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2220,7 +2220,7 @@
     }
 
 
-    /* v0.20: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.22: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2388,7 +2388,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.20: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.22: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2580,7 +2580,7 @@
     }
 
 
-    /* v0.20: barcode logo + right top menu */
+    /* v0.22: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2686,7 +2686,7 @@
     }
 
 
-    /* v0.20: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.22: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2840,6 +2840,241 @@
       .product-order-link,
       .add-cart-row .btn {
         width: 100%;
+      }
+    }
+
+
+
+    /* v0.22: fixed header / mobile logo balance / refined alert modal */
+    :root { --header-height: 72px; }
+
+    body {
+      padding-top: var(--header-height);
+    }
+
+    .site-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 5000 !important;
+      background: rgba(247, 243, 236, .88) !important;
+      backdrop-filter: blur(18px) saturate(1.18);
+      -webkit-backdrop-filter: blur(18px) saturate(1.18);
+      border-bottom: 1px solid rgba(23,20,17,.10);
+      box-shadow: 0 10px 28px rgba(23,20,17,.055);
+    }
+
+    .header-inner {
+      min-height: 68px;
+      align-items: center !important;
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+    }
+
+    .brand {
+      font-size: clamp(24px, 3.2vw, 32px) !important;
+      letter-spacing: .26em !important;
+      line-height: .88 !important;
+      transform: scaleX(.88);
+      max-width: 66vw;
+      overflow: visible;
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      flex: 0 0 auto;
+    }
+
+    .alert-modal .modal-backdrop {
+      background: rgba(23, 20, 17, .54);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .alert-modal .modal-panel {
+      width: min(100%, 430px);
+      max-width: 430px;
+      border-radius: 30px;
+      padding: 26px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(239,255,185,.42), transparent 12rem),
+        linear-gradient(145deg, #fffdf6 0%, #f2eadf 100%);
+      border: 1px solid rgba(23,20,17,.10);
+      box-shadow: 0 34px 90px rgba(23,20,17,.30);
+      overflow: hidden;
+    }
+
+    .alert-modal .modal-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #171411 0%, #6f5b45 52%, #efffb9 100%);
+    }
+
+    .alert-modal .modal-close {
+      top: 16px;
+      right: 16px;
+      background: rgba(255,253,246,.82);
+      box-shadow: 0 8px 18px rgba(23,20,17,.08);
+    }
+
+    .alert-modal .modal-kicker {
+      display: inline-flex;
+      align-items: center;
+      width: auto;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(23,20,17,.08);
+      color: #171411;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .02em;
+    }
+
+    .alert-modal .modal-panel h2 {
+      font-size: clamp(23px, 5.8vw, 30px);
+      letter-spacing: -0.06em;
+      padding-right: 42px;
+    }
+
+    .alert-modal .modal-copy {
+      margin: 14px 0 0;
+      padding: 16px 17px;
+      border-radius: 20px;
+      background: rgba(255,253,246,.68);
+      border: 1px solid rgba(23,20,17,.08);
+      color: #2b241f;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .alert-modal .modal-actions {
+      margin-top: 16px;
+    }
+
+    .alert-confirm-btn {
+      min-width: 132px;
+      border-radius: 999px;
+      background: #171411 !important;
+      color: #fffdf6 !important;
+      border-color: #171411 !important;
+      box-shadow: 0 16px 32px rgba(23,20,17,.20);
+    }
+
+    @media (max-width: 640px) {
+      :root { --header-height: 62px; }
+      .header-inner {
+        min-height: 62px;
+        padding: 10px 16px !important;
+        gap: 10px;
+      }
+      .brand {
+        font-size: clamp(23px, 7.2vw, 31px) !important;
+        letter-spacing: .22em !important;
+        transform: scaleX(.88);
+        max-width: calc(100vw - 92px);
+      }
+      .menu-toggle {
+        width: 42px !important;
+        height: 42px !important;
+      }
+      .menu-toggle span { width: 17px; }
+      .alert-modal { padding: 16px; }
+      .alert-modal .modal-panel { padding: 24px 18px 18px; border-radius: 26px; }
+      .alert-modal .modal-actions { justify-content: stretch; }
+      .alert-confirm-btn { width: 100%; }
+    }
+
+  
+
+    /* v0.22: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    .product-card {
+      gap: 0;
+    }
+
+    .note-spectrum {
+      margin: 22px 0 14px;
+      gap: 8px;
+    }
+
+    .spectrum-piece {
+      min-height: 66px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      align-items: center;
+    }
+
+    .note-list {
+      margin-top: 10px;
+      padding: 14px 0 0;
+      gap: 8px;
+      border-top: 1px solid rgba(23,20,17,.10);
+    }
+
+    .note-list div {
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 14px;
+      align-items: baseline;
+      padding: 0 0 6px;
+      border-top: 0;
+    }
+
+    .note-list div:last-child {
+      padding-bottom: 0;
+    }
+
+    .note-list dt,
+    .note-list dd {
+      line-height: 1.45;
+    }
+
+    .flow-box {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 22px;
+      line-height: 1.72;
+    }
+
+    .product-actions {
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    @media (max-width: 720px) {
+      .note-spectrum {
+        margin: 20px 0 12px;
+        gap: 8px;
+      }
+
+      .spectrum-piece {
+        min-height: 62px;
+        padding: 13px 14px;
+        border-radius: 18px;
+      }
+
+      .note-list {
+        margin-top: 8px;
+        padding-top: 12px;
+        gap: 7px;
+      }
+
+      .note-list div {
+        grid-template-columns: 70px minmax(0, 1fr);
+        gap: 12px;
+        padding-bottom: 5px;
+      }
+
+      .flow-box {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 20px;
       }
     }
 
@@ -3222,20 +3457,32 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.20
+    // ILLVII 향수 주문 페이지 v0.22
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.20';
+    const APP_VERSION = 'v0.22';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
 
+    function syncHeaderHeight() {
+      const header = document.querySelector('.site-header');
+      if (!header) return;
+      const height = Math.ceil(header.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--header-height', `${height}px`);
+    }
+
+    window.addEventListener('DOMContentLoaded', syncHeaderHeight);
+    window.addEventListener('resize', syncHeaderHeight);
+
     window.addEventListener('load', () => {
+      syncHeaderHeight();
       setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
     });
 
     window.addEventListener('pageshow', () => {
+      syncHeaderHeight();
       setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
     });
 
