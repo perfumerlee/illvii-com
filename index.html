@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.30 -->
+<!-- ILLVII 향수 주문 페이지 v0.32 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.30</title>
+  <title>ILLVII 향수 주문하기 · v0.32</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -112,7 +112,7 @@
       padding: 34px 20px 80px;
     }
 
-    #top, #products, #orderForm, #guide, #scentStep {
+    #top, #products, #orderForm, #guide, #summaryPanel, #scentStep, #summaryPanel {
       scroll-margin-top: 96px;
     }
 
@@ -1282,7 +1282,7 @@
 
 
 
-    /* v0.30: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.32: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1599,7 +1599,7 @@
     }
 
 
-    /* v0.30: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.32: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2294,7 +2294,7 @@
     }
 
 
-    /* v0.30: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.32: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2462,7 +2462,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.30: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.32: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2654,7 +2654,7 @@
     }
 
 
-    /* v0.30: barcode logo + right top menu */
+    /* v0.32: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2816,7 +2816,7 @@
     }
 
 
-    /* v0.30: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.32: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2975,7 +2975,7 @@
 
 
 
-    /* v0.30: fixed header / mobile logo balance / refined alert modal */
+    /* v0.32: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3124,7 +3124,7 @@
 
   
 
-    /* v0.30: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.32: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3210,7 +3210,7 @@
 
   
 
-    /* v0.30: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.32: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3754,9 +3754,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.30
+    // ILLVII 향수 주문 페이지 v0.32
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.30';
+    const APP_VERSION = 'v0.32';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
@@ -3896,7 +3896,7 @@
     }
 
     function scrollToTarget(targetId) {
-      const target = document.getElementById(targetId);
+      const target = document.getElementById(targetId) || (targetId === 'summaryPanel' ? document.querySelector('.summary') : null);
       if (!target) return;
 
       const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
@@ -4083,6 +4083,11 @@
       }, 1550);
     }
 
+
+    function getAfterCartScrollTarget() {
+      return window.matchMedia('(max-width: 720px)').matches ? 'orderForm' : 'scentStep';
+    }
+
     function resetSelectionAfterCart() {
       const scentField = $('#scent');
       if (scentField) scentField.value = '';
@@ -4104,7 +4109,7 @@
       }
 
       showCartToast();
-      scrollToTarget('scentStep');
+      scrollToTarget(getAfterCartScrollTarget());
     }
 
     function addToCart() {
@@ -4427,11 +4432,28 @@
 
     updateOptionAvailability();
 
+
+    function closeHeaderMenuIfOpen() {
+      const menu = document.querySelector('.menu-panel, .mobile-menu, .header-menu, .gnb-menu');
+      const toggle = document.querySelector('.menu-toggle');
+      if (menu) {
+        menu.classList.remove('is-open', 'active', 'open');
+        menu.setAttribute('aria-hidden', 'true');
+      }
+      if (toggle) {
+        toggle.classList.remove('is-open', 'active', 'open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      document.body.classList.remove('menu-open');
+    }
+
     const cartShortcutBtn = $('#cartShortcutBtn');
     if (cartShortcutBtn) {
-      cartShortcutBtn.addEventListener('click', () => {
-        if (typeof closeMenu === 'function') closeMenu();
-        scrollToTarget('summaryPanel');
+      cartShortcutBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        closeHeaderMenuIfOpen();
+        window.requestAnimationFrame(() => scrollToTarget('summaryPanel'));
       });
     }
 
