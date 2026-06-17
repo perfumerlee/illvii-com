@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.25 -->
+<!-- ILLVII 향수 주문 페이지 v0.30 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.25</title>
+  <title>ILLVII 향수 주문하기 · v0.30</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   <!-- Kakao 우편번호 서비스 -->
@@ -681,6 +681,63 @@
       display: block;
     }
 
+    .cart-toast {
+      position: fixed;
+      left: 50%;
+      top: calc(var(--header-height, 76px) + 18px);
+      z-index: 120;
+      transform: translate(-50%, -8px);
+      width: min(440px, calc(100vw - 32px));
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 250, 242, 0.94);
+      border: 1px solid rgba(33, 28, 24, 0.14);
+      box-shadow: 0 20px 60px rgba(33, 28, 24, 0.18);
+      color: var(--ink);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .42s ease, transform .42s ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .cart-toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .cart-toast.is-fading {
+      opacity: 0;
+      transform: translate(-50%, -12px);
+    }
+
+    .cart-toast-kicker {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #171411;
+      color: #fffdf6;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .cart-toast strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.35;
+      letter-spacing: -0.04em;
+    }
+
+    .cart-toast span:last-child {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
     .current-pick {
       color: var(--muted);
       font-size: 13px;
@@ -1225,7 +1282,7 @@
 
 
 
-    /* v0.25: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.30: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1542,7 +1599,7 @@
     }
 
 
-    /* v0.25: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.30: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2237,7 +2294,7 @@
     }
 
 
-    /* v0.25: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.30: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2405,7 +2462,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.25: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.30: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2597,7 +2654,7 @@
     }
 
 
-    /* v0.25: barcode logo + right top menu */
+    /* v0.30: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2623,6 +2680,60 @@
       text-rendering: geometricPrecision;
     }
 
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .cart-shortcut {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, 0.78);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      flex: 0 0 auto;
+    }
+
+    .cart-shortcut:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 250, 242, 0.95);
+      border-color: rgba(61, 48, 36, 0.22);
+    }
+
+    .cart-shortcut svg {
+      width: 23px;
+      height: 23px;
+      stroke-width: 2.15;
+    }
+
+    .cart-count {
+      position: absolute;
+      right: -3px;
+      top: -5px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: var(--accent-dark);
+      color: #fffaf2;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 19px;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(33, 28, 24, .16);
+    }
+
     .menu-toggle {
       width: 48px;
       height: 48px;
@@ -2636,6 +2747,8 @@
       cursor: pointer;
       appearance: none;
       -webkit-appearance: none;
+    
+      flex: 0 0 auto;
     }
 
     .menu-toggle span {
@@ -2703,7 +2816,7 @@
     }
 
 
-    /* v0.25: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.30: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -2862,7 +2975,7 @@
 
 
 
-    /* v0.25: fixed header / mobile logo balance / refined alert modal */
+    /* v0.30: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3011,7 +3124,7 @@
 
   
 
-    /* v0.25: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.30: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3097,7 +3210,7 @@
 
   
 
-    /* v0.25: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.30: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3222,6 +3335,15 @@
       .current-pick.has-selection { display: block; }
     }
 
+  
+    .header-tools .menu-toggle {
+      margin-left: 0 !important;
+      flex: 0 0 auto;
+    }
+  
+    .cart-shortcut + .menu-toggle {
+      margin-left: 6px !important;
+    }
   </style>
 </head>
 <body>
@@ -3229,11 +3351,22 @@
     <div class="header-inner">
       <button type="button" class="brand brand-link" data-scroll-target="top" aria-label="ILLVII home">ILLVII</button>
       <div class="header-menu-wrap">
-        <button type="button" class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="headerMenu">
+                <div class="header-tools">
+<button type="button" class="cart-shortcut" id="cartShortcutBtn" data-scroll-target="summaryPanel" aria-label="주문 요약으로 이동">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M6.5 7.5h14l-1.6 8.1a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.6L5.4 4.8H3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="9.5" cy="20" r="1.1"></circle>
+            <circle cx="17.2" cy="20" r="1.1"></circle>
+          </svg>
+          <span class="cart-count" id="cartShortcutCount">0</span>
+        </button>
+<button type="button" class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="headerMenu">
           <span></span><span></span><span></span>
         </button>
+      </div>
         <nav class="header-actions" id="headerMenu" aria-label="페이지 이동">
           <button type="button" class="ghost-link" data-scroll-target="products">제품 소개</button>
+          <button type="button" class="ghost-link" data-scroll-target="guide">주문 접수 안내</button>
           <button type="button" class="ghost-link" data-scroll-target="orderForm">주문하기</button>
           <button type="button" class="ghost-link" data-scroll-target="addressSection">배송지 정보</button>
           <button type="button" class="ghost-link" data-scroll-target="orderSummary">주문 요약</button>
@@ -3579,6 +3712,12 @@
 
   </main>
 
+  <div class="cart-toast" id="cartToast" role="status" aria-live="polite" aria-hidden="true">
+    <span class="cart-toast-kicker">장바구니</span>
+    <strong id="cartToastTitle">장바구니에 담았습니다.</strong>
+    <span id="cartToastMessage">향 선택 영역으로 이동합니다.</span>
+  </div>
+
   <div class="order-modal alert-modal" id="alertModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle" aria-hidden="true">
     <div class="modal-backdrop" data-alert-close></div>
     <div class="modal-panel" role="document">
@@ -3615,9 +3754,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.25
+    // ILLVII 향수 주문 페이지 v0.30
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.25';
+    const APP_VERSION = 'v0.30';
     const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
 
     if ('scrollRestoration' in history) {
@@ -3660,6 +3799,7 @@
     const postcodeEmbed = $('#postcodeEmbed');
     const orderCompleteModal = $('#orderCompleteModal');
     const alertModal = $('#alertModal');
+    const cartToast = $('#cartToast');
     const cart = [];
 
     function formatKRW(value) {
@@ -3888,6 +4028,13 @@
       $('#summarySubtotal').textContent = formatKRW(totals.subtotal);
       $('#summaryShipping').textContent = totals.shippingFee === 0 ? '무료' : formatKRW(totals.shippingFee);
       $('#summaryTotal').textContent = formatKRW(totals.total);
+
+      const cartShortcutCount = $('#cartShortcutCount');
+      if (cartShortcutCount) {
+        const groupCount = cart.length;
+        cartShortcutCount.textContent = String(groupCount);
+        cartShortcutCount.setAttribute('aria-label', `장바구니 제품군 ${groupCount}개`);
+      }
       updateCurrentPick();
     }
 
@@ -3911,6 +4058,31 @@
     }
 
 
+
+    function showCartToast(title = '장바구니에 담았습니다.', message = '다음 제품을 선택할 수 있도록 향 선택 영역으로 이동합니다.') {
+      if (!cartToast) return;
+      const toastTitle = $('#cartToastTitle');
+      const toastMessage = $('#cartToastMessage');
+      if (toastTitle) toastTitle.textContent = title;
+      if (toastMessage) toastMessage.textContent = message;
+
+      cartToast.classList.remove('is-fading');
+      cartToast.classList.add('is-visible');
+      cartToast.setAttribute('aria-hidden', 'false');
+
+      window.clearTimeout(cartToast._fadeTimer);
+      window.clearTimeout(cartToast._hideTimer);
+
+      cartToast._fadeTimer = window.setTimeout(() => {
+        cartToast.classList.add('is-fading');
+      }, 900);
+
+      cartToast._hideTimer = window.setTimeout(() => {
+        cartToast.classList.remove('is-visible', 'is-fading');
+        cartToast.setAttribute('aria-hidden', 'true');
+      }, 1550);
+    }
+
     function resetSelectionAfterCart() {
       const scentField = $('#scent');
       if (scentField) scentField.value = '';
@@ -3927,13 +4099,11 @@
 
       const feedback = $('#addCartFeedback');
       if (feedback) {
-        feedback.textContent = '장바구니에 담았습니다. 다음 향을 선택할 수 있도록 선택값을 초기화했어요.';
-        feedback.classList.add('is-active');
-        window.setTimeout(() => {
-          feedback.classList.remove('is-active');
-        }, 2600);
+        feedback.textContent = '';
+        feedback.classList.remove('is-active');
       }
 
+      showCartToast();
       scrollToTarget('scentStep');
     }
 
@@ -4256,6 +4426,15 @@
     });
 
     updateOptionAvailability();
+
+    const cartShortcutBtn = $('#cartShortcutBtn');
+    if (cartShortcutBtn) {
+      cartShortcutBtn.addEventListener('click', () => {
+        if (typeof closeMenu === 'function') closeMenu();
+        scrollToTarget('summaryPanel');
+      });
+    }
+
     updateCart();
   </script>
 
