@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.49 -->
+<!-- ILLVII 향수 주문 페이지 v0.52 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.49</title>
+  <title>ILLVII 향수 주문하기 · v0.52</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   
@@ -1303,7 +1303,7 @@
 
 
 
-    /* v0.49: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.52: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1630,7 +1630,7 @@
     }
 
 
-    /* v0.49: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.52: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2335,7 +2335,7 @@
     }
 
 
-    /* v0.49: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.52: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2503,7 +2503,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.49: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.52: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2695,7 +2695,7 @@
     }
 
 
-    /* v0.49: barcode logo + right top menu */
+    /* v0.52: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2857,7 +2857,7 @@
     }
 
 
-    /* v0.49: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.52: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -3016,7 +3016,7 @@
 
 
 
-    /* v0.49: fixed header / mobile logo balance / refined alert modal */
+    /* v0.52: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3165,7 +3165,7 @@
 
   
 
-    /* v0.49: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.52: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3251,7 +3251,7 @@
 
   
 
-    /* v0.49: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.52: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3386,7 +3386,7 @@
       margin-left: 6px !important;
     }
   
-    /* v0.49 장바구니 담기 알림 인지 시간 보강 */
+    /* v0.52 장바구니 담기 알림 인지 시간 보강 */
     .cart-toast,
     .add-cart-toast,
     .add-cart-feedback.is-floating {
@@ -3407,7 +3407,7 @@
     }
 
   
-    /* v0.49 필수사항 확인 표시 */
+    /* v0.52 필수사항 확인 표시 */
     .section.is-invalid,
     .field.is-invalid,
     .privacy-box.is-invalid,
@@ -3458,7 +3458,7 @@
     }
 
   
-    /* v0.49 카드/영역 여백 균형 조정 */
+    /* v0.52 카드/영역 여백 균형 조정 */
     .product-showcase {
       padding: clamp(16px, 2.2vw, 22px);
     }
@@ -3643,7 +3643,7 @@
     }
 
   
-    /* v0.49 주문 전환 보강 */
+    /* v0.52 주문 전환 보강 */
     .signature-badge {
       background: var(--scent-ink);
       color: #fffdf6;
@@ -3714,6 +3714,155 @@
       color: var(--muted);
       font-size: 12px;
       font-weight: 700;
+    }
+
+  
+    /* v0.52 제품 카드 균일화 및 상세 토글 */
+    .product-card {
+      min-height: clamp(500px, 42vw, 560px);
+    }
+
+    .product-card .product-copy {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-detail-panel[hidden] {
+      display: none !important;
+    }
+
+    .product-detail-panel {
+      margin-top: 4px;
+    }
+
+    .product-detail-toggle {
+      width: 100%;
+      margin-top: auto;
+      border: 1px solid rgba(23,20,17,.12);
+      border-radius: 18px;
+      background: rgba(255,253,246,.72);
+      color: var(--scent-ink);
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .product-detail-toggle:hover {
+      transform: translateY(-1px);
+      background: rgba(255,253,246,.92);
+      border-color: rgba(23,20,17,.20);
+    }
+
+    .product-card.is-expanded {
+      min-height: auto;
+    }
+
+    .product-card.is-expanded .product-copy {
+      display: block;
+      overflow: visible;
+    }
+
+    .product-card.is-expanded .product-detail-toggle {
+      margin-top: 18px;
+      background: var(--scent-ink);
+      color: #fffdf6;
+      border-color: transparent;
+    }
+
+    .product-card.is-expanded .product-actions {
+      margin-top: 18px;
+    }
+
+    @media (min-width: 1080px) {
+      .product-card {
+        min-height: 560px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .product-card {
+        min-height: auto;
+      }
+
+      .product-card .product-copy {
+        -webkit-line-clamp: 5;
+      }
+
+      .product-detail-toggle {
+        margin-top: 18px;
+      }
+    }
+
+  
+    /* v0.52 제품 카드 토글 일괄 적용 보정 */
+    .product-cards .product-card {
+      min-height: clamp(500px, 42vw, 560px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-cards .product-detail-panel[hidden] {
+      display: none !important;
+    }
+
+    .product-cards .product-detail-toggle {
+      margin-top: auto;
+    }
+
+    .product-cards .product-actions {
+      margin-top: 16px;
+    }
+
+    .product-cards .product-card.is-expanded {
+      min-height: auto;
+    }
+
+    .product-cards .product-card.is-expanded .product-detail-toggle {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 720px) {
+      .product-cards .product-card {
+        min-height: auto;
+      }
+
+      .product-cards .product-detail-toggle {
+        margin-top: 18px;
+      }
+    }
+
+  
+    /* v0.52 제품 카드 토글 누락 보정 */
+    .product-cards .product-card {
+      min-height: clamp(500px, 42vw, 560px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-cards .product-detail-panel[hidden] {
+      display: none !important;
+    }
+
+    .product-cards .product-detail-toggle {
+      margin-top: auto;
+    }
+
+    .product-cards .product-actions {
+      margin-top: 16px;
+    }
+
+    .product-cards .product-card.is-expanded {
+      min-height: auto;
+    }
+
+    @media (max-width: 720px) {
+      .product-cards .product-card {
+        min-height: auto;
+      }
     }
 
   </style>
@@ -3797,7 +3946,6 @@
         <article class="product-card scent-la-dolce-vita">
           <div class="product-topline">
             ILLVII · Perfumer YDO
-            <span class="product-badge signature-badge">대표향수</span>
             <span class="product-badge">Fruity Floral</span>
           </div>
           <h3>LA DOLCE VITA <span class="kr-name">라돌체비타</span></h3>
@@ -3811,6 +3959,7 @@
             <span>데일리 무드</span>
             <span>대표 향수</span>
           </div>
+          <div class="product-detail-panel" hidden>
           <div class="note-spectrum" aria-label="LA DOLCE VITA 노트 색상 팔레트">
             <span class="spectrum-piece spectrum-top"><strong>Top</strong><em>Pineapple · Strawberry · Grapefruit</em></span>
             <span class="spectrum-piece spectrum-middle"><strong>Middle</strong><em>Peony · Jasmine · Lily of the Valley</em></span>
@@ -3824,6 +3973,8 @@
           <div class="flow-box">
             파인애플·스트로베리의 달콤하고 생기 있는 프루티 톤으로 시작해, 화이트 플로럴의 깨끗한 중심을 지나 오크모스·패출리·머스크의 포근한 잔향으로 마무리됩니다.
           </div>
+          </div>
+          <button type="button" class="product-detail-toggle" aria-expanded="false">향 자세히 보기</button>
           <div class="product-actions">
             <small>5ml / 50ml 주문 가능</small>
             <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="LA DOLCE VITA">LA DOLCE VITA 주문 선택</button>
@@ -3846,6 +3997,7 @@
             <span>첫인상 리셋</span>
             <span>포켓 사이즈</span>
           </div>
+          <div class="product-detail-panel" hidden>
           <div class="note-spectrum" aria-label="SOLVIA 노트 색상 팔레트">
             <span class="spectrum-piece spectrum-top"><strong>Top</strong><em>Lemon · Lime · Apple</em></span>
             <span class="spectrum-piece spectrum-middle"><strong>Middle</strong><em>Rose · Jasmine · Lavender</em></span>
@@ -3859,6 +4011,8 @@
           <div class="flow-box">
             강한 시트러스 톤으로 시작해 산뜻한 플로럴/프루티 느낌을 유지하고, 우디 계열의 잔향으로 부드럽게 마무리됩니다.
           </div>
+          </div>
+          <button type="button" class="product-detail-toggle" aria-expanded="false">향 자세히 보기</button>
           <div class="product-actions">
             <small>5ml / 50ml 주문 가능</small>
             <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="SOLVIA">SOLVIA 주문 선택</button>
@@ -3881,6 +4035,7 @@
             <span>우디 잔향</span>
             <span>기분 전환</span>
           </div>
+          <div class="product-detail-panel" hidden>
           <div class="note-spectrum" aria-label="STEMLINE 노트 색상 팔레트">
             <span class="spectrum-piece spectrum-top"><strong>Top</strong><em>Grapefruit · Bergamote · Petitgrain</em></span>
             <span class="spectrum-piece spectrum-middle"><strong>Middle</strong><em>Rose · Muguet · Patchouli</em></span>
@@ -3894,6 +4049,8 @@
           <div class="flow-box">
             선명한 시트러스가 첫 느낌을 정돈하고, 플로럴/그린 톤을 지나 베티버·시더·샌달우드의 잔향으로 차분하게 이어집니다.
           </div>
+          </div>
+          <button type="button" class="product-detail-toggle" aria-expanded="false">향 자세히 보기</button>
           <div class="product-actions">
             <small>5ml 주문 가능 · 50ml 구매불가</small>
             <button type="button" class="product-order-link" data-scroll-target="orderForm" data-scent-target="STEMLINE">STEMLINE 주문 선택</button>
@@ -4203,9 +4360,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.49
+    // ILLVII 향수 주문 페이지 v0.52
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.49';
+    const APP_VERSION = 'v0.52';
     const ORDER_WEB_APP_URL = '여기에_APPS_SCRIPT_WEB_APP_URL_붙여넣기';
 
     if ('scrollRestoration' in history) {
@@ -5123,6 +5280,21 @@
         closeAlertModal();
         closeLegalModal();
       }
+    });
+
+
+    $$('.product-detail-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.product-card');
+        const panel = card ? card.querySelector('.product-detail-panel') : null;
+        if (!card || !panel) return;
+
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!expanded));
+        button.textContent = expanded ? '향 자세히 보기' : '간단히 보기';
+        panel.hidden = expanded;
+        card.classList.toggle('is-expanded', !expanded);
+      });
     });
 
     $$('.product-order-link').forEach((link) => {
