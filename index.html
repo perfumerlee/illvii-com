@@ -1,16 +1,32 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.45 -->
+<!-- ILLVII 향수 주문 페이지 v0.48 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.45</title>
+  <title>ILLVII 향수 주문하기 · v0.48</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
-  <link rel="icon" type="image/svg+xml" href="./assets/illvii-logo-yellow.svg?v=0.45" />
-  <link rel="icon" type="image/png" href="./assets/illvii-logo-yellow.png?v=0.45" />
-  <link rel="alternate icon" type="image/png" href="./assets/illvii-logo-yellow.png?v=0.45" />
-  <link rel="preload" href="./assets/illvii-pattern-yellow.svg?v=0.45" as="image" type="image/svg+xml" />
+  
+  <!-- Security / SEO metadata -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://t1.kakaocdn.net https://cdn.channel.io; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.channel.io wss://*.channel.io https://*.google.com https://*.googleusercontent.com; frame-src 'self' https://postcode.map.daum.net https://*.daum.net https://*.kakao.com https://*.channel.io; form-action 'self' https://script.google.com; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=(), magnetometer=()" />
+  <link rel="canonical" href="https://illvii.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ILLVII" />
+  <meta property="og:title" content="ILLVII 향수 주문하기" />
+  <meta property="og:description" content="ILLVII의 향수를 온라인으로 주문할 수 있습니다. 원하는 향과 용량을 선택해 장바구니에 담고 주문을 접수해주세요." />
+  <meta property="og:url" content="https://illvii.com/" />
+  <meta property="og:image" content="https://illvii.com/assets/illvii-logo-yellow.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ILLVII 향수 주문하기" />
+  <meta name="twitter:description" content="ILLVII의 향수를 온라인으로 주문할 수 있습니다." />
+  <meta name="twitter:image" content="https://illvii.com/assets/illvii-logo-yellow.png" />
+<link rel="icon" type="image/svg+xml" href="./assets/illvii-logo-yellow.svg?v=0.47" />
+  <link rel="icon" type="image/png" href="./assets/illvii-logo-yellow.png?v=0.47" />
+  <link rel="alternate icon" type="image/png" href="./assets/illvii-logo-yellow.png?v=0.47" />
+  <link rel="preload" href="./assets/illvii-pattern-yellow.svg?v=0.47" as="image" type="image/svg+xml" />
 
   <!-- Kakao 우편번호 서비스 -->
   <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -1287,7 +1303,7 @@
 
 
 
-    /* v0.45: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.48: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1614,7 +1630,7 @@
     }
 
 
-    /* v0.45: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.48: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2319,7 +2335,7 @@
     }
 
 
-    /* v0.45: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.48: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2487,7 +2503,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.45: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.48: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2679,7 +2695,7 @@
     }
 
 
-    /* v0.45: barcode logo + right top menu */
+    /* v0.48: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2841,7 +2857,7 @@
     }
 
 
-    /* v0.45: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.48: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -3000,7 +3016,7 @@
 
 
 
-    /* v0.45: fixed header / mobile logo balance / refined alert modal */
+    /* v0.48: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3149,7 +3165,7 @@
 
   
 
-    /* v0.45: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.48: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3235,7 +3251,7 @@
 
   
 
-    /* v0.45: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.48: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3370,7 +3386,7 @@
       margin-left: 6px !important;
     }
   
-    /* v0.45 장바구니 담기 알림 인지 시간 보강 */
+    /* v0.48 장바구니 담기 알림 인지 시간 보강 */
     .cart-toast,
     .add-cart-toast,
     .add-cart-feedback.is-floating {
@@ -3391,7 +3407,7 @@
     }
 
   
-    /* v0.45 필수사항 확인 표시 */
+    /* v0.48 필수사항 확인 표시 */
     .section.is-invalid,
     .field.is-invalid,
     .privacy-box.is-invalid,
@@ -3442,7 +3458,7 @@
     }
 
   
-    /* v0.45 카드/영역 여백 균형 조정 */
+    /* v0.48 카드/영역 여백 균형 조정 */
     .product-showcase {
       padding: clamp(16px, 2.2vw, 22px);
     }
@@ -3545,6 +3561,85 @@
         margin-left: 10px;
         margin-right: 10px;
       }
+    }
+
+  
+    .footer-legal-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      color: rgba(33, 28, 24, .62);
+      font-size: 12px;
+    }
+
+    .footer-legal-links a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+  
+    .legal-agreements {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .legal-agreements .privacy-box {
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .agreement-copy {
+      flex: 1 1 auto;
+      color: var(--ink);
+      font-weight: 650;
+      line-height: 1.45;
+    }
+
+    .agreement-required {
+      color: var(--danger);
+      font-weight: 850;
+      margin-right: 4px;
+    }
+
+    .agreement-detail-btn {
+      flex: 0 0 auto;
+      border: 1px solid rgba(33, 28, 24, .14);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, .9);
+      color: var(--muted);
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 750;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .legal-modal-body {
+      max-height: min(58vh, 560px);
+      overflow: auto;
+      padding-right: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .legal-modal-body h3 {
+      margin: 18px 0 8px;
+      color: var(--ink);
+      font-size: 16px;
+      letter-spacing: -.02em;
+    }
+
+    .legal-modal-body ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .legal-modal-body li + li {
+      margin-top: 4px;
     }
 
   </style>
@@ -3889,12 +3984,23 @@
             <label for="memo">추가 요청사항</label>
             <textarea id="memo" name="memo" placeholder="선물용 여부, 배송 관련 요청사항 등을 남겨주세요."></textarea>
           </div>
-          <label class="privacy-box">
-            <input id="privacyAgree" name="privacyAgree" type="checkbox" required />
-            <span>
-              주문 접수와 배송 안내를 위해 이름, 연락처, 주소, 주문 내용을 수집·이용하는 것에 동의합니다.
-            </span>
-          </label>
+          <div class="legal-agreements" aria-label="필수 동의 항목">
+            <label class="privacy-box">
+              <input id="termsAgree" name="termsAgree" type="checkbox" required />
+              <span class="agreement-copy"><span class="agreement-required">[필수]</span>이용약관 및 주문 안내에 동의합니다.</span>
+              <button type="button" class="agreement-detail-btn" data-legal-modal="terms">내용보기</button>
+            </label>
+            <label class="privacy-box">
+              <input id="privacyAgree" name="privacyAgree" type="checkbox" required />
+              <span class="agreement-copy"><span class="agreement-required">[필수]</span>개인정보 수집 및 이용에 동의합니다.</span>
+              <button type="button" class="agreement-detail-btn" data-legal-modal="privacy">내용보기</button>
+            </label>
+            <label class="privacy-box">
+              <input id="refundAgree" name="refundAgree" type="checkbox" required />
+              <span class="agreement-copy"><span class="agreement-required">[필수]</span>교환·환불 안내를 확인했습니다.</span>
+              <button type="button" class="agreement-detail-btn" data-legal-modal="refund">내용보기</button>
+            </label>
+          </div>
         </div>
       </form>
 
@@ -3944,6 +4050,15 @@
             <div><dt>개인정보보호책임자</dt><dd>이태하</dd></div>
             <div><dt>고객센터</dt><dd><a class="footer-mail" href="mailto:illvii@perfumery.kr">illvii@perfumery.kr</a><span class="footer-subtle"> · 우측 하단 채널톡 상담 가능</span></dd></div>
           </dl>
+          <div class="footer-legal-links" aria-label="정책 링크">
+            <a href="./legal_files/terms.html">이용약관</a>
+            <span aria-hidden="true">·</span>
+            <a href="./legal_files/order-guide.html">주문 안내</a>
+            <span aria-hidden="true">·</span>
+            <a href="./legal_files/privacy.html">개인정보처리방침</a>
+            <span aria-hidden="true">·</span>
+            <a href="./legal_files/refund.html">교환/환불 안내</a>
+          </div>
         </section>
 
         <p class="shop-footer-copy"><span>© ILLVII. All rights reserved.</span><span>주문 및 배송 문의는 고객센터 이메일 또는 채널톡으로 남겨주세요.</span></p>
@@ -3971,6 +4086,20 @@
     </div>
   </div>
 
+
+  <div class="order-modal alert-modal" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-legal-close></div>
+    <div class="modal-panel" role="document">
+      <button type="button" class="modal-close" data-legal-close aria-label="정책 안내창 닫기">×</button>
+      <p class="modal-kicker" id="legalModalKicker">일비 정책 안내</p>
+      <h2 id="legalModalTitle">정책 안내</h2>
+      <div class="legal-modal-body" id="legalModalBody"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn alert-confirm-btn" data-legal-close>확인했습니다</button>
+      </div>
+    </div>
+  </div>
+
   <div class="order-modal" id="orderCompleteModal" role="dialog" aria-modal="true" aria-labelledby="orderCompleteTitle" aria-hidden="true">
     <div class="modal-backdrop" data-modal-close></div>
     <div class="modal-panel" role="document">
@@ -3994,10 +4123,10 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.45
+    // ILLVII 향수 주문 페이지 v0.48
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.45';
-    const ORDER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyLiKVUgU6BrbEZDELnnQF0l0LoPZEo-7ecDQtCLHjVWNdEeHxyGkNXZwZl955a74FN/exec';
+    const APP_VERSION = 'v0.48';
+    const ORDER_WEB_APP_URL = '여기에_APPS_SCRIPT_WEB_APP_URL_붙여넣기';
 
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -4468,8 +4597,20 @@
         return;
       }
 
+      if (field.id === 'termsAgree') {
+        const message = '이용약관 및 주문 안내에 동의해주세요.';
+        field.checked ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+
       if (field.id === 'privacyAgree') {
-        const message = '개인정보 수집·이용 동의가 필요합니다.';
+        const message = '개인정보 수집 및 이용에 동의해주세요.';
+        field.checked ? clearValidationFor(field) : restoreValidationFor(field, message);
+        return;
+      }
+
+      if (field.id === 'refundAgree') {
+        const message = '교환·환불 안내 확인이 필요합니다.';
         field.checked ? clearValidationFor(field) : restoreValidationFor(field, message);
         return;
       }
@@ -4584,11 +4725,27 @@
         }));
       }
 
+      if (!$('#termsAgree').checked) {
+        errors.push(markValidationError({
+          sectionId: 'memoStep',
+          field: $('#termsAgree'),
+          message: '이용약관 및 주문 안내에 동의해주세요.'
+        }));
+      }
+
       if (!$('#privacyAgree').checked) {
         errors.push(markValidationError({
           sectionId: 'memoStep',
           field: $('#privacyAgree'),
-          message: '개인정보 수집·이용 동의가 필요합니다.'
+          message: '개인정보 수집 및 이용에 동의해주세요.'
+        }));
+      }
+
+      if (!$('#refundAgree').checked) {
+        errors.push(markValidationError({
+          sectionId: 'memoStep',
+          field: $('#refundAgree'),
+          message: '교환·환불 안내 확인이 필요합니다.'
         }));
       }
 
@@ -4635,7 +4792,9 @@
         memo: $('#memo').value.trim(),
         hasEntranceCode: $('#hasEntranceCode').checked ? '예' : '아니오',
         entranceCode: $('#entranceCode').value.trim(),
+        termsAgree: $('#termsAgree').checked ? '동의' : '미동의',
         privacyAgree: $('#privacyAgree').checked ? '동의' : '미동의',
+        refundAgree: $('#refundAgree').checked ? '동의' : '미동의',
         userAgent: navigator.userAgent,
         pageUrl: location.href
       };
@@ -4820,6 +4979,19 @@
       el.addEventListener('click', closeOrderCompleteModal);
     });
 
+
+    $$('[data-legal-modal]').forEach((el) => {
+      el.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openLegalModal(el.dataset.legalModal);
+      });
+    });
+
+    $$('[data-legal-close]').forEach((el) => {
+      el.addEventListener('click', closeLegalModal);
+    });
+
     $$('[data-alert-close]').forEach((el) => {
       el.addEventListener('click', closeAlertModal);
     });
@@ -4828,6 +5000,7 @@
       if (e.key === 'Escape') {
         closeOrderCompleteModal();
         closeAlertModal();
+        closeLegalModal();
       }
     });
 
@@ -4840,6 +5013,82 @@
         }
       });
     });
+
+
+
+    const LEGAL_CONTENT = {
+      terms: {
+        title: '이용약관 및 주문 안내',
+        body: `
+          <h3>1. 주문 접수</h3>
+          <p>일비 온라인 주문 페이지는 향수 제품의 주문 접수를 위한 서비스입니다. 고객은 향, 용량, 수량, 주문자 정보 및 배송지를 입력하여 주문을 접수할 수 있습니다.</p>
+          <h3>2. 주문 확인 및 결제</h3>
+          <p>주문 접수 후 일비는 주문 내용 확인을 거쳐 입금 정보를 안내합니다. 안내된 계좌로 입금이 확인된 후 제작 및 발송 절차가 진행됩니다.</p>
+          <h3>3. 제작 및 발송</h3>
+          <p>일비는 소량 주문 접수 방식으로 운영되며, 주문량과 제작 상황에 따라 발송 일정이 달라질 수 있습니다. 배송 안내는 주문 시 입력한 연락처를 기준으로 진행됩니다.</p>
+          <h3>4. 고객 의무</h3>
+          <ul>
+            <li>주문자는 정확한 연락처와 배송지를 입력해야 합니다.</li>
+            <li>주소 오기재, 연락처 오류, 부재 등으로 인한 배송 지연 또는 반송이 발생할 수 있습니다.</li>
+            <li>향수는 사용 환경과 개인 취향에 따라 체감이 달라질 수 있습니다.</li>
+          </ul>
+          <h3>5. 문의</h3>
+          <p>주문 및 배송 문의는 고객센터 이메일 또는 채널톡 상담으로 남길 수 있습니다.</p>
+        `
+      },
+      privacy: {
+        title: '개인정보 수집 및 이용',
+        body: `
+          <h3>1. 수집 항목</h3>
+          <p>주문자명, 연락처, 우편번호, 배송지 주소, 배송 메모, 공동현관 출입번호 입력 시 해당 정보, 요청사항, 주문 상품 정보, 접속 환경 정보가 수집될 수 있습니다.</p>
+          <h3>2. 이용 목적</h3>
+          <p>주문 확인, 입금 안내, 제품 제작 및 발송, 배송 안내, 고객 문의 응대, 거래 기록 확인을 위해 이용합니다.</p>
+          <h3>3. 보유 및 이용 기간</h3>
+          <p>전자상거래 관련 법령에서 정한 보관 기간 또는 주문 처리와 고객 응대에 필요한 기간 동안 보관 후 지체 없이 파기합니다.</p>
+          <h3>4. 동의 거부 권리</h3>
+          <p>고객은 개인정보 수집 및 이용에 동의하지 않을 권리가 있습니다. 다만 필수 정보 수집에 동의하지 않을 경우 주문 접수와 배송 진행이 제한될 수 있습니다.</p>
+          <h3>5. 개인정보보호책임자</h3>
+          <p>이태하 · illvii@perfumery.kr</p>
+        `
+      },
+      refund: {
+        title: '교환·환불 안내',
+        body: `
+          <h3>1. 청약철회 및 반품</h3>
+          <p>전자상거래 관련 법령에 따라 고객은 상품을 공급받은 날 등 법에서 정한 기준일로부터 7일 이내에 청약철회를 요청할 수 있습니다.</p>
+          <h3>2. 교환·환불이 제한될 수 있는 경우</h3>
+          <ul>
+            <li>고객의 책임 있는 사유로 상품이 멸실 또는 훼손된 경우</li>
+            <li>포장을 개봉했거나 사용하여 상품 가치가 현저히 감소한 경우</li>
+            <li>고객 요청에 따라 개별 제작 또는 조정된 상품으로 재판매가 곤란한 경우</li>
+            <li>시간 경과로 재판매가 곤란할 정도로 상품 가치가 감소한 경우</li>
+          </ul>
+          <h3>3. 오배송 및 하자</h3>
+          <p>표시·광고 내용과 다르거나 제품 하자, 오배송이 확인되는 경우에는 확인 후 교환 또는 환불을 안내합니다.</p>
+          <h3>4. 반품 배송비</h3>
+          <p>단순 변심으로 인한 교환·반품 배송비는 고객 부담이며, 제품 하자 또는 오배송의 경우 일비가 부담합니다.</p>
+        `
+      }
+    };
+
+    function openLegalModal(type) {
+      const data = LEGAL_CONTENT[type];
+      const modal = $('#legalModal');
+      if (!data || !modal) return;
+      $('#legalModalTitle').textContent = data.title;
+      $('#legalModalBody').innerHTML = data.body;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLegalModal() {
+      const modal = $('#legalModal');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
 
 
     form.querySelectorAll('input, select, textarea').forEach((field) => {
