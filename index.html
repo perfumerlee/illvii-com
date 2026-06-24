@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- ILLVII 향수 주문 페이지 v0.48 -->
+<!-- ILLVII 향수 주문 페이지 v0.49 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>ILLVII 향수 주문하기 · v0.48</title>
+  <title>ILLVII 향수 주문하기 · v0.49</title>
   <meta name="description" content="ILLVII 향수 온라인 주문 접수 페이지" />
 
   
@@ -1303,7 +1303,7 @@
 
 
 
-    /* v0.48: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
+    /* v0.49: 20-30대 감성에 맞춘 세련된 비주얼 고도화 */
     body::before {
       content: "";
       position: fixed;
@@ -1630,7 +1630,7 @@
     }
 
 
-    /* v0.48: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
+    /* v0.49: 전체 톤을 하나의 브랜드 드롭 페이지처럼 재정리한 디자인 고도화 */
     :root {
       --bg: #f3efe6;
       --paper: #fffdf6;
@@ -2335,7 +2335,7 @@
     }
 
 
-    /* v0.48: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
+    /* v0.49: 주문 선택 영역 균형 / 주소검색 레이어 개선 */
     .brand {
       flex-direction: row;
       align-items: center;
@@ -2503,7 +2503,7 @@
       .option-focus .option-body { min-height: 126px; }
       .postcode-embed { height: 430px; min-height: 430px; }
     }
-    /* v0.48: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
+    /* v0.49: 쇼핑몰 기본정보 줄바꿈 조정 + 입금 계좌 변경 */
     .shop-footer {
       max-width: 1080px;
       margin: 44px auto 0;
@@ -2695,7 +2695,7 @@
     }
 
 
-    /* v0.48: barcode logo + right top menu */
+    /* v0.49: barcode logo + right top menu */
     .header-menu-wrap {
       position: relative;
       display: flex;
@@ -2857,7 +2857,7 @@
     }
 
 
-    /* v0.48: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
+    /* v0.49: GNB 문구/섹션 간격/모바일 버튼 정렬/확대 방지 개선 */
     html,
     body {
       width: 100%;
@@ -3016,7 +3016,7 @@
 
 
 
-    /* v0.48: fixed header / mobile logo balance / refined alert modal */
+    /* v0.49: fixed header / mobile logo balance / refined alert modal */
     :root { --header-height: 72px; }
 
     body {
@@ -3165,7 +3165,7 @@
 
   
 
-    /* v0.48: 향수 카드 공통 노트 영역 여백 균형 개선 */
+    /* v0.49: 향수 카드 공통 노트 영역 여백 균형 개선 */
     .product-card {
       gap: 0;
     }
@@ -3251,7 +3251,7 @@
 
   
 
-    /* v0.48: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
+    /* v0.49: 주문 콘텐츠 정리 + 선택 상태 강조 + 옵션 재터치 해제 */
     .order-process {
       margin-top: 18px;
       display: grid;
@@ -3386,7 +3386,7 @@
       margin-left: 6px !important;
     }
   
-    /* v0.48 장바구니 담기 알림 인지 시간 보강 */
+    /* v0.49 장바구니 담기 알림 인지 시간 보강 */
     .cart-toast,
     .add-cart-toast,
     .add-cart-feedback.is-floating {
@@ -3407,7 +3407,7 @@
     }
 
   
-    /* v0.48 필수사항 확인 표시 */
+    /* v0.49 필수사항 확인 표시 */
     .section.is-invalid,
     .field.is-invalid,
     .privacy-box.is-invalid,
@@ -3458,7 +3458,7 @@
     }
 
   
-    /* v0.48 카드/영역 여백 균형 조정 */
+    /* v0.49 카드/영역 여백 균형 조정 */
     .product-showcase {
       padding: clamp(16px, 2.2vw, 22px);
     }
@@ -3642,6 +3642,80 @@
       margin-top: 4px;
     }
 
+  
+    /* v0.49 주문 전환 보강 */
+    .signature-badge {
+      background: var(--scent-ink);
+      color: #fffdf6;
+      border-color: transparent;
+      box-shadow: 0 10px 22px rgba(23,20,17,.14);
+    }
+
+    .free-shipping-guide {
+      margin: 14px 0 16px;
+      padding: 13px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(33,28,24,.10);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(223,255,95,.18), transparent 9rem),
+        rgba(255,253,246,.84);
+    }
+
+    .free-shipping-text {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 740;
+      line-height: 1.45;
+    }
+
+    .free-shipping-text.is-complete {
+      color: var(--success);
+    }
+
+    .free-shipping-bar {
+      height: 7px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(33,28,24,.10);
+    }
+
+    .free-shipping-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent-dark), #dfff5f);
+      transition: width .22s ease;
+    }
+
+    .deposit-copy-btn {
+      width: 100%;
+      margin-top: 12px;
+      border: 1px solid rgba(33,28,24,.12);
+      border-radius: 16px;
+      background: #fffdf6;
+      color: var(--ink);
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .deposit-copy-btn.is-copied {
+      background: rgba(47,111,78,.10);
+      border-color: rgba(47,111,78,.24);
+      color: var(--success);
+    }
+
+    .deposit-intent {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
   </style>
 </head>
 <body>
@@ -3723,6 +3797,7 @@
         <article class="product-card scent-la-dolce-vita">
           <div class="product-topline">
             ILLVII · Perfumer YDO
+            <span class="product-badge signature-badge">대표향수</span>
             <span class="product-badge">Fruity Floral</span>
           </div>
           <h3>LA DOLCE VITA <span class="kr-name">라돌체비타</span></h3>
@@ -3840,9 +3915,9 @@
             <label for="scent" class="required">주문할 향</label>
             <select id="scent" name="scent" required>
               <option value="">향을 선택해주세요</option>
-              <option value="LA DOLCE VITA">LA DOLCE VITA</option>
-              <option value="SOLVIA">SOLVIA</option>
-              <option value="STEMLINE">STEMLINE</option>
+              <option value="LA DOLCE VITA">LA DOLCE VITA — 대표향수 / Fruity Floral</option>
+              <option value="SOLVIA">SOLVIA — Citrus Clean</option>
+              <option value="STEMLINE">STEMLINE — Green Woody</option>
             </select>
           </div>
         </div>
@@ -4015,8 +4090,12 @@
           <div class="summary-line"><span>상품금액</span><strong id="summarySubtotal">0원</strong></div>
           <div class="summary-line"><span>배송비</span><strong id="summaryShipping">0원</strong></div>
           <div class="summary-total">
-            <span>총 주문금액</span>
+            <span>입금 예정 금액</span>
             <strong id="summaryTotal">0원</strong>
+          </div>
+          <div class="free-shipping-guide" aria-live="polite">
+            <p class="free-shipping-text" id="freeShippingText">무료배송까지 30,000원 남았습니다.</p>
+            <div class="free-shipping-bar" aria-hidden="true"><span class="free-shipping-fill" id="freeShippingFill"></span></div>
           </div>
           <button type="submit" form="orderForm" class="btn btn-primary submit-btn" id="submitBtn">주문 접수하기</button>
           <div id="resultMessage" class="message" role="status" aria-live="polite"></div>
@@ -4106,13 +4185,14 @@
       <button type="button" class="modal-close" data-modal-close aria-label="입금 안내 닫기">×</button>
       <p class="modal-kicker">주문 접수 완료</p>
       <h2 id="orderCompleteTitle">입금 정보를 확인해주세요.</h2>
-      <p class="modal-copy">주문 내용 확인 후 문자메시지로 다시 안내드릴 수 있습니다. 바로 입금하실 경우 아래 계좌와 총 결제금액을 확인해주세요.</p>
+      <p class="modal-copy">주문 내용 확인 후 문자메시지로 다시 안내드릴 수 있습니다. 바로 입금하실 경우 아래 계좌와 입금 예정 금액을 확인해주세요.</p>
       <div class="account-box">
         <span>입금 계좌</span>
-        <p class="account-number">국민은행 278501-04-095660<br />제로톤 주식회사</p>
+        <p class="account-number" id="modalBankAccount">국민은행 278501-04-095660<br />제로톤 주식회사</p>
+        <button type="button" class="deposit-copy-btn" id="copyBankAccountBtn">계좌번호 복사하기</button>
       </div>
       <div class="payment-total">
-        <span>총 결제금액</span>
+        <span class="deposit-intent">아래 금액을 입금해주세요.</span><span>입금 예정 금액</span>
         <strong id="modalTotalAmount">0원</strong>
       </div>
       <div class="modal-actions">
@@ -4123,9 +4203,9 @@
 
 
   <script>
-    // ILLVII 향수 주문 페이지 v0.48
+    // ILLVII 향수 주문 페이지 v0.49
     // Apps Script 배포 후 생성된 웹 앱 URL을 여기에 붙여넣으세요.
-    const APP_VERSION = 'v0.48';
+    const APP_VERSION = 'v0.49';
     const ORDER_WEB_APP_URL = '여기에_APPS_SCRIPT_WEB_APP_URL_붙여넣기';
 
     if ('scrollRestoration' in history) {
@@ -4368,7 +4448,7 @@
       const totals = getCartTotals();
 
       if (!cart.length) {
-        cartList.innerHTML = '<p class="cart-empty">아직 장바구니에 담긴 제품이 없습니다.</p>';
+        cartList.innerHTML = '<div class="cart-empty"><p>아직 담긴 향수가 없습니다.</p><button type="button" class="ghost-link" data-empty-cart-scroll>향 선택하러 가기</button></div>';
         summaryItems.innerHTML = '<div class="summary-item"><strong>장바구니가 비어 있습니다.</strong><span>제품을 선택한 뒤 장바구니에 담아주세요.</span></div>';
       } else {
         cartList.innerHTML = cart.map((item, index) => `
@@ -4397,6 +4477,20 @@
       $('#summarySubtotal').textContent = formatKRW(totals.subtotal);
       $('#summaryShipping').textContent = totals.shippingFee === 0 ? '무료' : formatKRW(totals.shippingFee);
       $('#summaryTotal').textContent = formatKRW(totals.total);
+      const freeShippingText = $('#freeShippingText');
+      const freeShippingFill = $('#freeShippingFill');
+      if (freeShippingText && freeShippingFill) {
+        const remaining = Math.max(0, FREE_SHIPPING_MIN - totals.subtotal);
+        const progress = Math.min(100, Math.round((totals.subtotal / FREE_SHIPPING_MIN) * 100));
+        freeShippingFill.style.width = `${progress}%`;
+        if (totals.subtotal >= FREE_SHIPPING_MIN) {
+          freeShippingText.textContent = '무료배송이 적용되었습니다.';
+          freeShippingText.classList.add('is-complete');
+        } else {
+          freeShippingText.textContent = `무료배송까지 ${formatKRW(remaining)} 남았습니다.`;
+          freeShippingText.classList.remove('is-complete');
+        }
+      }
 
       const cartShortcutCount = $('#cartShortcutCount');
       if (cartShortcutCount) {
@@ -4471,7 +4565,34 @@
       const quantityField = $('#quantity');
       if (quantityField) quantityField.value = 1;
 
-      updateOptionAvailability();
+  
+    const copyBankAccountBtn = $('#copyBankAccountBtn');
+    if (copyBankAccountBtn) {
+      copyBankAccountBtn.addEventListener('click', async () => {
+        const accountText = '국민은행 278501-04-095660 제로톤 주식회사';
+        try {
+          await navigator.clipboard.writeText(accountText);
+          copyBankAccountBtn.textContent = '계좌번호를 복사했습니다';
+          copyBankAccountBtn.classList.add('is-copied');
+        } catch (error) {
+          const temp = document.createElement('textarea');
+          temp.value = accountText;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          temp.remove();
+          copyBankAccountBtn.textContent = '계좌번호를 복사했습니다';
+          copyBankAccountBtn.classList.add('is-copied');
+        }
+
+        window.setTimeout(() => {
+          copyBankAccountBtn.textContent = '계좌번호 복사하기';
+          copyBankAccountBtn.classList.remove('is-copied');
+        }, 2600);
+      });
+    }
+
+    updateOptionAvailability();
       updateCurrentPick();
 
       const feedback = $('#addCartFeedback');
@@ -5090,6 +5211,14 @@
       document.body.style.overflow = '';
     }
 
+
+
+    document.addEventListener('click', (event) => {
+      const emptyCartButton = event.target.closest('[data-empty-cart-scroll]');
+      if (!emptyCartButton) return;
+      event.preventDefault();
+      scrollToTarget('scentStep');
+    });
 
     form.querySelectorAll('input, select, textarea').forEach((field) => {
       const recheck = () => {
